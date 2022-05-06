@@ -1,2 +1,3 @@
-# 2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic
+# 2122_3AHITN_Scrum_nmekina_phager_smedziko_emiklaut
+
 Scrum_Jump&amp;Run

@@ -29,42 +29,22 @@ public class ControllerStartMenue {
 
     @FXML
     void press_scoreboard(ActionEvent event) throws IOException {
-        change_scene("scoreboard");
+        ChangeScene.change_scene("scoreboard", btn_startgame);
     }
 
     @FXML
     void press_settings(ActionEvent event) throws IOException {
-        change_scene("settingsmenue");
+        ChangeScene.change_scene("settingsmenue", btn_startgame);
     }
 
     @FXML
     void press_skinshop(ActionEvent event) throws IOException {
-        change_scene("skinshop");
+        ChangeScene.change_scene("skinshop", btn_startgame);
     }
 
     @FXML
     void press_startgame(ActionEvent event) throws IOException {
-        change_scene("username");
-    }
-
-    public void change_scene(String game) throws IOException {
-        Stage stage = new Stage();
-
-        Stage stageclose = (Stage) btn_startgame.getScene().getWindow();
-        stageclose.close();
-
-        final FXMLLoader fxmlLoader = new FXMLLoader();
-        URL u = HelloApplication.class.getResource(game + ".fxml");
-        System.out.println(new File("").getAbsolutePath());
-        System.out.println(u);
-        fxmlLoader.setLocation(u);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle(game);
-        scene.setFill(Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+        ChangeScene.change_scene("username", btn_startgame);
     }
 
 }

@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example._2122_3ahitn_scrum_mekina_hager_miklautsch_medzikovic/com.example._2122_3ahitn_scrum_mekina_hager_miklautsch_medzikovic.HelloApplication
+                                com.example._2122_3ahitn_scrum_mekina_hager_miklautsch_medzikovic/com.example.Controller.HelloApplication
                             </mainClass>
                         </configuration>
                     </execution>

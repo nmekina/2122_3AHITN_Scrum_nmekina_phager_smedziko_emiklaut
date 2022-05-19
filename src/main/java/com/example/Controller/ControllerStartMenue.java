@@ -1,4 +1,4 @@
-package com.example._2122_3ahitn_scrum_mekina_hager_miklautsch_medzikovic;
+package com.example.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

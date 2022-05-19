@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._2122_3ahitn_scrum_mekina_hager_miklautsch_medzikovic.ControllerStartMenue">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerStartMenue">
    <children>
       <Button fx:id="btn_startgame" layoutX="64.0" layoutY="93.0" mnemonicParsing="false" onAction="#press_startgame" prefHeight="45.0" prefWidth="136.0" text="Start Game">
          <font>

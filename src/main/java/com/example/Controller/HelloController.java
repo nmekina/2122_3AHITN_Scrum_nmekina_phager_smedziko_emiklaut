@@ -2,6 +2,7 @@ package com.example.Controller;
 
 import Model.ObstacleGenerator;
 import Model.Player;
+import Model.Score;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

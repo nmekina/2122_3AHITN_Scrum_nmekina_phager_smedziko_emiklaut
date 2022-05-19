@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.HelloController">
-
+<AnchorPane fx:id="scene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.HelloController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b5a2b" height="91.0" layoutX="-5.0" layoutY="309.0" stroke="#8b5a2b" strokeType="INSIDE" width="824.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1ecc14" height="28.0" layoutY="309.0" stroke="#1ecc14" strokeType="INSIDE" width="824.0" />
+        <Circle fill="#eeff00" layoutX="719.0" layoutY="71.0" radius="57.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle layoutX="685.0" layoutY="55.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+        <Line endX="20.0" layoutX="682.0" layoutY="94.0" startX="-15.0" />
+        <Ellipse fx:id="player" fill="DODGERBLUE" layoutX="86.0" layoutY="273.0" radiusX="36.0" radiusY="36.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+        <Label fx:id="gameOver" alignment="CENTER" contentDisplay="CENTER" layoutX="268.0" layoutY="97.0" prefHeight="62.0" prefWidth="283.0" text="Label" textAlignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Button fx:id="back" layoutX="313.0" layoutY="188.0" mnemonicParsing="false" text="Button" />
+        <Button fx:id="restart" layoutX="450.0" layoutY="188.0" mnemonicParsing="false" onAction="#restartGame" text="Button" />
+        <Circle fx:id="heart3" fill="DODGERBLUE" layoutX="27.0" layoutY="55.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="heart2" fill="DODGERBLUE" layoutX="63.0" layoutY="55.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="heart1" fill="DODGERBLUE" layoutX="99.0" layoutY="55.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+        <Label fx:id="sc" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="71.0" prefHeight="17.0" prefWidth="100.0" text="Label" textAlignment="CENTER" />
+        <Label fx:id="highscore" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="89.0" prefHeight="17.0" prefWidth="100.0" text="Label" textAlignment="CENTER" />
+    </children>
 </AnchorPane>

@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public class ChangeScene {
 
@@ -22,8 +23,24 @@ public class ChangeScene {
 
         final FXMLLoader fxmlLoader = new FXMLLoader();
         URL u = HelloApplication.class.getResource(game + ".fxml");
+
         fxmlLoader.setLocation(u);
         Scene scene = new Scene(fxmlLoader.load());
+
+        if(game.equals("spielfeld")) {
+            scene.setOnKeyPressed(e -> {
+                System.out.println(e.getCode().toString());
+
+                if (!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
+                    Player.setMovement(e.getCode().toString());
+                    Player.setPressed(true);
+                } else {
+                    System.out.println("Already jumping");
+                }
+            });
+        }
+
+
         stage.setTitle(game);
         stage.setScene(scene);
         stage.show();

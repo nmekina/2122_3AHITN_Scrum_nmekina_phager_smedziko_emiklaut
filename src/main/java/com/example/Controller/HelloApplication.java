@@ -15,17 +15,6 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("startmenue.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
-        scene.setOnKeyPressed(e-> {
-            System.out.println(e.getCode().toString());
-
-            if(!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
-                Player.setMovement(e.getCode().toString());
-                Player.setPressed(true);
-            }else {
-                System.out.println("Already jumping");
-            }
-        });
-
         stage.setTitle("Jump And Run");
         stage.setScene(scene);
         stage.show();

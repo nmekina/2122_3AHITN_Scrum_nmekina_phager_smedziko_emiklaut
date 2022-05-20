@@ -12,7 +12,7 @@ import java.util.Objects;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("spielfeld.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("startmenue.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         scene.setOnKeyPressed(e-> {

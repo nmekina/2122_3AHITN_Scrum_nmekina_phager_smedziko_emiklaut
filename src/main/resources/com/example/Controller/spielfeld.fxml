@@ -22,7 +22,7 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <Button fx:id="back" layoutX="313.0" layoutY="188.0" mnemonicParsing="false" text="Button" />
+        <Button fx:id="back" layoutX="313.0" layoutY="188.0" mnemonicParsing="false" onAction="#pressed_back" text="Button" />
         <Button fx:id="restart" layoutX="450.0" layoutY="188.0" mnemonicParsing="false" onAction="#restartGame" text="Button" />
         <Circle fx:id="heart3" fill="DODGERBLUE" layoutX="27.0" layoutY="55.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
         <Circle fx:id="heart2" fill="DODGERBLUE" layoutX="63.0" layoutY="55.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />

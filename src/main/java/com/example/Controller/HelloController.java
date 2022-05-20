@@ -1,5 +1,6 @@
 package com.example.Controller;
 
+import Model.ChangeScene;
 import Model.ObstacleGenerator;
 import Model.Player;
 import Model.Score;
@@ -173,6 +174,11 @@ public class HelloController {
 
 
 
+    }
+
+    @FXML
+    void pressed_back(ActionEvent event) throws IOException {
+        ChangeScene.change_scene("startmenue", back);
     }
 
 }

@@ -58,7 +58,7 @@ public class Score implements Runnable {
         }
 
         // TODO: KEINE ABSOLUTEN PFADE VERWENDEN!!!
-        File f = new File("C:\\Users\\nicom\\IdeaProjects\\2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic\\src\\main\\java\\scores.json");
+        File f = new File("src/main/java/Model/scores.json");
         Scanner s = new Scanner(f);
         FileReader fr = new FileReader(f);
         StringBuilder sb = new StringBuilder();

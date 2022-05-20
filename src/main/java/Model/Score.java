@@ -57,16 +57,19 @@ public class Score implements Runnable {
             highscore = score;
         }
 
-        File f = new File("C:\\Users\\Philipp\\IdeaProjects\\test\\src\\main\\java\\Model\\scores.json");
+        // TODO: KEINE ABSOLUTEN PFADE VERWENDEN!!!
+        File f = new File("C:\\Users\\nicom\\IdeaProjects\\2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic\\src\\main\\java\\scores.json");
         Scanner s = new Scanner(f);
         FileReader fr = new FileReader(f);
         StringBuilder sb = new StringBuilder();
 
         while(s.hasNextLine()){
-            sb.append(s.nextLine());
+           sb.append(s.nextLine());
         }
 
         Gson g = new Gson();
+
+
 
         Type listType = new TypeToken<ArrayList<PlayerScore>>(){}.getType();
         ArrayList<PlayerScore> player = g.fromJson( fr, listType);

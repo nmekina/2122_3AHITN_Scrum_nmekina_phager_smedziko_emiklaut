@@ -99,6 +99,19 @@ public class HelloController {
 
     Score s;
     Player p;
+    boolean back = false;
+
+
+    if(back1){
+        try {
+            restartGame(new ActionEvent());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initialize() throws InterruptedException {
 
         Player.setPlayer(player);
@@ -178,6 +191,7 @@ public class HelloController {
 
     @FXML
     void pressed_back(ActionEvent event) throws IOException {
+        back1 = true;
         ChangeScene.change_scene("startmenue", back);
     }
 

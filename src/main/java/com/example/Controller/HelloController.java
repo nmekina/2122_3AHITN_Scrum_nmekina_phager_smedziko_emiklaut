@@ -99,9 +99,9 @@ public class HelloController {
 
     Score s;
     Player p;
-    boolean back = false;
+    boolean back1 = false;
 
-
+/*
     if(back1){
         try {
             restartGame(new ActionEvent());
@@ -111,6 +111,8 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+
+ */
 
     public void initialize() throws InterruptedException {
 

@@ -7,15 +7,13 @@ import Model.Score;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,7 +23,9 @@ public class HelloController {
     private AnchorPane scene;
 
     @FXML
-    private Ellipse player;
+    private Node player;
+
+    // TODO: Replace Ellipse mit Node in den die Ellipse bzw. das Image dargestellt wird
 
     @FXML
     private Label gameOver;
@@ -59,11 +59,11 @@ public class HelloController {
         public void handle(long now) {
 
             if(Objects.equals(Player.getMovement(), "S")){
-                player.setRadiusY(17);
+               // player.setRadiusY(17);
                 player.setLayoutY(292);
-                Player.setPressed(false);
+                player.setPressedKey(false);
             }else if(player.getRadiusY() == 17 && !Objects.equals(Player.getMovement(), "S")){
-                player.setRadiusY(34);
+               // player.setRadiusY(34);
                 player.setLayoutY(273);
             }
 
@@ -71,7 +71,7 @@ public class HelloController {
                 player.setLayoutY(player.getLayoutY() - 8);
 
             }else {
-                Player.setPressed(false);
+                Player.setPressedKey(false);
             }
 
             if(!Player.getPressed() && player.getLayoutY() < 273){
@@ -119,10 +119,11 @@ public class HelloController {
 
     public void initialize() throws InterruptedException {
 
-        Player.setPlayer(player);
+        Player.setPlayer(player);  // TODO:
         highscore.setText("No Highscore yet");
 
         p = new Player("Mekina2");
+        // TODO: p.setEllipse(player);
 
         s = new Score(sc, highscore,p);
 

@@ -15,14 +15,39 @@
          </font>
       </Label>
 
-      <Button layoutX="88.0" layoutY="229.0" mnemonicParsing="false" text="Philipp" />
-      <Button layoutX="329.0" layoutY="229.0" mnemonicParsing="false" text="Elias" />
-      <Button layoutX="562.0" layoutY="229.0" mnemonicParsing="false" text="Nico" />
-      <Button layoutX="191.0" layoutY="431.0" mnemonicParsing="false" text="Semir" />
-      <Button layoutX="455.0" layoutY="431.0" mnemonicParsing="false" text="Manuel" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="btn_semir" layoutX="94.0" layoutY="229.0" mnemonicParsing="false" onAction="#press_btn" text="Semir" />
+      <Button fx:id="btn_elias" layoutX="329.0" layoutY="229.0" mnemonicParsing="false" onAction="#press_btn" text="Elias" />
+      <Button fx:id="btn_nico" layoutX="562.0" layoutY="229.0" mnemonicParsing="false" onAction="#press_btn" text="Nico" />
+      <Button fx:id="btn_rester" layoutX="191.0" layoutY="431.0" mnemonicParsing="false" onAction="#press_btn" text="Rester" />
+      <Button fx:id="btn_hager" layoutX="455.0" layoutY="431.0" mnemonicParsing="false" onAction="#press_btn" text="Hager" />
+      <ImageView fitHeight="142.0" fitWidth="200.0" layoutX="249.0" layoutY="64.0">
          <image>
-            <Image url="@../../../../java/pictures/PhilippHager.jpeg" />
+            <Image url="@EliasMiklautsch.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="142.0" fitWidth="200.0" layoutX="482.0" layoutY="64.0">
+         <image>
+            <Image url="@NicoMekina.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="153.0" layoutY="233.0" text="0 games" />
+      <Label layoutX="249.0" layoutY="435.0" text="75 games" />
+      <Label layoutX="382.0" layoutY="233.0" text="25 games" />
+      <Label layoutX="611.0" layoutY="233.0" text="50 games" />
+      <Label layoutX="522.0" layoutY="435.0" text="100 games" />
+      <ImageView fitHeight="142.0" fitWidth="200.0" layoutX="41.0" layoutY="64.0">
+         <image>
+            <Image url="@SemirMedzikovic.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="142.0" fitWidth="200.0" layoutX="116.0" layoutY="280.0">
+         <image>
+            <Image url="@ManuelRester.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="142.0" fitWidth="200.0" layoutX="382.0" layoutY="280.0">
+         <image>
+            <Image url="@PhilippHager.jpeg" />
          </image>
       </ImageView>
    </children>

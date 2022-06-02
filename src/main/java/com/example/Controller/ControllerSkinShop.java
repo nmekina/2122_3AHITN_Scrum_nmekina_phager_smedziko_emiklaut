@@ -1,20 +1,32 @@
 package com.example.Controller;
 
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
+import Model.ChangeScene;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
-import java.io.FileInputStream;
-import java.util.Objects;
-
+import java.io.IOException;
 
 public class ControllerSkinShop {
 
-    public ImageView hagerpicture;
-    public ImageView miklautschpicture;
-    public ImageView resterpicture;
-    public ImageView medzikovicpicture;
+    @FXML
+    private Button btn_semir;
+
+    @FXML
+    private Button btn_elias;
+
+    @FXML
+    private Button btn_nico;
+
+    @FXML
+    private Button btn_rester;
+
+    @FXML
+    private Button btn_hager;
+
+    @FXML
+    void press_btn(ActionEvent event) throws IOException {
+        ChangeScene.change_scene("startmenue",btn_semir);
+    }
+
 }

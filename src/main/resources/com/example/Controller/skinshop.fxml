@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
+<AnchorPane prefHeight="458.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerSkinShop">
+   <children>
+      <Label alignment="CENTER" layoutX="268.0" layoutY="14.0" text="Skinshop">
+         <font>
+            <Font name="Bodoni MT" size="40.0" />
+         </font>
+      </Label>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerSkinShop">
-
+      <Button layoutX="88.0" layoutY="229.0" mnemonicParsing="false" text="Philipp" />
+      <Button layoutX="329.0" layoutY="229.0" mnemonicParsing="false" text="Elias" />
+      <Button layoutX="562.0" layoutY="229.0" mnemonicParsing="false" text="Nico" />
+      <Button layoutX="191.0" layoutY="431.0" mnemonicParsing="false" text="Semir" />
+      <Button layoutX="455.0" layoutY="431.0" mnemonicParsing="false" text="Manuel" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../java/pictures/PhilippHager.jpeg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

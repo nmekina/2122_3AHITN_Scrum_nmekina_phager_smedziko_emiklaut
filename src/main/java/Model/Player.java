@@ -1,22 +1,23 @@
 package Model;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
-
 import static java.lang.Thread.sleep;
 
-public class Player{
+public class Player extends Ellipse{
     static String chosenMovement = "";
     static boolean keypressed;
-    private static Ellipse player;
+    private static Node player;
     static boolean stop = false;
     public String name;
     public static boolean getPressed() {
         return keypressed;
     }
 
-    public static void setPressed(boolean pressed) {
+    // TODO: überall ändern
+    public static void setPressedKey(boolean pressed) {
         keypressed = pressed;
     }
 
@@ -28,11 +29,12 @@ public class Player{
         chosenMovement = movement;
     }
 
-    public static void setPlayer(Ellipse p){
+    public static void setPlayer(Node p){
         player = p;
     }
 
-    public static Ellipse getPlayer(){
+    //TODO: getRadiusY abändern auf Node/Pane
+    public static Node getPlayer(){
         return player;
     }
 

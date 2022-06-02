@@ -4,11 +4,8 @@ import com.example.Controller.HelloApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -33,7 +30,7 @@ public class ChangeScene {
 
                 if (!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
                     Player.setMovement(e.getCode().toString());
-                    Player.setPressed(true);
+                    Player.setPressedKey(true);
                 } else {
                     System.out.println("Already jumping");
                 }

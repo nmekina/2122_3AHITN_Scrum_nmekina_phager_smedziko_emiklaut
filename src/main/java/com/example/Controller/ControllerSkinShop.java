@@ -29,4 +29,8 @@ public class ControllerSkinShop {
         ChangeScene.change_scene("startmenue",btn_semir);
     }
 
+    public void initialize(){
+
+    }
+
 }

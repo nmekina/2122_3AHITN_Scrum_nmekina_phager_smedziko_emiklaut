@@ -32,30 +32,7 @@ public class ObstacleGenerator implements Runnable {
         public void handle(long now) {
 
 
-            if (activeObstacle.getX() > -36) {
 
-                    if (activeObstacle.getX() < 120 && activeObstacle.getX() > 30 && !beaten && !damage) {
-                        if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getRadiusY() == 17 && activeObstacle.getHeight() == 28) {
-                            System.out.println("geschafft");
-                        } else {
-                                checkDamage();
-                                damage = true;
-                        }
-                    }
-
-
-                    //Um die runde Form des Charakters zu imitieren, anstatt eine viereckige Hitbox
-                    if (activeObstacle.getX() < 30 && activeObstacle.getX() > 20 && !beaten && !damage) {
-                        if (Player.getPlayer().getLayoutY() < 207 || Player.getPlayer().getRadiusY() == 17 && activeObstacle.getHeight() == 28) {
-                            System.out.println("geschafft");
-                        } else {
-                                checkDamage();
-                                damage = true;
-
-                        }
-                    }
-
-            }
 
             if (beaten) {
                 Label l = (Label) ap.getChildren().get(6);

@@ -61,8 +61,8 @@ public class HelloController {
             if(Objects.equals(Player.getMovement(), "S")){
                // player.setRadiusY(17);
                 player.setLayoutY(292);
-                player.setPressedKey(false);
-            }else if(player.getRadiusY() == 17 && !Objects.equals(Player.getMovement(), "S")){
+            //    player.setPressedKey(false);
+         //   }else if(player.getRadiusY() == 17 && !Objects.equals(Player.getMovement(), "S")){
                // player.setRadiusY(34);
                 player.setLayoutY(273);
             }

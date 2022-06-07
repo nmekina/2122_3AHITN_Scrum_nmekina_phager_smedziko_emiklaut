@@ -57,7 +57,6 @@ public class Score implements Runnable {
             highscore = score;
         }
 
-        // TODO: KEINE ABSOLUTEN PFADE VERWENDEN!!!
         File f = new File("src/main/java/Model/scores.json");
         Scanner s = new Scanner(f);
         FileReader fr = new FileReader(f);

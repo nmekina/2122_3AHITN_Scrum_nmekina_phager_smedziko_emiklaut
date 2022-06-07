@@ -43,16 +43,24 @@ public class ControllerSettingsMenue {
     Settings settings = new Settings();
 
     public void initialize() {
-        choice_difficulty.setValue("medium");
-        choice_difficulty.getItems().add("medium");
+        choice_difficulty.setValue(settings.getDifficulty());
         choice_difficulty.getItems().add("beginner");
+        choice_difficulty.getItems().add("medium");
         choice_difficulty.getItems().add("hard");
         choice_difficulty.getItems().add("hardcore");
 
-        choice_music.setValue("Tetris");
+        choice_music.setValue(settings.getMusicplaying());
         choice_music.getItems().add("Tetris");
         choice_music.getItems().add("Super Mario");
         choice_music.getItems().add("Subway Surfer");
+
+        txt_image.setText(settings.getImage());
+
+        choice_music_on.setSelected(settings.getMusiconoff());
+        choice_music_off.setSelected(!settings.getMusiconoff());
+
+        choice_highscore_on.setSelected(settings.getHighscoreonoff());
+        choice_highscore_off.setSelected(!settings.getHighscoreonoff());
     }
 
     @FXML

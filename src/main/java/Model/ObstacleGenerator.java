@@ -33,7 +33,7 @@ public class ObstacleGenerator implements Runnable {
 
 
             if (activeObstacle.getX() > -36) {
-
+/*
                     if (activeObstacle.getX() < 120 && activeObstacle.getX() > 30 && !beaten && !damage) {
                         if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getRadiusY() == 17 && activeObstacle.getHeight() == 28) {
                             System.out.println("geschafft");
@@ -55,6 +55,8 @@ public class ObstacleGenerator implements Runnable {
                         }
                     }
 
+
+ */
             }
 
             if (beaten) {

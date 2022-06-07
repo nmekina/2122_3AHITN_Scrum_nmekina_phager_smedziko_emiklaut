@@ -57,7 +57,7 @@ public class HelloController {
     AnimationTimer up = new AnimationTimer() {
         @Override
         public void handle(long now) {
-
+/*
             if(Objects.equals(Player.getMovement(), "S")){
                // player.setRadiusY(17);
                 player.setLayoutY(292);
@@ -66,6 +66,8 @@ public class HelloController {
                // player.setRadiusY(34);
                 player.setLayoutY(273);
             }
+
+ */
 
             if (Player.getPressed() && player.getLayoutY() > 133 && !Objects.equals(Player.getMovement(), "S")) {
                 player.setLayoutY(player.getLayoutY() - 8);

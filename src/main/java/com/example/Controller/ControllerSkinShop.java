@@ -38,6 +38,8 @@ public class ControllerSkinShop {
     @FXML
     private Button select;
 
+    @FXML
+
     Skin semir = new Skin("Semir", 0, new Image("C:\\Users\\Semir Medzikovic\\Documents\\HTL\\3AHITN\\SEW\\2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic\\target\\classes\\com\\example\\Controller\\SemirMedzikovic.jpeg",200,100,false,false));
     Skin elias = new Skin("Elias", 25, new Image("C:\\Users\\Semir Medzikovic\\Documents\\HTL\\3AHITN\\SEW\\2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic\\target\\classes\\com\\example\\Controller\\EliasMiklautsch.jpeg",200,100,false,false));
     Skin nico = new Skin("Nico", 50, new Image("C:\\Users\\Semir Medzikovic\\Documents\\HTL\\3AHITN\\SEW\\2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic\\src\\main\\resources\\com\\example\\Controller\\pictures\\NicoMekina.jpeg",200,100,false,false));

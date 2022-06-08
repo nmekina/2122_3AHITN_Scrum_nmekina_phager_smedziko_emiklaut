@@ -35,7 +35,7 @@ public class Player{
 
     public void setPlayer(Pane p){
         Player.p = p;
-        ImageView iv = new ImageView(skin.getPicture());
+        ImageView iv = new ImageView();
         iv.fitWidthProperty().bind(Player.p.widthProperty());
         iv.fitHeightProperty().bind(Player.p.heightProperty());
         Player.p.getChildren().add(iv);

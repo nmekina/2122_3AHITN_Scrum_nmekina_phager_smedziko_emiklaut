@@ -22,7 +22,7 @@ public class Score implements Runnable {
     Label showHighscore;
     static boolean stop = false;
     Player pl;
-    boolean update = false;
+    boolean check = true;
 
     public Score(Label showScore, Label showHighscore, Player p){
         this.showScore = showScore;
@@ -52,7 +52,53 @@ public class Score implements Runnable {
         }
     }
     public void checkScores() throws IOException {
+        File f = new File("src/main/java/Model/scores.json");
+        Scanner s = new Scanner(f);
+        FileReader fr = new FileReader(f);
+        StringBuilder sb = new StringBuilder();
 
+        while (s.hasNextLine()) {
+            sb.append(s.nextLine());
+        }
+
+        Gson g = new Gson();
+
+
+        Type listType = new TypeToken<ArrayList<PlayerScore>>() {
+        }.getType();
+        ArrayList<PlayerScore> player = g.fromJson(fr, listType);
+
+        Iterator<PlayerScore> i = player.iterator();
+
+        int count = 0;
+        while (i.hasNext()) {
+            count++;
+            PlayerScore p = i.next();
+            if (Objects.equals(pl.name, p.name)) {
+                check = false;
+                System.out.println(p.name);
+                p.games++;
+                if (score > p.highscore) {
+                    player.get(count - 1).highscore = score;
+
+                }
+            }
+        }
+
+        if (check) {
+            PlayerScore playerScore = new PlayerScore();
+            playerScore.highscore = score;
+            playerScore.name = pl.name;
+            playerScore.games++;
+            player.add(playerScore);
+            System.out.println(player);
+        }
+        FileWriter fw = new FileWriter(f);
+        g.toJson(player, fw);
+        fw.close();
+
+
+        /*
         if(score > highscore){
             highscore = score;
         }
@@ -109,6 +155,8 @@ public class Score implements Runnable {
         FileWriter fw = new FileWriter(f);
         g.toJson(player,fw);
         fw.close();
+
+         */
 
 
 

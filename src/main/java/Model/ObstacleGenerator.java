@@ -8,21 +8,29 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
 
 public class ObstacleGenerator implements Runnable {
     AnchorPane ap;
-    int big = 72;
-    int small = 28;
+    static int heightbig = 72;
+    static int heightsmall = 28;
     int x = 776;
     int y = 237;
-    Rectangle activeObstacle;
-    int difficulty = 10;
+    Shape activeObstacle;
+    static Integer generateHeart = 100;
     static boolean beaten = false;
-    static boolean damage = false;
+    static boolean happend = false;
+    boolean once = false;
     boolean stop = false;
+    Color color;
+    boolean isHeart = false;
+    static AtomicBoolean obstacleActive = new AtomicBoolean(false);
     int time;
+    int generatenew = 160;
     AnimationTimer playerJump;
     static Circle[] hearts = new Circle[3];
     Score s = new Score();
@@ -31,38 +39,32 @@ public class ObstacleGenerator implements Runnable {
         @Override
         public void handle(long now) {
 
+            //317 Obstacle Limit
+            //Obstacle soll nicht gestartet werden bis letzte Obstacle 317 erreicht hat, es geht runter
+            if(activeObstacle.getLayoutX() < generatenew && once){
+                synchronized (obstacleActive){
+                    obstacleActive.set(false);
+                }
+                once = false;
+            }
 
-            if (activeObstacle.getX() > -36) {
-/*
-                    if (activeObstacle.getX() < 120 && activeObstacle.getX() > 30 && !beaten && !damage) {
-                        if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getRadiusY() == 17 && activeObstacle.getHeight() == 28) {
-                            System.out.println("geschafft");
-                        } else {
-                                checkDamage();
-                                damage = true;
-                        }
+            //TODO Verbessern mit Höhe die gesprungen werden soll = Boden - Höhe des Gegners
+            if (activeObstacle.getLayoutX() > -36) {
+
+                if (activeObstacle.getLayoutX() < 120 && activeObstacle.getLayoutX() > 30 && !beaten && !happend) {
+                    if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getLayoutBounds().getHeight() == 28) {
+                        // System.out.println("geschafft");
+                    } else {
+                     checkDamage();
+                     happend = true;
                     }
-
-
-                    //Um die runde Form des Charakters zu imitieren, anstatt eine viereckige Hitbox
-                    if (activeObstacle.getX() < 30 && activeObstacle.getX() > 20 && !beaten && !damage) {
-                        if (Player.getPlayer().getLayoutY() < 207 || Player.getPlayer().getRadiusY() == 17 && activeObstacle.getHeight() == 28) {
-                            System.out.println("geschafft");
-                        } else {
-                                checkDamage();
-                                damage = true;
-
-                        }
-                    }
-
-
- */
+                }
             }
 
             if (beaten) {
-                Label l = (Label) ap.getChildren().get(6);
-                Button restart = (Button) ap.getChildren().get(7);
-                Button back = (Button) ap.getChildren().get(8);
+                Label l = (Label) ap.getChildren().get(5);
+                Button restart = (Button) ap.getChildren().get(6);
+                Button back = (Button) ap.getChildren().get(7);
                 l.setVisible(true);
                 restart.setVisible(true);
                 back.setVisible(true);
@@ -72,19 +74,20 @@ public class ObstacleGenerator implements Runnable {
                 stopGame();
             }
 
-
             //Width + Layout + Höhe = Position
             //36 + 14 + 72 = Ende
             // 36 + 120 + 72 = Anfang
-            activeObstacle.setX(activeObstacle.getX() - difficulty);
+            // System.out.println(activeObstacle.getX()-difficulty);
+            activeObstacle.setLayoutX(activeObstacle.getLayoutX()-8);
         }
 
     };
 
-    public ObstacleGenerator(AnchorPane ap, int time, AnimationTimer playerJump) {
+    public ObstacleGenerator(AnchorPane ap, int time, AnimationTimer playerJump, Color s) {
         this.ap = ap;
         this.time = time;
         this.playerJump = playerJump;
+        this.color = s;
     }
 
     public void checkDamage(){
@@ -105,11 +108,11 @@ public class ObstacleGenerator implements Runnable {
         int random = getRandomNumber(0, 2);
         System.out.println(random);
         if (random == 0) {
-            obstacle = new Rectangle(36, big);
+            obstacle = new Rectangle(36, heightbig);
         }
 
         if (random == 1) {
-            obstacle = new Rectangle(36, small);
+            obstacle = new Rectangle(36, heightsmall);
             obstacle.setY(251);
         }
         obstacle.setY(y);
@@ -124,7 +127,7 @@ public class ObstacleGenerator implements Runnable {
     public void stopObstacle() {
         enemies.stop();
         ap.getChildren().remove(activeObstacle);
-        damage = false;
+        happend = false;
     }
 
     public static void setHearts(Circle[] heartcollection){

@@ -1,23 +1,22 @@
 package Model;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
-import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
-import static java.lang.Thread.sleep;
 
-public class Player extends Ellipse{
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+
+public class Player{
     static String chosenMovement = "";
     static boolean keypressed;
-    private static Node player;
+    static Skin skin;
+    static Pane p;
+    String name;
     static boolean stop = false;
-    public String name;
+
     public static boolean getPressed() {
         return keypressed;
     }
 
-    // TODO: überall ändern
-    public static void setPressedKey(boolean pressed) {
+    public static void setPressed(boolean pressed) {
         keypressed = pressed;
     }
 
@@ -29,16 +28,33 @@ public class Player extends Ellipse{
         chosenMovement = movement;
     }
 
-    public static void setPlayer(Node p){
-        player = p;
+    //Benötigt um den ausgewählten Skin vom Shop in die Spiel Scene zu übertragen
+    public static void setSkin(Skin s){
+        skin = s;
     }
 
-    //TODO: getRadiusY abändern auf Node/Pane
-    public static Node getPlayer(){
-        return player;
+    public void setPlayer(Pane p){
+        Player.p = p;
+        ImageView iv = new ImageView(skin.getPicture());
+        iv.fitWidthProperty().bind(Player.p.widthProperty());
+        iv.fitHeightProperty().bind(Player.p.heightProperty());
+        Player.p.getChildren().add(iv);
     }
+
+    //TODO Make it unstatic
+    public static Pane getPlayer(){
+        return p;
+    }
+
 
     public Player(String name){
         this.name = name;
     }
 }
+
+
+
+
+
+
+

@@ -1,31 +1,35 @@
 package com.example.Controller;
 
-import Model.ChangeScene;
-import Model.ObstacleGenerator;
-import Model.Player;
-import Model.Score;
+import Model.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 public class HelloController {
+
     @FXML
     private AnchorPane scene;
 
     @FXML
-    private Node player;
+    private Button change;
 
-    // TODO: Replace Ellipse mit Node in den die Ellipse bzw. das Image dargestellt wird
+    //@FXML
+    // private Ellipse player;
 
     @FXML
     private Label gameOver;
@@ -51,41 +55,46 @@ public class HelloController {
     @FXML
     private Label highscore;
 
+    @FXML
+    private Pane paneplayer;
+
+
     Circle[] hearts;
-    
 
     AnimationTimer up = new AnimationTimer() {
         @Override
         public void handle(long now) {
 
             if(Objects.equals(Player.getMovement(), "S")){
-               // player.setRadiusY(17);
-                player.setLayoutY(292);
-            //    player.setPressedKey(false);
-         //   }else if(player.getRadiusY() == 17 && !Objects.equals(Player.getMovement(), "S")){
-               // player.setRadiusY(34);
-                player.setLayoutY(273);
+                paneplayer.setPrefHeight(28);
+                paneplayer.setLayoutY(280);
+                Player.setPressed(false);
+            }else if(paneplayer.getPrefHeight() == (28) && !Objects.equals(Player.getMovement(), "S")){
+                paneplayer.setPrefHeight(72);
+                paneplayer.setLayoutY(237);
             }
 
-            if (Player.getPressed() && player.getLayoutY() > 133 && !Objects.equals(Player.getMovement(), "S")) {
-                player.setLayoutY(player.getLayoutY() - 8);
+            //Bis er ganz oben ist
+            if (Player.getPressed() && paneplayer.getLayoutY() > 97 && !Objects.equals(Player.getMovement(), "S")) {
+                paneplayer.setLayoutY(paneplayer.getLayoutY() - 8);
 
             }else {
-                Player.setPressedKey(false);
+                Player.setPressed(false);
             }
 
-            if(!Player.getPressed() && player.getLayoutY() < 273){
-                player.setLayoutY(player.getLayoutY() + 8);
+            //kommt wieder runter
+            if(!Player.getPressed() && paneplayer.getLayoutY() < 237){
+                paneplayer.setLayoutY(paneplayer.getLayoutY() + 8);
             }
 
-            if(player.getLayoutY() == 273){
+            //Löscht movement key nach erfolgreicher bewegung
+            if(paneplayer.getLayoutY() == 237 && paneplayer.getPrefHeight() == 72){
                 Player.setMovement("");
             }
         }
 
 
     };
-
     ObstacleGenerator og;
     ObstacleGenerator og2;
     ObstacleGenerator og3;
@@ -119,12 +128,11 @@ public class HelloController {
 
     public void initialize() throws InterruptedException {
 
-        Player.setPlayer(player);  // TODO:
+        Player.setSkin(new Skin("Hager",12, new Image("C:\\HTL\\SEW3\\2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic\\src\\main\\resources\\com\\example\\Controller\\pictures\\PhilippHager.jpeg")));
         highscore.setText("No Highscore yet");
 
         p = new Player("Mekina2");
-        // TODO: p.setEllipse(player);
-
+          p.setPlayer(paneplayer);
         s = new Score(sc, highscore,p);
 
         heart1.setFill(Color.RED);
@@ -150,9 +158,9 @@ public class HelloController {
         up.start();
 
 
-        og = new ObstacleGenerator(scene,pause,up);
-        og2 = new ObstacleGenerator(scene,pause2,up);
-        og3 = new ObstacleGenerator(scene,pause3,up);
+        og = new ObstacleGenerator(scene,pause,up,Color.RED);
+        og2 = new ObstacleGenerator(scene,pause2,up,Color.BLACK);
+        og3 = new ObstacleGenerator(scene,pause3,up,Color.AQUAMARINE);
 
         t = new Thread(og);
         t1 = new Thread(og2);
@@ -177,6 +185,8 @@ public class HelloController {
         gameOver.setVisible(false);
         back.setVisible(false);
         restart.setVisible(false);
+        ObstacleGenerator.setObstacleActive(false);
+        ObstacleGenerator.resetDifficulty();
 
         s.checkScores();
         s.start();
@@ -199,6 +209,24 @@ public class HelloController {
     void pressed_back(ActionEvent event) throws IOException {
         back1 = true;
         ChangeScene.change_scene("startmenue", back);
+    }
+
+    @FXML
+    void change_skin(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+
+        Stage stageclose = (Stage) change.getScene().getWindow();
+        stageclose.close();
+
+        final FXMLLoader fxmlLoader = new FXMLLoader();
+        URL u = HelloApplication.class.getResource("skinshop.fxml");
+
+        fxmlLoader.setLocation(u);
+        Scene scene = new Scene(fxmlLoader.load());
+
+        stage.setTitle("Skinshop");
+        stage.setScene(scene);
+        stage.show();
     }
 
 

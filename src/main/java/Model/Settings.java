@@ -4,7 +4,7 @@ public class Settings {
     private static boolean highscoreonoff = true;
     private static boolean musiconoff = true;
     private static String difficulty = "medium";
-    private static String image = "SemirMedzikovic.jpeg";
+    private static String image = "Hintergrund.jpeg";
     private static String musicplaying = "music";
 
     public boolean getHighscoreonoff() {

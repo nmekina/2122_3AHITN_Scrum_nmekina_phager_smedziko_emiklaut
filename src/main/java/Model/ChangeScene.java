@@ -30,7 +30,7 @@ public class ChangeScene {
 
                 if (!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
                     Player.setMovement(e.getCode().toString());
-                    Player.setPressedKey(true);
+                    Player.setPressed(true);
                 } else {
                     System.out.println("Already jumping");
                 }

@@ -128,11 +128,10 @@ public class HelloController {
 
     public void initialize() throws InterruptedException {
 
-        Player.setSkin(new Skin("Hager",12, new Image("C:\\HTL\\SEW3\\2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic\\src\\main\\resources\\com\\example\\Controller\\pictures\\PhilippHager.jpeg")));
         highscore.setText("No Highscore yet");
 
         p = new Player("Mekina2");
-          p.setPlayer(paneplayer);
+        p.setPlayer(paneplayer);
         s = new Score(sc, highscore,p);
 
         heart1.setFill(Color.RED);

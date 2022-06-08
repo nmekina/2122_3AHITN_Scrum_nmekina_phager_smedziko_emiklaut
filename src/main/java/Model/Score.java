@@ -16,7 +16,7 @@ import static java.lang.Thread.sleep;
 
 public class Score implements Runnable {
     String scoreText;
-    int score;
+    static int score;
     Label showScore;
     int highscore;
     Label showHighscore;

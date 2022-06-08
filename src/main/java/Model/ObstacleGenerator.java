@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -34,6 +35,8 @@ public class ObstacleGenerator implements Runnable {
     AnimationTimer playerJump;
     static Circle[] hearts = new Circle[3];
     Score s = new Score();
+    static Difficulty d = new Difficulty();
+
 
     AnimationTimer enemies = new AnimationTimer() {
         @Override
@@ -41,6 +44,7 @@ public class ObstacleGenerator implements Runnable {
 
             //317 Obstacle Limit
             //Obstacle soll nicht gestartet werden bis letzte Obstacle 317 erreicht hat, es geht runter
+            updateDifficulty();
             if(activeObstacle.getLayoutX() < generatenew && once){
                 synchronized (obstacleActive){
                     obstacleActive.set(false);
@@ -55,8 +59,13 @@ public class ObstacleGenerator implements Runnable {
                     if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getLayoutBounds().getHeight() == 28) {
                         // System.out.println("geschafft");
                     } else {
-                     checkDamage();
-                     happend = true;
+                        if (!isHeart) {
+                            checkDamage();
+                            happend = true;
+                        } else {
+                            heal();
+                            happend = true;
+                        }
                     }
                 }
             }
@@ -78,10 +87,15 @@ public class ObstacleGenerator implements Runnable {
             //36 + 14 + 72 = Ende
             // 36 + 120 + 72 = Anfang
             // System.out.println(activeObstacle.getX()-difficulty);
-            activeObstacle.setLayoutX(activeObstacle.getLayoutX()-8);
+            activeObstacle.setLayoutX(activeObstacle.getLayoutX()-d.difficulty);
         }
 
     };
+
+    public static void setObstacleActive(boolean state) {
+        obstacleActive.set(state);
+    }
+
 
     public ObstacleGenerator(AnchorPane ap, int time, AnimationTimer playerJump, Color s) {
         this.ap = ap;
@@ -103,31 +117,71 @@ public class ObstacleGenerator implements Runnable {
             }
     }
 
+    public void heal(){
+        for(int i = hearts.length-1; i >= 0; i--) {
+            if (hearts[i].getFill() == Color.WHITE) {
+                hearts[i].setFill(Color.RED);
+                i = 0;
+            }
+        }
+    }
+
     public void generateObstacle() {
-        Rectangle obstacle = new Rectangle();
-        int random = getRandomNumber(0, 2);
-        System.out.println(random);
-        if (random == 0) {
-            obstacle = new Rectangle(36, heightbig);
+        once = true;
+        Shape obstacle = new Ellipse();
+
+        synchronized (generateHeart) {
+            if (Score.score < generateHeart) {
+                int random = getRandomNumber(0, 2);
+                if (random == 0) {
+                    obstacle = new Rectangle(36, heightbig);
+                }
+
+                if (random == 1) {
+                    obstacle = new Rectangle(36, heightsmall);
+                }
+
+
+            } else {
+                obstacle = new Ellipse(36, heightbig);
+                generateHeart = generateHeart * 2 ;
+                isHeart = true;
+            }
         }
 
-        if (random == 1) {
-            obstacle = new Rectangle(36, heightsmall);
-            obstacle.setY(251);
-        }
-        obstacle.setY(y);
-        obstacle.setX(x);
-        obstacle.setFill(Color.RED);
+
+        obstacle.setFill(color);
+        obstacle.setLayoutY(y);
+        obstacle.setLayoutX(x);
         activeObstacle = obstacle;
         ap.getChildren().add(obstacle);
 
         enemies.start();
     }
 
+
+    public void updateDifficulty(){
+        if(Score.score == d.countDifficulty){
+            synchronized (d) {
+                d.difficulty = d.difficulty + d.hardcore;
+                time = time-50;
+                generatenew = generatenew +10;
+            }
+            d.countDifficulty = d.countDifficulty + 100;
+        }
+    }
+
+    public static void resetDifficulty(){
+        d.difficulty = 8;
+    }
+
+
+
     public void stopObstacle() {
         enemies.stop();
         ap.getChildren().remove(activeObstacle);
         happend = false;
+        isHeart = false;
     }
 
     public static void setHearts(Circle[] heartcollection){

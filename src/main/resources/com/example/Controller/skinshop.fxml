@@ -7,18 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="458.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerSkinShop">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerSkinShop">
    <children>
-      <Label alignment="CENTER" layoutX="268.0" layoutY="14.0" text="Skinshop">
+      <ListView fx:id="list_skins" layoutX="277.0" prefHeight="403.0" prefWidth="362.0" />
+      <ImageView fx:id="show_skin" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="skin_name" alignment="CENTER" layoutX="38.0" layoutY="250.0" prefHeight="35.0" prefWidth="200.0" text="Label">
          <font>
-            <Font name="Bodoni MT" size="40.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="listviewskins" layoutX="14.0" layoutY="78.0" prefHeight="358.0" prefWidth="326.0" />
-      <ImageView fx:id="imageview" fitHeight="193.0" fitWidth="233.0" layoutX="405.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btn_choose" layoutX="485.0" layoutY="410.0" mnemonicParsing="false" onAction="#btn_pressed" text="Auswählen" />
-      <Label fx:id="skinname" layoutX="496.0" layoutY="80.0" text="Skinname" />
-      <Label layoutX="476.0" layoutY="105.0" text="Freischaltung ab: " />
-      <Label fx:id="anzahlgames" layoutX="474.0" layoutY="134.0" text="Anzahl der Games" />
+      <Label fx:id="level_skin" alignment="CENTER" layoutX="38.0" layoutY="202.0" prefHeight="35.0" prefWidth="200.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="select" layoutX="112.0" layoutY="338.0" mnemonicParsing="false" onAction="#select_skin" text="Button" />
    </children>
 </AnchorPane>

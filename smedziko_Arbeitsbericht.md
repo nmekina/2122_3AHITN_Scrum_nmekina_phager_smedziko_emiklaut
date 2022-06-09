@@ -1,4 +1,6 @@
-| Nr. | Datum      | Version | Geänderte Kapitel | Art der  Änderung     | Autor       | Status |
-|-----|------------|---------|-------------------|-----------------------|-------------|--------|
-| 1   | 05.05.2022 | 1.0     | Trello            | Aufgaben besprechen, Board auf Trello angefangen | Medzikovic Semir | iB |
-| 2   | 06.05.2022 | 1.1     |                   |                       | Medzikovic Semir | iB |
+| Nr. | Datum      | Version | Geänderte Kapitel | Art der  Änderung                                                                                                           | Autor            | Status |
+|-----|------------|---------|-------------------|-----------------------------------------------------------------------------------------------------------------------------|------------------|--------|
+| 1   | 05.05.2022 | 1.0     | Trello            | Aufgaben besprechen, Board auf Trello angefangen                                                                            | Medzikovic Semir      | iB |
+| 2   | 19.05.2022 | 1.1     | IntelliJ          | Highscore | Medzikovic Semir | iB |
+| 3   | 03.06.2022 | 1.2     | IntelliJ          | Skinshop, Beginn Skinshop mit Listview und Skin Klasse                                                                      | Medzikovic Semir     | iB |
+| 4   | 08.06.2022 | 1.3     | IntelliJ          | Skinshop mit ListView und Skin Klasse                                                                                       | Medzikovic Semir | iB |

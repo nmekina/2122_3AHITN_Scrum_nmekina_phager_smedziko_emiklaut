@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerSkinShop">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.SkinShop">
    <children>
       <ListView fx:id="list_skins" layoutX="277.0" prefHeight="403.0" prefWidth="362.0" />
       <ImageView fx:id="show_skin" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />

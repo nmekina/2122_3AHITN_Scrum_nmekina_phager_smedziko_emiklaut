@@ -1,15 +1,15 @@
 package com.example.Controller;
 
-import Model.*;
+import Model.ObstacleGenerator;
+import Model.Player;
+import Model.Score;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -22,6 +22,7 @@ import java.util.Objects;
 
 public class HelloController {
 
+    //Das ist das Experiments Programm
     @FXML
     private AnchorPane scene;
 
@@ -29,7 +30,7 @@ public class HelloController {
     private Button change;
 
     //@FXML
-    // private Ellipse player;
+   // private Ellipse player;
 
     @FXML
     private Label gameOver;
@@ -61,6 +62,10 @@ public class HelloController {
 
     Circle[] hearts;
 
+
+
+    //Player Jump Power einstellen können (Skill Updates)
+
     AnimationTimer up = new AnimationTimer() {
         @Override
         public void handle(long now) {
@@ -75,14 +80,14 @@ public class HelloController {
             }
 
             //Bis er ganz oben ist
-            if (Player.getPressed() && paneplayer.getLayoutY() > 97 && !Objects.equals(Player.getMovement(), "S")) {
-                paneplayer.setLayoutY(paneplayer.getLayoutY() - 8);
+                if (Player.getPressed() && paneplayer.getLayoutY() > 97 && !Objects.equals(Player.getMovement(), "S")) {
+                   paneplayer.setLayoutY(paneplayer.getLayoutY() - 8);
 
-            }else {
-                Player.setPressed(false);
-            }
+                }else {
+                    Player.setPressed(false);
+                }
 
-            //kommt wieder runter
+                //kommt wieder runter
             if(!Player.getPressed() && paneplayer.getLayoutY() < 237){
                 paneplayer.setLayoutY(paneplayer.getLayoutY() + 8);
             }
@@ -91,10 +96,11 @@ public class HelloController {
             if(paneplayer.getLayoutY() == 237 && paneplayer.getPrefHeight() == 72){
                 Player.setMovement("");
             }
-        }
+            }
 
 
     };
+
     ObstacleGenerator og;
     ObstacleGenerator og2;
     ObstacleGenerator og3;
@@ -104,35 +110,24 @@ public class HelloController {
     Thread t2;
     Thread t3;
 
-
-    int pause = 2000;
-    int pause2 = 3000;
-    int pause3 = 3500;
+    int pause = 2500;
+    int pause2 = 2500;
+    int pause3 = 2500;
 
     Score s;
     Player p;
-    boolean back1 = false;
-
-/*
-    if(back1){
-        try {
-            restartGame(new ActionEvent());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
- */
 
     public void initialize() throws InterruptedException {
 
+
+        //Player.setPlayer(player);
         highscore.setText("No Highscore yet");
 
-        p = new Player("Mekina2");
-        p.setPlayer(paneplayer);
+        p = new Player("Mekina3234234234423");
+
         s = new Score(sc, highscore,p);
+
+        p.setPlayer(paneplayer);
 
         heart1.setFill(Color.RED);
         heart2.setFill(Color.RED);
@@ -157,9 +152,9 @@ public class HelloController {
         up.start();
 
 
-        og = new ObstacleGenerator(scene,pause,up,Color.RED);
-        og2 = new ObstacleGenerator(scene,pause2,up,Color.BLACK);
-        og3 = new ObstacleGenerator(scene,pause3,up,Color.AQUAMARINE);
+        og = new ObstacleGenerator(scene,pause,up,Color.VIOLET);
+        og2 = new ObstacleGenerator(scene,pause2,up,Color.RED);
+        og3 = new ObstacleGenerator(scene,pause3,up,Color.BLACK);
 
         t = new Thread(og);
         t1 = new Thread(og2);
@@ -205,12 +200,6 @@ public class HelloController {
     }
 
     @FXML
-    void pressed_back(ActionEvent event) throws IOException {
-        back1 = true;
-        ChangeScene.change_scene("startmenue", back);
-    }
-
-    @FXML
     void change_skin(ActionEvent event) throws IOException {
         Stage stage = new Stage();
 
@@ -228,5 +217,8 @@ public class HelloController {
         stage.show();
     }
 
+    }
 
-}
+
+
+

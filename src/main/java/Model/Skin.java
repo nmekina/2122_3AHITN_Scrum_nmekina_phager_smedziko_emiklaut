@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 
+
 public class Skin {
     String name;
     int level;

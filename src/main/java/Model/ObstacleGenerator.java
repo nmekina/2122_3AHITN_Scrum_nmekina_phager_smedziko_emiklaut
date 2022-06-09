@@ -36,8 +36,6 @@ public class ObstacleGenerator implements Runnable {
     static Circle[] hearts = new Circle[3];
     Score s = new Score();
     static Difficulty d = new Difficulty();
-
-
     AnimationTimer enemies = new AnimationTimer() {
         @Override
         public void handle(long now) {
@@ -59,12 +57,12 @@ public class ObstacleGenerator implements Runnable {
                     if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getLayoutBounds().getHeight() == 28) {
                         // System.out.println("geschafft");
                     } else {
-                        if (!isHeart) {
-                            checkDamage();
-                            happend = true;
-                        } else {
-                            heal();
-                            happend = true;
+                            if (!isHeart) {
+                                checkDamage();
+                                happend = true;
+                            } else {
+                                heal();
+                                happend = true;
                         }
                     }
                 }
@@ -86,16 +84,16 @@ public class ObstacleGenerator implements Runnable {
             //Width + Layout + Höhe = Position
             //36 + 14 + 72 = Ende
             // 36 + 120 + 72 = Anfang
-            // System.out.println(activeObstacle.getX()-difficulty);
+           // System.out.println(activeObstacle.getX()-difficulty);
             activeObstacle.setLayoutX(activeObstacle.getLayoutX()-d.difficulty);
         }
 
     };
 
+
     public static void setObstacleActive(boolean state) {
         obstacleActive.set(state);
-    }
-
+        }
 
     public ObstacleGenerator(AnchorPane ap, int time, AnimationTimer playerJump, Color s) {
         this.ap = ap;
@@ -146,7 +144,7 @@ public class ObstacleGenerator implements Runnable {
                 obstacle = new Ellipse(36, heightbig);
                 generateHeart = generateHeart * 2 ;
                 isHeart = true;
-            }
+                }
         }
 
 
@@ -158,7 +156,6 @@ public class ObstacleGenerator implements Runnable {
 
         enemies.start();
     }
-
 
     public void updateDifficulty(){
         if(Score.score == d.countDifficulty){
@@ -176,13 +173,12 @@ public class ObstacleGenerator implements Runnable {
     }
 
 
-
     public void stopObstacle() {
         enemies.stop();
         ap.getChildren().remove(activeObstacle);
         happend = false;
         isHeart = false;
-    }
+        }
 
     public static void setHearts(Circle[] heartcollection){
         hearts = heartcollection;
@@ -207,38 +203,46 @@ public class ObstacleGenerator implements Runnable {
     public void run() {
         while (!stop) {
             if (!beaten) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        generateObstacle();
+                synchronized (obstacleActive) {
+                    if (!obstacleActive.get()) {
+                        obstacleActive.set(true);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                generateObstacle();
+                            }
+                        });
                     }
-                });
-                try {
-                    sleep(time);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
-
-                if(!beaten) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            stopObstacle();
-                        }
-                    });
-                }
-            }
-            if(stop) {
-                synchronized (this) {
                     try {
-                        wait();
+                        sleep(time);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+                    if (!beaten) {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                stopObstacle();
+                            }
+                        });
+                    }
+
+                }
+                if (stop) {
+                    synchronized (this) {
+                        try {
+                            wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
-        }
-        }
+
+            }
+
 
 
     public int getRandomNumber(int min, int max) {

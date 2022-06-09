@@ -9,7 +9,7 @@ public class Player {
     static boolean keypressed;
     static Skin skin;
     static Pane p;
-    String name;
+    static String name;
     static boolean stop = false;
 
     public static boolean getPressed() {
@@ -55,6 +55,7 @@ public class Player {
     public Player(String name){
         this.name = name;
     }
+    public Player(){}
 }
 
 

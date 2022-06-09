@@ -123,7 +123,8 @@ public class HelloController {
         //Player.setPlayer(player);
         highscore.setText("No Highscore yet");
 
-        p = new Player("Mekina3234234234423");
+        p = new Player();
+        //p = new Player("Mekina3234234234423");
 
         s = new Score(sc, highscore,p);
 

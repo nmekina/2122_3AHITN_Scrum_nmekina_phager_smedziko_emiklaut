@@ -19,7 +19,7 @@ public class ControllerUsername {
 
     @FXML
     void pressed_btn_ok(ActionEvent event) throws IOException {
-        Player player = new Player(txt_username.getText());
+        new Player(txt_username.getText());
         ChangeScene.change_scene("JumpAndRun", btn_ok);
     }
 

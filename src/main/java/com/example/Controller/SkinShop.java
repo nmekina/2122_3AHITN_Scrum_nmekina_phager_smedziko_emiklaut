@@ -38,11 +38,11 @@ public class SkinShop {
     @FXML
     private Button select;
 
-    Skin semir = new Skin("Semir", 0, new Image(getClass().getResource("src/main/resources/pictures/SemirMedzikovic.jpeg").toString(),200,100,false,false));
-    Skin elias = new Skin("Elias", 25, new Image("C:\\Users\\Philipp\\IdeaProjects\\experiment\\src\\main\\resources\\pictures\\EliasMiklautsch.jpeg",200,100,false,false));
-    Skin nico = new Skin("Nico", 50, new Image("C:\\Users\\Philipp\\IdeaProjects\\experiment\\src\\main\\resources\\pictures\\NicoMekina.jpeg",200,100,false,false));
-    Skin rester = new Skin("Rester", 75, new Image("C:\\Users\\Philipp\\IdeaProjects\\experiment\\src\\main\\resources\\pictures\\ManuelRester.jpeg",200,100,false,false));
-    Skin hager = new Skin("Hager", 100, new Image("C:\\Users\\Philipp\\IdeaProjects\\experiment\\src\\main\\resources\\pictures\\PhilippHager.jpeg",200,100,false,false));
+    Skin semir = new Skin("Semir", 0, new Image(("SemirMedzikovic.jpeg"),200,100,false,false));
+    Skin elias = new Skin("Elias", 25, new Image("EliasMiklautsch.jpeg",200,100,false,false));
+    Skin nico = new Skin("Nico", 50, new Image("NicoMekina.jpeg",200,100,false,false));
+    Skin rester = new Skin("Rester", 75, new Image("ManuelRester.jpeg",200,100,false,false));
+    Skin hager = new Skin("Hager", 100, new Image("PhilippHager.jpeg",200,100,false,false));
 
     Skin skinselect;
 
@@ -91,7 +91,7 @@ public class SkinShop {
         stageclose.close();
 
         final FXMLLoader fxmlLoader = new FXMLLoader();
-        URL u = HelloApplication.class.getResource("JumpAndRun.fxml");
+        URL u = HelloApplication.class.getResource("startmenue.fxml");
 
         fxmlLoader.setLocation(u);
         Scene scene = new Scene(fxmlLoader.load());

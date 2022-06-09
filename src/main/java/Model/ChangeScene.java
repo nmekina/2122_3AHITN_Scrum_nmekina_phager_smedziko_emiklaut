@@ -24,7 +24,7 @@ public class ChangeScene {
         fxmlLoader.setLocation(u);
         Scene scene = new Scene(fxmlLoader.load());
 
-        if(game.equals("spielfeld")) {
+        if(game.equals("JumpAndRun")) {
             scene.setOnKeyPressed(e -> {
                 System.out.println(e.getCode().toString());
 

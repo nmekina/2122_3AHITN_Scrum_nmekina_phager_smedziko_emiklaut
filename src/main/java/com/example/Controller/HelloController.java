@@ -183,7 +183,7 @@ public class HelloController {
         ObstacleGenerator.setObstacleActive(false);
         ObstacleGenerator.resetDifficulty();
 
-        s.checkScores();
+        //s.checkScores();
         s.start();
 
         highscore.setText(s.getHighscore());
@@ -195,9 +195,6 @@ public class HelloController {
         og.startGame();
         og2.startGame();
         og3.startGame();
-
-
-
     }
 
     @FXML

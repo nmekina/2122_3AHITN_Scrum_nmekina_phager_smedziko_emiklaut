@@ -11,6 +11,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
@@ -69,6 +70,11 @@ public class ObstacleGenerator implements Runnable {
             }
 
             if (beaten) {
+                try {
+                    s.checkScores();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 Label l = (Label) ap.getChildren().get(5);
                 Button restart = (Button) ap.getChildren().get(6);
                 Button back = (Button) ap.getChildren().get(7);

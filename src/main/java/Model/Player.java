@@ -1,5 +1,6 @@
 package Model;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -32,11 +33,17 @@ public class Player {
     }
 
     public void setPlayer(Pane p){
+
+        if(skin == null){
+            skin = new Skin("Semir",0,new Image(("SemirMedzikovic.jpeg"),200,100,false,false));
+        }
+
         Player.p = p;
         ImageView iv = new ImageView(skin.getPicture());
         iv.fitWidthProperty().bind(Player.p.widthProperty());
         iv.fitHeightProperty().bind(Player.p.heightProperty());
         Player.p.getChildren().add(iv);
+
     }
 
     //TODO Make it unstatic

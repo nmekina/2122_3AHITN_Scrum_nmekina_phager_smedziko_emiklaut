@@ -1,11 +1,10 @@
 package com.example.Controller;
 
-import Model.Player;
-import Model.Skin;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -14,79 +13,48 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 public class ControllerScoreBoard {
 
     @FXML
     private ListView<HBox> list_score;
 
-    String einSpieler[] = new String[3];
     ArrayList<String[]> alleSpieler = new ArrayList<>();
+    ArrayList<String[]> bestenliste = new ArrayList<>();
+    int highscore = 0;
+    int indexfromhighscore;
 
 
     public void initialize() throws IOException {
         addSpieler();
-/*
-        list_score.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HBox>() {
-            @Override
-            public void changed(ObservableValue<? extends HBox> observableValue, HBox hBox, HBox t1) {
-                ImageView s = (ImageView) t1.getChildren().get(0);
+        sort();
 
-                Iterator<Skin> i = Skin.getSkins().iterator();
-                while(i.hasNext()){
-                    Skin selected = i.next();
-                    if(selected.getPicture() == s.getImage()){
-                        level_skin.setText("Level: " +selected.getLevel());
-                        skin_name.setText("Name: " + selected.getName());
+        for (int i = 0; i < bestenliste.size(); i++) {
+                Label label = new Label("Name: " + bestenliste.get(i)[0] + " | highscore: " + bestenliste.get(i)[1] + " | games: " + bestenliste.get(i)[2]);
+                HBox h = new HBox();
+                h.getChildren().add(label);
+                h.setAlignment(Pos.CENTER);
 
-                        skinselect = selected;
-                    }
-                }
-            }
-        });
-
-
- */
-
-        /*
-        for (int i = 0; i < skins.size(); i++) {
-            ImageView skin = new ImageView(skins.get(i).getPicture());
-            skin.fitHeightProperty();
-            skin.fitWidthProperty();
-
-            HBox h = new HBox();
-            h.getChildren().add(skin);
-            h.setAlignment(Pos.CENTER);
-
-            list_skins.getItems().add(h);
+                list_score.getItems().add(h);
         }
+    }
 
-        list_score.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HBox>() {
-            @Override
-            public void changed(ObservableValue<? extends HBox> observableValue, HBox hBox, HBox t1) {
-                ImageView s = (ImageView) t1.getChildren().get(0);
-                show_skin.setImage(s.getImage());
-
-                Iterator<Skin> i = Skin.getSkins().iterator();
-                while(i.hasNext()){
-                    Skin selected = i.next();
-                    if(selected.getPicture() == s.getImage()){
-                        level_skin.setText("Level: " +selected.getLevel());
-                        skin_name.setText("Name: " + selected.getName());
-
-                        skinselect = selected;
-                    }
+    private void sort() {
+        while (alleSpieler.size() > 0) {
+            for (int i = 0; i < alleSpieler.size(); i++) {
+                if (Integer.parseInt(alleSpieler.get(i)[1]) > highscore) {
+                    highscore = Integer.parseInt(alleSpieler.get(i)[1]);
+                    indexfromhighscore = i;
                 }
             }
-        });
-
-         */
-
+            bestenliste.add(alleSpieler.get(indexfromhighscore));
+            indexfromhighscore = 0;
+            highscore = 0;
+            alleSpieler.removeAll(bestenliste);
+        }
     }
 
     private void addSpieler() throws IOException {
@@ -96,9 +64,10 @@ public class ControllerScoreBoard {
 
         for (int z = 0; z < json.length(); z++) {
             JSONObject getplayer = json.getJSONObject(z);
+            String[] einSpieler = new String[3];
             einSpieler[0] = getplayer.getString("name");
-            einSpieler[1] = getplayer.getString("score");
-            einSpieler[2] = getplayer.getString("games");
+            einSpieler[1] = String.valueOf(getplayer.getInt("highscore"));
+            einSpieler[2] = String.valueOf(getplayer.getInt("games"));
             alleSpieler.add(einSpieler);
         }
     }

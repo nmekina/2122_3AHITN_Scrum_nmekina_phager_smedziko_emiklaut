@@ -1,6 +1,7 @@
 package com.example.Controller;
 
 import Model.ChangeScene;
+import Model.Difficulty;
 import Model.Settings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class ControllerSettingsMenue {
     Settings settings = new Settings();
 
     public void initialize() {
-        choice_difficulty.setValue(settings.getDifficulty());
+        choice_difficulty.setValue(Settings.getDifficulty());
         choice_difficulty.getItems().add("beginner");
         choice_difficulty.getItems().add("medium");
         choice_difficulty.getItems().add("hard");

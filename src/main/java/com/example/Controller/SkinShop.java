@@ -46,11 +46,12 @@ public class SkinShop {
 
     ArrayList<Skin> skins = new ArrayList<Skin>();
 
-    Skin semir = new Skin("Semir", 0, new Image(("SemirMedzikovic.jpeg"),200,100,false,false));
-    Skin elias = new Skin("Elias", 25, new Image("EliasMiklautsch.jpeg",200,100,false,false));
-    Skin nico = new Skin("Nico", 50, new Image("NicoMekina.jpeg",200,100,false,false));
-    Skin rester = new Skin("Rester", 75, new Image("ManuelRester.jpeg",200,100,false,false));
-    Skin hager = new Skin("Hager", 100, new Image("PhilippHager.jpeg",200,100,false,false));
+
+    Skin semir = new Skin("Semir", 0, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin elias = new Skin("Elias", 25, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin nico = new Skin("Nico", 50, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin rester = new Skin("Rester", 75, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin hager = new Skin("Hager", 100, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
 
     Skin skinselect;
 

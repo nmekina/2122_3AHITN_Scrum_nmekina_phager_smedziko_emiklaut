@@ -61,6 +61,7 @@ public class HelloController {
 
 
     //Player Jump Power einstellen können (Skill Updates)
+    //TODO Lehrer fragen wie man API Images nicht zum lagen bringt
 
     AnimationTimer up = new AnimationTimer() {
         @Override

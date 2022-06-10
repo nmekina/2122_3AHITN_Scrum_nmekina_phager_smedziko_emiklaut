@@ -2,8 +2,6 @@ package Model;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -18,7 +16,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
@@ -148,11 +145,15 @@ public class ObstacleGenerator implements Runnable {
         Shape obstacle = new Ellipse();
         int random = getRandomNumber(0, 2);
 
+
         synchronized (generateHeart) {
             if (Score.score > generateHeart) {
                 obstacle = new Ellipse(36, heightbig);
                 generateHeart = generateHeart * 2;
                 isHeart = true;
+                obstacle.setLayoutY(y);
+                obstacle.setLayoutX(x);
+                activeObstacle = new Obstacle(obstacle,false);
                 ap.getChildren().add(obstacle);
             }
         }
@@ -172,20 +173,17 @@ public class ObstacleGenerator implements Runnable {
                 activeObstacle = new Obstacle(obstacle, petmode);
                 ap.getChildren().add(obstacle);
 
-        } else {
+        } else if(!isHeart){
             Pane pets = new Pane();
-            pets.setPrefHeight(heightbig);
-            pets.setPrefWidth(36);
-            int r = (int) (Math.random() * (100) + 0);
 
-            Image i = new Image("https://randomfox.ca/images/" + r + ".jpg",200,200,false,false);
-
-            if (i.isError()) {
-                i = new Image(String.valueOf(Skin.class.getResource("loading_error.jpg")), 200, 200, false, false);
-                System.out.println("Error loading image");
+            if(random == 0) {
+                pets.setPrefHeight(heightbig);
+            }else {
+                pets.setPrefHeight(heightsmall);
             }
 
-            ImageView iv = new ImageView(i);
+            pets.setPrefWidth(36);
+            ImageView iv = new ImageView(loadImage());
             iv.fitWidthProperty().bind(pets.widthProperty());
             iv.fitHeightProperty().bind(pets.heightProperty());
             pets.getChildren().add(iv);
@@ -207,8 +205,9 @@ public class ObstacleGenerator implements Runnable {
 
                 if(!petmode) {
                     time = time - 50;
-                    generatenew = generatenew + 10;
                 }
+
+                generatenew = generatenew + 10;
             }
             System.out.println(d.countDifficulty);
             d.countDifficulty = d.countDifficulty + 100;
@@ -247,6 +246,27 @@ public class ObstacleGenerator implements Runnable {
 
     public static void setPetMode(boolean mode) {
         petmode = mode;
+    }
+
+    public Image loadImage(){
+        int r = getRandomNumber(0,2);
+        String url;
+        int x = (int) (Math.random() * (100) + 0);
+        int y = (int) (Math.random() * (100) + 0);
+        System.out.println(r);
+        if(r == 0){
+            url = "http://placekitten.com/" + x + "/"+y;
+        }else {
+            url = "https://randomfox.ca/images/" + x + ".jpg";
+        }
+
+        Image i = new Image(url,200,200,false,false);
+        if (i.isError()) {
+            i = new Image(String.valueOf(Skin.class.getResource("loading_error.jpg")), 200, 200, false, false);
+            System.out.println("Error loading image");
+        }
+
+        return i;
     }
 
     public void startGame() {

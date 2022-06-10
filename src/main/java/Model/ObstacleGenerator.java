@@ -37,6 +37,7 @@ public class ObstacleGenerator implements Runnable {
     static Circle[] hearts = new Circle[3];
     Score s = new Score();
     static Difficulty d = new Difficulty();
+
     AnimationTimer enemies = new AnimationTimer() {
         @Override
         public void handle(long now) {
@@ -91,7 +92,8 @@ public class ObstacleGenerator implements Runnable {
             //36 + 14 + 72 = Ende
             // 36 + 120 + 72 = Anfang
            // System.out.println(activeObstacle.getX()-difficulty);
-            activeObstacle.setLayoutX(activeObstacle.getLayoutX()-d.difficulty);
+            System.out.println(d.base);
+            activeObstacle.setLayoutX(activeObstacle.getLayoutX()-d.base);
         }
 
     };
@@ -106,6 +108,7 @@ public class ObstacleGenerator implements Runnable {
         this.time = time;
         this.playerJump = playerJump;
         this.color = s;
+        d.setDifficulty();
     }
 
     public void checkDamage(){
@@ -166,7 +169,7 @@ public class ObstacleGenerator implements Runnable {
     public void updateDifficulty(){
         if(Score.score == d.countDifficulty){
             synchronized (d) {
-                d.difficulty = d.difficulty + d.hardcore;
+                d.base = d.base + d.chosen;
                 time = time-50;
                 generatenew = generatenew +10;
             }
@@ -175,7 +178,7 @@ public class ObstacleGenerator implements Runnable {
     }
 
     public static void resetDifficulty(){
-        d.difficulty = 8;
+        d.base = 8;
     }
 
 

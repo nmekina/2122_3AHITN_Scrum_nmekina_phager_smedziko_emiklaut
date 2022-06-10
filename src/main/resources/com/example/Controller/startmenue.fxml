@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerStartMenue">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerStartMenue">
    <children>
       <Button fx:id="btn_startgame" layoutX="64.0" layoutY="93.0" mnemonicParsing="false" onAction="#press_startgame" prefHeight="45.0" prefWidth="136.0" text="Start Game">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Label layoutX="50.0" layoutY="14.0" prefHeight="64.0" prefWidth="164.0" text="Jump&amp;Run">
+      <Label layoutX="33.0" layoutY="14.0" prefHeight="64.0" prefWidth="198.0" text="Jump The Pet">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>

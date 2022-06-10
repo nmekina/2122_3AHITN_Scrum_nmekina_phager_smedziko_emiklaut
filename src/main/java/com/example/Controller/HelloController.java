@@ -114,7 +114,6 @@ public class HelloController {
 
     public void initialize() throws InterruptedException {
 
-
         highscore.setText("No Highscore yet");
 
         p = new Player();

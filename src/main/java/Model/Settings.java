@@ -12,7 +12,7 @@ public class Settings {
     }
 
     public void setHighscoreonoff(boolean highscoreonoff) {
-        this.highscoreonoff = highscoreonoff;
+        Settings.highscoreonoff = highscoreonoff;
     }
 
     public boolean getMusiconoff() {
@@ -20,15 +20,15 @@ public class Settings {
     }
 
     public void setMusiconoff(boolean musiconoff) {
-        this.musiconoff = musiconoff;
+        Settings.musiconoff = musiconoff;
     }
 
-    public String getDifficulty() {
+    public static String getDifficulty() {
         return difficulty;
     }
 
     public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
+        Settings.difficulty = difficulty;
     }
 
     public String getImage() {
@@ -36,7 +36,7 @@ public class Settings {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        Settings.image = image;
     }
 
     public String getMusicplaying() {
@@ -44,6 +44,6 @@ public class Settings {
     }
 
     public void setMusicplaying(String musicplaying) {
-        this.musicplaying = musicplaying;
+        Settings.musicplaying = musicplaying;
     }
 }

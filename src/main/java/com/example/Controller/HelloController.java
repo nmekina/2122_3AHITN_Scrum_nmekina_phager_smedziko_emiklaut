@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -19,6 +20,10 @@ import java.net.URL;
 import java.util.Objects;
 
 public class HelloController {
+
+    //TODO
+    @FXML
+    private ProgressBar boss_health;
 
     @FXML
     private AnchorPane scene;

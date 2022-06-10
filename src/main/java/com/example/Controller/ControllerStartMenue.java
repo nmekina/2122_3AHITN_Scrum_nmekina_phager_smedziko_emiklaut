@@ -45,7 +45,7 @@ public class ControllerStartMenue {
 
     @FXML
     void press_startgame(ActionEvent event) throws IOException {
-        ChangeScene.change_scene("JumpAndRun", btn_startgame);
+        ChangeScene.change_scene("gamemodes", btn_startgame);
     }
 
 }

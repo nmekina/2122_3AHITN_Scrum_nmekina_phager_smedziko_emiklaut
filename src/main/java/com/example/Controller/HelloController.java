@@ -141,6 +141,7 @@ public class HelloController {
 
         gameOver.setVisible(false);
         restart.setVisible(false);
+        back.setVisible(false);
 
         up.start();
 

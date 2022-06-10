@@ -20,7 +20,6 @@ public class Skin {
     String name;
     int level;
     Image picture;
-    static ListView<HBox> skins = new ListView<>();  // TODO: eigenartig, dass diese Referenz hier liegt
     static ArrayList<Skin> arr = new ArrayList<>();
     Image[] array = new Image[2];
     Vector<Image> imgArray = new Vector<>();
@@ -33,22 +32,9 @@ public class Skin {
         imgArray.add(picture);
         array[0] = picture;
     }
-    public void addImageToSkin(Image picture){
-        array[1] = picture;
-        imgArray.add(picture);
-    }
 
-    public static ArrayList<Skin> getSkins(){
+    public static ArrayList<Skin> getSkins() {
         return arr;
-    }
-
-    public void getListOfImages(){
-
-    }
-
-
-    public static void setList(ListView<HBox> show_skins){
-        skins = show_skins;
     }
 
     public String getName() {
@@ -63,15 +49,4 @@ public class Skin {
         return picture;
     }
 
-    public void addSkin(){
-        ImageView skin = new ImageView(picture);
-        skin.fitHeightProperty();
-        skin.fitWidthProperty();
-
-        HBox h = new HBox();
-        h.getChildren().add(skin);
-        h.setAlignment(Pos.CENTER);
-
-        skins.getItems().add(h);
-    }
 }

@@ -35,7 +35,7 @@ public class Player {
     public void setPlayer(Pane p){
 
         if(skin == null){
-            skin = new Skin("Semir",0,new Image(("SemirMedzikovic.jpeg"),200,100,false,false));
+            skin = new Skin("Semir",0,new Image(("Model/Medzikovic/SemirMedzikovic.jpeg"),200,100,false,false));
         }
 
         Player.p = p;

@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -46,11 +47,12 @@ public class SkinShop {
 
     ArrayList<Skin> skins = new ArrayList<Skin>();
 
-    Skin semir = new Skin("Semir", 0, new Image(("SemirMedzikovic.jpeg"),200,100,false,false));
-    Skin elias = new Skin("Elias", 25, new Image("EliasMiklautsch.jpeg",200,100,false,false));
-    Skin nico = new Skin("Nico", 50, new Image("NicoMekina.jpeg",200,100,false,false));
-    Skin rester = new Skin("Rester", 75, new Image("ManuelRester.jpeg",200,100,false,false));
-    Skin hager = new Skin("Hager", 100, new Image("PhilippHager.jpeg",200,100,false,false));
+
+    Skin semir = new Skin("Semir", 0, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin elias = new Skin("Elias", 25, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin nico = new Skin("Nico", 50, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin rester = new Skin("Rester", 75, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin hager = new Skin("Hager", 100, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
 
     Skin skinselect;
 
@@ -65,10 +67,17 @@ public class SkinShop {
         skin_name.setText("Name: " + skins.get(0).getName());
         show_skin.setImage(skins.get(0).getPicture());
 
-        Skin.setList(list_skins);
 
         for (int i = 0; i < skins.size(); i++) {
-            skins.get(i).addSkin();
+            ImageView skin = new ImageView(skins.get(i).getPicture());
+            skin.fitHeightProperty();
+            skin.fitWidthProperty();
+
+            HBox h = new HBox();
+            h.getChildren().add(skin);
+            h.setAlignment(Pos.CENTER);
+
+            list_skins.getItems().add(h);
         }
 
         list_skins.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HBox>() {

@@ -7,7 +7,7 @@ public class Settings {
     private static String image = "Hintergrund.jpeg";
     private static String musicplaying = "music";
 
-    public boolean getHighscoreonoff() {
+    public static boolean getHighscoreonoff() {
         return highscoreonoff;
     }
 

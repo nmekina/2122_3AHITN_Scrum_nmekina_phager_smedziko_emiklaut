@@ -95,7 +95,7 @@ public class SkinShop {
     @FXML
     void select_skin(ActionEvent event) throws IOException {
 
-        if (skinselect.getLevel() < getLevelfromPlayer()) {
+        if (skinselect.getLevel() <= getLevelfromPlayer()) {
             //Skin nicht gesperrt!
             Player.setSkin(skinselect);
 

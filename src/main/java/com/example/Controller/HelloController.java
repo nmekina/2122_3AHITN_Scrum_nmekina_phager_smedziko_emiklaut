@@ -1,8 +1,6 @@
 package com.example.Controller;
 
-import Model.ObstacleGenerator;
-import Model.Player;
-import Model.Score;
+import Model.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,9 +22,6 @@ public class HelloController {
 
     @FXML
     private AnchorPane scene;
-
-    @FXML
-    private Button change;
 
     @FXML
     private Label gameOver;
@@ -57,6 +52,7 @@ public class HelloController {
 
 
     Circle[] hearts;
+    static boolean restarted = false;
 
 
     //Player Jump Power einstellen können (Skill Updates)
@@ -114,9 +110,14 @@ public class HelloController {
 
     public void initialize() throws InterruptedException {
 
+
         highscore.setText("No Highscore yet");
 
         p = new Player();
+
+        if(!Settings.getHighscoreonoff()){
+            highscore.setVisible(false);
+        }
 
         s = new Score(sc, highscore, p);
 
@@ -139,8 +140,8 @@ public class HelloController {
         restart.setText("Restart Game");
 
         gameOver.setVisible(false);
-        back.setVisible(false);
         restart.setVisible(false);
+        back.setVisible(false);
 
         up.start();
 
@@ -164,10 +165,15 @@ public class HelloController {
         t2.start();
         t3.start();
 
+        if(restarted){
+            restartGame();
+            restarted = false;
+        }
+
     }
 
     @FXML
-    void restartGame(ActionEvent event){
+    void restartGame(){
         gameOver.setVisible(false);
         back.setVisible(false);
         restart.setVisible(false);
@@ -186,4 +192,16 @@ public class HelloController {
         og2.startGame();
         og3.startGame();
     }
+
+    @FXML
+    void back_to_menue(ActionEvent event) throws IOException {
+        restarted = true;
+        og.stopGame();
+        og2.stopGame();
+        og3.stopGame();
+        s.stop();
+        ChangeScene.change_scene("startmenue",back);
+    }
+
+
 }

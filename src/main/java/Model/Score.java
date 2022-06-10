@@ -78,16 +78,21 @@ public class Score implements Runnable {
                 check = false;
                 System.out.println(p.name);
                 p.games++;
-                if (score > p.highscore) {
-                    player.get(count - 1).highscore = score;
-
+                if(Settings.getHighscoreonoff()) {
+                    if (score > p.highscore) {
+                        player.get(count - 1).highscore = score;
+                    }
                 }
             }
         }
 
         if (check) {
             PlayerScore playerScore = new PlayerScore();
-            playerScore.highscore = score;
+            if(Settings.getHighscoreonoff()) {
+                playerScore.highscore = score;
+            }else {
+                playerScore.highscore = 0;
+            }
             playerScore.name = pl.name;
             playerScore.games++;
             player.add(playerScore);

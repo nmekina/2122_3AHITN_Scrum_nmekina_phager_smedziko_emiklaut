@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.HelloController">
+<AnchorPane fx:id="scene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.HelloController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b5a2b" height="91.0" layoutX="-5.0" layoutY="309.0" stroke="#8b5a2b" strokeType="INSIDE" width="824.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1ecc14" height="28.0" layoutY="309.0" stroke="#1ecc14" strokeType="INSIDE" width="824.0" />
@@ -23,7 +23,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="313.0" layoutY="188.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="back" layoutX="313.0" layoutY="188.0" mnemonicParsing="false" onAction="#back_to_menue" text="Button" />
       <Button fx:id="restart" layoutX="450.0" layoutY="188.0" mnemonicParsing="false" onAction="#restartGame" text="Button" />
       <Circle fx:id="heart3" fill="DODGERBLUE" layoutX="27.0" layoutY="55.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="heart2" fill="DODGERBLUE" layoutX="63.0" layoutY="55.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />

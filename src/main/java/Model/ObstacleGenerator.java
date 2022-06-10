@@ -173,12 +173,14 @@ public class ObstacleGenerator implements Runnable {
                 time = time-50;
                 generatenew = generatenew +10;
             }
+            System.out.println(d.countDifficulty);
             d.countDifficulty = d.countDifficulty + 100;
         }
     }
 
     public static void resetDifficulty(){
         d.base = 8;
+        d.countDifficulty = 100;
     }
 
 

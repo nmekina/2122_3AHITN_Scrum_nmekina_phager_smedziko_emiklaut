@@ -56,6 +56,10 @@ public class Player {
         this.name = name;
     }
     public Player(){}
+
+    public static String getName() {
+        return name;
+    }
 }
 
 

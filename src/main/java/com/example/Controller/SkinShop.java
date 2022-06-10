@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -93,58 +94,65 @@ public class SkinShop {
 
     @FXML
     void select_skin(ActionEvent event) throws IOException {
-        /*
-        if (skinselect.getLevel() < ) {
 
+        if (skinselect.getLevel() < getLevelfromPlayer()) {
+            //Skin nicht gesperrt!
+            Player.setSkin(skinselect);
+
+            Stage stage = new Stage();
+
+            Stage stageclose = (Stage) select.getScene().getWindow();
+            stageclose.close();
+
+            final FXMLLoader fxmlLoader = new FXMLLoader();
+            URL u = HelloApplication.class.getResource("startmenue.fxml");
+
+            fxmlLoader.setLocation(u);
+            Scene scene = new Scene(fxmlLoader.load());
+
+            scene.setOnKeyPressed(e-> {
+                System.out.println(e.getCode().toString());
+
+                if(!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
+                    Player.setMovement(e.getCode().toString());
+                    Player.setPressed(true);
+                }else {
+                    System.out.println("Already jumping");
+                }
+            });
+
+            stage.setTitle("startmenue");
+            stage.setScene(scene);
+            stage.show();
+
+        } else {
+
+            //Skin gesperrt!
+            Alert aler = new Alert(Alert.AlertType.NONE);
+            aler.setAlertType(Alert.AlertType.INFORMATION);
+            aler.setTitle("sperre");
+            aler.setHeaderText("Skin ist gesperrt!");
+            aler.show();
         }
 
-         */
 
-        Player.setSkin(skinselect);
-
-        Stage stage = new Stage();
-
-        Stage stageclose = (Stage) select.getScene().getWindow();
-        stageclose.close();
-
-        final FXMLLoader fxmlLoader = new FXMLLoader();
-        URL u = HelloApplication.class.getResource("startmenue.fxml");
-
-        fxmlLoader.setLocation(u);
-        Scene scene = new Scene(fxmlLoader.load());
-
-        scene.setOnKeyPressed(e-> {
-            System.out.println(e.getCode().toString());
-
-            if(!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
-                Player.setMovement(e.getCode().toString());
-                Player.setPressed(true);
-            }else {
-                System.out.println("Already jumping");
-            }
-        });
-
-        stage.setTitle("startmenue");
-        stage.setScene(scene);
-        stage.show();
     }
 
-    private void getLevelfromPlayer() throws IOException {
-        Player player = new Player();
-
+    private int getLevelfromPlayer() throws IOException {
         File file = new File("src/main/java/Model/scores.json");
         String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
         JSONArray json = new JSONArray(content);
+        int level = 0;
 
         for (int z = 0; z < json.length(); z++) {
             JSONObject getplayer = json.getJSONObject(z);
-            Object games = getplayer.get("games");
             String name = getplayer.getString("name");
-            if (name.equals("Semir")) {
-                System.out.println(games);
+            if (name.equals(Player.getName())) {
+                level = (int) getplayer.get("games");
+                System.out.println(level);
             }
-
         }
+        return level;
     }
 
 }

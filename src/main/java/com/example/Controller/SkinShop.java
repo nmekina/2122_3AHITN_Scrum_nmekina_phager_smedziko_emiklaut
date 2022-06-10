@@ -15,8 +15,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import org.json.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -37,6 +43,8 @@ public class SkinShop {
     @FXML
     private Button select;
 
+    ArrayList<Skin> skins = new ArrayList<Skin>();
+
     Skin semir = new Skin("Semir", 0, new Image(("SemirMedzikovic.jpeg"),200,100,false,false));
     Skin elias = new Skin("Elias", 25, new Image("EliasMiklautsch.jpeg",200,100,false,false));
     Skin nico = new Skin("Nico", 50, new Image("NicoMekina.jpeg",200,100,false,false));
@@ -46,17 +54,21 @@ public class SkinShop {
     Skin skinselect;
 
     public void initialize() {
+        skins.add(semir);
+        skins.add(elias);
+        skins.add(nico);
+        skins.add(rester);
+        skins.add(hager);
 
-        level_skin.setText("Level: " + semir.getLevel());
-        skin_name.setText("Name: " + semir.getName());
-        show_skin.setImage(semir.getPicture());
+        level_skin.setText("Level: " + skins.get(0).getLevel());
+        skin_name.setText("Name: " + skins.get(0).getName());
+        show_skin.setImage(skins.get(0).getPicture());
 
         Skin.setList(list_skins);
-        semir.addSkin();
-        elias.addSkin();
-        nico.addSkin();
-        rester.addSkin();
-        hager.addSkin();
+
+        for (int i = 0; i < skins.size(); i++) {
+            skins.get(i).addSkin();
+        }
 
         list_skins.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HBox>() {
             @Override
@@ -81,6 +93,12 @@ public class SkinShop {
 
     @FXML
     void select_skin(ActionEvent event) throws IOException {
+        /*
+        if (skinselect.getLevel() < ) {
+
+        }
+
+         */
 
         Player.setSkin(skinselect);
 
@@ -106,13 +124,27 @@ public class SkinShop {
             }
         });
 
-        stage.setTitle("Skinshop");
+        stage.setTitle("startmenue");
         stage.setScene(scene);
         stage.show();
     }
 
+    private void getLevelfromPlayer() throws IOException {
+        Player player = new Player();
 
+        File file = new File("src/main/java/Model/scores.json");
+        String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+        JSONArray json = new JSONArray(content);
+
+        for (int z = 0; z < json.length(); z++) {
+            JSONObject getplayer = json.getJSONObject(z);
+            Object games = getplayer.get("games");
+            String name = getplayer.getString("name");
+            if (name.equals("Semir")) {
+                System.out.println(games);
+            }
+
+        }
     }
 
-
-
+}

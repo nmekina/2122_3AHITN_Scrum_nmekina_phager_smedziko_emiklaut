@@ -35,7 +35,7 @@ public class ControllerChooseGameMode {
                 normal.setText("Normal Mode");
                 jump_the_pet.setText("Pet Mode");
                 lb_normal.setText("Normal");
-                lb_pet.setText("Pet");
+                lb_pet.setText("Petgg");
                 present_normal.setImage(new Image(String.valueOf(ControllerChooseGameMode.class.getResource("preview_normal.jpg")),816,395,false,false));
         }
 

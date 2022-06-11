@@ -113,7 +113,7 @@ public class HelloController {
     Score s;
     Player p;
 
-    public void initialize() throws InterruptedException {
+    public void initialize() throws InterruptedException, IOException {
 
         ImageView iv = new ImageView();
         iv.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.jpg"))));

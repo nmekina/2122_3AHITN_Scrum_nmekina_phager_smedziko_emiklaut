@@ -139,6 +139,7 @@ public class HelloController {
 
         gameOver.setVisible(false);
         restart.setVisible(false);
+        back.setVisible(false);
 
         up.start();
 
@@ -174,6 +175,7 @@ public class HelloController {
     void restartGame(){
         gameOver.setVisible(false);
         restart.setVisible(false);
+        back.setVisible(false);
         ObstacleGenerator.setObstacleActive(false);
         ObstacleGenerator.resetDifficulty();
 

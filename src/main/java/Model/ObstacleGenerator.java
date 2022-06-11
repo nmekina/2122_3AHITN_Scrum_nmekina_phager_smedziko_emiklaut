@@ -124,7 +124,7 @@ public class ObstacleGenerator implements Runnable {
 
         for (int i = 0; i < hearts.length; i++) {
             if (isRedHeart(hearts[i].getChildren())) {
-                setHeart(i,"empty_heart.jpg");
+                hearts[i] = setHeart(hearts[i],"empty_heart.jpg");
                 i = hearts.length;
             }
         }
@@ -136,7 +136,7 @@ public class ObstacleGenerator implements Runnable {
     public void heal() {
         for (int i = hearts.length - 1; i >= 0; i--) {
             if (!isRedHeart(hearts[i].getChildren())) {
-                setHeart(i,"heart.jpg");
+                hearts[i] = setHeart(hearts[i],"heart.jpg");
                 i = 0;
             }
         }
@@ -150,13 +150,16 @@ public class ObstacleGenerator implements Runnable {
 
         synchronized (generateHeart) {
             if (Score.score > generateHeart) {
-                obstacle = new Ellipse(36, heightbig);
+                Pane heart = new Pane();
                 generateHeart = generateHeart * 2;
                 isHeart = true;
-                obstacle.setLayoutY(y);
-                obstacle.setLayoutX(x);
-                activeObstacle = new Obstacle(obstacle,false);
-                ap.getChildren().add(obstacle);
+                heart.setPrefHeight(heightbig);
+                heart.setPrefWidth(60);
+                heart.setLayoutY(y);
+                heart.setLayoutX(x);
+                heart = setHeart(heart,"heart.jpg");
+                activeObstacle = new Obstacle(heart,true);
+                ap.getChildren().add(heart);
             }
         }
             if (!petmode && !isHeart) {
@@ -257,13 +260,14 @@ public class ObstacleGenerator implements Runnable {
 
     }
 
-    public void setHeart(int i, String s){
+    public Pane setHeart(Pane h, String s){
         ImageView iv = new ImageView();
         iv.setImage(new Image(String.valueOf(Skin.class.getResource(s)), 200, 200, false, false));
-        iv.fitHeightProperty().bind(hearts[i].heightProperty());
-        iv.fitWidthProperty().bind(hearts[i].widthProperty());
-        hearts[i].getChildren().clear();
-        hearts[i].getChildren().add(iv);
+        iv.fitHeightProperty().bind(h.heightProperty());
+        iv.fitWidthProperty().bind(h.widthProperty());
+        h.getChildren().clear();
+        h.getChildren().add(iv);
+        return h;
     }
 
     public boolean isRedHeart(ObservableList<Node> children) {

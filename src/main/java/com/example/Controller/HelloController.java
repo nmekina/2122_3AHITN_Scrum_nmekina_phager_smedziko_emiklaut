@@ -4,19 +4,16 @@ import Model.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
 
 public class HelloController {
@@ -24,6 +21,12 @@ public class HelloController {
     //TODO
     @FXML
     private ProgressBar boss_health;
+
+    @FXML
+    private Label coins;
+
+    @FXML
+    private Pane coins_image;
 
     @FXML
     private AnchorPane scene;
@@ -112,8 +115,15 @@ public class HelloController {
 
     public void initialize() throws InterruptedException {
 
+        ImageView iv = new ImageView();
+        iv.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.jpg"))));
+        iv.fitWidthProperty().bind(coins_image.widthProperty());
+        iv.fitHeightProperty().bind(coins_image.heightProperty());
+        coins_image.getChildren().add(iv);
 
         highscore.setText("No Highscore yet");
+
+        Coin c = new Coin(coins,restarted);
 
         p = new Player();
 
@@ -143,10 +153,9 @@ public class HelloController {
 
         up.start();
 
-
-        og = new ObstacleGenerator(scene, up, Color.VIOLET);
-        og2 = new ObstacleGenerator(scene, up, Color.RED);
-        og3 = new ObstacleGenerator(scene, up, Color.BLACK);
+        og = new ObstacleGenerator(scene, up, Color.VIOLET, c);
+        og2 = new ObstacleGenerator(scene, up, Color.RED, c);
+        og3 = new ObstacleGenerator(scene, up, Color.BLACK, c);
 
         if(restarted){
             restartGame();

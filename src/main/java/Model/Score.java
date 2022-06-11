@@ -17,6 +17,7 @@ import static java.lang.Thread.sleep;
 public class Score implements Runnable {
     String scoreText;
     static int score;
+    int coins;
     Label showScore;
     int highscore;
     Label showHighscore;
@@ -51,7 +52,7 @@ public class Score implements Runnable {
             notify();
         }
     }
-    public void checkScores() throws IOException {
+    public void checkScores(int coins) throws IOException {
         File f = new File("src/main/java/Model/scores.json");
         Scanner s = new Scanner(f);
         FileReader fr = new FileReader(f);
@@ -76,8 +77,8 @@ public class Score implements Runnable {
             PlayerScore p = i.next();
             if (Objects.equals(pl.name, p.name)) {
                 check = false;
-                System.out.println(p.name);
                 p.games++;
+                p.coins = coins + p.coins;
                 if(Settings.getHighscoreonoff()) {
                     if (score > p.highscore) {
                         player.get(count - 1).highscore = score;
@@ -95,6 +96,7 @@ public class Score implements Runnable {
             }
             playerScore.name = pl.name;
             playerScore.games++;
+            playerScore.coins = coins;
             player.add(playerScore);
             System.out.println(player);
         }

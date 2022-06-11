@@ -43,9 +43,11 @@ public class ObstacleGenerator implements Runnable {
     AnimationTimer playerJump;
     static Pane[] hearts = new Pane[3];
     Score s = new Score();
+    Coin c;
     static Difficulty d = new Difficulty();
     static boolean petmode;
     ProgressBar progress;
+    static Integer coins = 0;
 
     AnimationTimer enemies = new AnimationTimer() {
         @Override
@@ -67,7 +69,12 @@ public class ObstacleGenerator implements Runnable {
 
                 if (activeObstacle.getRunning().getLayoutX() < 120 && activeObstacle.getRunning().getLayoutX() > 30 && !beaten && !happend) {
                     if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getRunning().getLayoutBounds().getHeight() == 28) {
-                        // System.out.println("geschafft");
+                        synchronized (coins) {
+                            System.out.println("Aktuelle Coins: " + coins);
+                            coins = coins + 5;
+                            c.setCoins(coins);
+                            happend = true;
+                        }
                     } else {
                         if (!isHeart) {
                             checkDamage();
@@ -82,7 +89,9 @@ public class ObstacleGenerator implements Runnable {
 
             if (beaten) {
                 try {
-                    s.checkScores();
+                    synchronized (coins) {
+                        s.checkScores(coins);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -113,10 +122,11 @@ public class ObstacleGenerator implements Runnable {
     }
 
 
-    public ObstacleGenerator(AnchorPane ap, AnimationTimer playerJump, Color s) {
+    public ObstacleGenerator(AnchorPane ap, AnimationTimer playerJump, Color s, Coin c) {
         this.ap = ap;
         this.playerJump = playerJump;
         this.color = s;
+        this.c = c;
         d.setDifficulty();
     }
 

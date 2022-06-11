@@ -2,6 +2,8 @@ package Model;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -16,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
@@ -35,10 +38,10 @@ public class ObstacleGenerator implements Runnable {
     Color color;
     boolean isHeart = false;
     static AtomicBoolean obstacleActive = new AtomicBoolean(false);
-    int time;
-    int generatenew = 160;
+    static Integer time = 2500;
+    static Integer generatenew = 160;
     AnimationTimer playerJump;
-    static Circle[] hearts = new Circle[3];
+    static Pane[] hearts = new Pane[3];
     Score s = new Score();
     static Difficulty d = new Difficulty();
     static boolean petmode;
@@ -110,9 +113,8 @@ public class ObstacleGenerator implements Runnable {
     }
 
 
-    public ObstacleGenerator(AnchorPane ap, int time, AnimationTimer playerJump, Color s) {
+    public ObstacleGenerator(AnchorPane ap, AnimationTimer playerJump, Color s) {
         this.ap = ap;
-        this.time = time;
         this.playerJump = playerJump;
         this.color = s;
         d.setDifficulty();
@@ -121,20 +123,20 @@ public class ObstacleGenerator implements Runnable {
     public void checkDamage() {
 
         for (int i = 0; i < hearts.length; i++) {
-            if (hearts[i].getFill() == Color.RED) {
-                hearts[i].setFill(Color.WHITE);
+            if (isRedHeart(hearts[i].getChildren())) {
+                setHeart(i,"empty_heart.jpg");
                 i = hearts.length;
             }
         }
-        if (hearts[2].getFill() == Color.WHITE) {
+        if (!isRedHeart(hearts[2].getChildren())) {
             beaten = true;
         }
     }
 
     public void heal() {
         for (int i = hearts.length - 1; i >= 0; i--) {
-            if (hearts[i].getFill() == Color.WHITE) {
-                hearts[i].setFill(Color.RED);
+            if (!isRedHeart(hearts[i].getChildren())) {
+                setHeart(i,"heart.jpg");
                 i = 0;
             }
         }
@@ -204,12 +206,15 @@ public class ObstacleGenerator implements Runnable {
                 d.base = d.base + d.chosen;
 
                 if(!petmode) {
-                    time = time - 50;
+                    synchronized (time) {
+                        time = time - 50;
+                    }
                 }
 
-                generatenew = generatenew + 10;
+                synchronized (generatenew) {
+                    generatenew = generatenew + 10;
+                }
             }
-            System.out.println(d.countDifficulty);
             d.countDifficulty = d.countDifficulty + 100;
         }
     }
@@ -217,6 +222,8 @@ public class ObstacleGenerator implements Runnable {
     public static void resetDifficulty() {
         d.base = 8;
         d.countDifficulty = 100;
+        ObstacleGenerator.generateHeart = 100;
+        generatenew = 100;
     }
 
 
@@ -236,12 +243,54 @@ public class ObstacleGenerator implements Runnable {
 
     }
 
-    public static void setHearts(Circle[] heartcollection) {
+    public static void setHearts(Pane[] heartcollection) {
         hearts = heartcollection;
+
+        for (int i = 0; i<hearts.length;i++){
+            Image j = new Image(String.valueOf(Skin.class.getResource("heart.jpg")), 200, 200, false, false);
+            ImageView iv = new ImageView(j);
+            iv.fitHeightProperty().bind(hearts[i].heightProperty());
+            iv.fitWidthProperty().bind(hearts[i].widthProperty());
+            hearts[i].getChildren().clear();
+            hearts[i].getChildren().add(iv);
+        }
+
+    }
+
+    public void setHeart(int i, String s){
+        ImageView iv = new ImageView();
+        iv.setImage(new Image(String.valueOf(Skin.class.getResource(s)), 200, 200, false, false));
+        iv.fitHeightProperty().bind(hearts[i].heightProperty());
+        iv.fitWidthProperty().bind(hearts[i].widthProperty());
+        hearts[i].getChildren().clear();
+        hearts[i].getChildren().add(iv);
+    }
+
+    public boolean isRedHeart(ObservableList<Node> children) {
+        boolean r = true;
+        ImageView iv = (ImageView) children.get(0);
+        ImageView compare = new ImageView();
+        Image image = new Image(String.valueOf(Skin.class.getResource("heart.jpg")), 200, 200, false, false);
+        compare.setImage(image);
+
+        for (int x = 0; x < iv.getImage().getWidth(); x++) {
+            for (int y = 0; y < iv.getImage().getHeight(); y++) {
+                int firstArgb = iv.getImage().getPixelReader().getArgb(x, y);
+                int secondArgb = compare.getImage().getPixelReader().getArgb(x, y);
+
+                if (firstArgb != secondArgb){
+                    r = false;
+                }
+            }
+        }
+        return r;
     }
 
     public void stopGame() {
         stop = true;
+        happend = false;
+        isHeart = false;
+
     }
 
     public static void setPetMode(boolean mode) {
@@ -253,7 +302,7 @@ public class ObstacleGenerator implements Runnable {
         String url;
         int x = (int) (Math.random() * (100) + 0);
         int y = (int) (Math.random() * (100) + 0);
-        System.out.println(r);
+
         if(r == 0){
             url = "http://placekitten.com/" + x + "/"+y;
         }else {

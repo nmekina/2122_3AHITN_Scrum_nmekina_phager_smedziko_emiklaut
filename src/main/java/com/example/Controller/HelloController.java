@@ -38,13 +38,13 @@ public class HelloController {
     private Button restart;
 
     @FXML
-    private Circle heart3;
+    private Pane heart0;
 
     @FXML
-    private Circle heart2;
+    private Pane heart1;
 
     @FXML
-    private Circle heart1;
+    private Pane heart2;
 
     @FXML
     private Label sc;
@@ -56,7 +56,7 @@ public class HelloController {
     private Pane paneplayer;
 
 
-    Circle[] hearts;
+    Pane[] hearts;
     static boolean restarted = false;
 
 
@@ -107,10 +107,6 @@ public class HelloController {
     Thread t2;
     Thread t3;
 
-    int pause = 2500;
-    int pause2 = 2500;
-    int pause3 = 2500;
-
     Score s;
     Player p;
 
@@ -129,14 +125,10 @@ public class HelloController {
 
         p.setPlayer(paneplayer);
 
-        heart1.setFill(Color.RED);
-        heart2.setFill(Color.RED);
-        heart3.setFill(Color.RED);
-
-        hearts = new Circle[3];
-        hearts[0] = heart1;
-        hearts[1] = heart2;
-        hearts[2] = heart3;
+        hearts = new Pane[3];
+        hearts[0] = heart0;
+        hearts[1] = heart1;
+        hearts[2] = heart2;
 
 
         ObstacleGenerator.setHearts(hearts);
@@ -147,14 +139,19 @@ public class HelloController {
 
         gameOver.setVisible(false);
         restart.setVisible(false);
-        back.setVisible(false);
 
         up.start();
 
 
-        og = new ObstacleGenerator(scene, pause, up, Color.VIOLET);
-        og2 = new ObstacleGenerator(scene, pause2, up, Color.RED);
-        og3 = new ObstacleGenerator(scene, pause3, up, Color.BLACK);
+        og = new ObstacleGenerator(scene, up, Color.VIOLET);
+        og2 = new ObstacleGenerator(scene, up, Color.RED);
+        og3 = new ObstacleGenerator(scene, up, Color.BLACK);
+
+        if(restarted){
+            restartGame();
+            restarted = false;
+        }
+
 
         t = new Thread(og);
         t1 = new Thread(og2);
@@ -171,28 +168,19 @@ public class HelloController {
         t2.start();
         t3.start();
 
-        if(restarted){
-            restartGame();
-            restarted = false;
-        }
-
     }
 
     @FXML
     void restartGame(){
         gameOver.setVisible(false);
-        back.setVisible(false);
         restart.setVisible(false);
         ObstacleGenerator.setObstacleActive(false);
         ObstacleGenerator.resetDifficulty();
 
         s.start();
+        ObstacleGenerator.setHearts(hearts);
 
         highscore.setText(s.getHighscore());
-
-        hearts[0].setFill(Color.RED);
-        hearts[1].setFill(Color.RED);
-        hearts[2].setFill(Color.RED);
 
         og.startGame();
         og2.startGame();

@@ -17,13 +17,9 @@ import java.util.ArrayList;
 public class sortHighscore {
     private ArrayList<String[]> allplayers = new ArrayList<>();
     private ArrayList<String[]> scoreboard = new ArrayList<>();
-    private ListView<HBox> list_score;
     private int highscore = 0;
     private int indexfromplayer = 0;
 
-    public sortHighscore(ListView<HBox> list_score) {
-        this.list_score = list_score;
-    }
 
 
     public void sort() throws IOException {
@@ -40,7 +36,8 @@ public class sortHighscore {
             highscore = 0;
             allplayers.removeAll(scoreboard);
         }
-        ControllerScoreBoard.print(scoreboard);
+        ControllerScoreBoard controllerScoreBoard = new ControllerScoreBoard();
+        controllerScoreBoard.print(scoreboard);
     }
 
     public void addSpieler() throws IOException {
@@ -50,10 +47,11 @@ public class sortHighscore {
 
         for (int z = 0; z < json.length(); z++) {
             JSONObject getplayer = json.getJSONObject(z);
-            String[] player = new String[3];
+            String[] player = new String[4];
             player[0] = getplayer.getString("name");
             player[1] = String.valueOf(getplayer.getInt("highscore"));
             player[2] = String.valueOf(getplayer.getInt("games"));
+            player[3] = String.valueOf(getplayer.getInt("coins"));
             allplayers.add(player);
         }
     }

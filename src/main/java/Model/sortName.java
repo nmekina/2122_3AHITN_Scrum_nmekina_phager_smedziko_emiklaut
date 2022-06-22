@@ -1,8 +1,6 @@
 package Model;
 
 import com.example.Controller.ControllerScoreBoard;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import org.json.JSONArray;
@@ -14,26 +12,25 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class sortGames {
+public class sortName {
     private ArrayList<String[]> allplayers = new ArrayList<>();
     private ArrayList<String[]> scoreboard = new ArrayList<>();
-    private int mostgames = 0;
+    private String highestname = "";
     private int indexfromplayer = 0;
-
 
     public void sort() throws IOException {
         addSpieler();
         while (allplayers.size() > 0) {
             for (int i = 0; i < allplayers.size(); i++) {
-                if (Integer.parseInt(allplayers.get(i)[2]) > mostgames) {
-                    mostgames = Integer.parseInt(allplayers.get(i)[2]);
+                if (highestname.compareTo(allplayers.get(i)[0]) > 0) {
+                    highestname = allplayers.get(i)[0];
                     indexfromplayer = i;
                 }
             }
             scoreboard.add(allplayers.get(indexfromplayer));
-            indexfromplayer = 0;
-            mostgames = 0;
             allplayers.removeAll(scoreboard);
+            highestname = "";
+            indexfromplayer = 0;
         }
         ControllerScoreBoard controllerScoreBoard = new ControllerScoreBoard();
         controllerScoreBoard.print(scoreboard);

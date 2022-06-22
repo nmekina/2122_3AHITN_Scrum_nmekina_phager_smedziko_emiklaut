@@ -1,12 +1,17 @@
 package com.example.Controller;
 
+import Model.Skin;
 import Model.sortGames;
 import Model.sortHighscore;
+import Model.sortName;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,35 +25,36 @@ import java.util.*;
 public class ControllerScoreBoard {
 
     @FXML
-    private static ListView<HBox> list_score;
-
-    sortGames sortGames = new sortGames(list_score);
-    sortHighscore sortHighsore = new sortHighscore(list_score);
-
+    private ListView<HBox> list_score = new ListView<>();
 
     public void initialize() throws IOException {
-        ActionEvent actionEvent = new ActionEvent();
-        sortbyhighscore(actionEvent);
+        sortHighscore sortHighsore = new sortHighscore();
+        sortHighsore.sort();
     }
 
     @FXML
     void sortbygames(ActionEvent event) throws IOException {
+        sortGames sortGames = new sortGames();
         sortGames.sort();
     }
 
     @FXML
     void sortbyhighscore(ActionEvent event) throws IOException {
+        sortHighscore sortHighsore = new sortHighscore();
         sortHighsore.sort();
     }
 
     @FXML
-    void sortbyname(ActionEvent event) throws InterruptedException, IOException {
-
+    void sortbyname(ActionEvent event) throws IOException {
+        sortName sortName = new sortName();
+        sortName.sort();
     }
 
-    public static void print(ArrayList<String[]> scoreboard) {
-        for (int i = 0; i < scoreboard.size(); i++) {
-            Label label = new Label("name: " + scoreboard.get(i)[0] + " | highscore: " + scoreboard.get(i)[1] + " | games: " + scoreboard.get(i)[2]);
+    public void print(ArrayList<String[]> scoreboard) {
+
+        for (String[] strings : scoreboard) {
+            Label label = new Label("name: " + strings[0] + " | highscore: " + strings[1] + " | games: " + strings[2] + " | coins: " + strings[3]);
+            System.out.println(label.getText());
             HBox h = new HBox();
             h.getChildren().add(label);
             h.setAlignment(Pos.CENTER);

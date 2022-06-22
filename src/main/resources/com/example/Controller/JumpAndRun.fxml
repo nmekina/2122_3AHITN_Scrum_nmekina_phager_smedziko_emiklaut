@@ -35,7 +35,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" layoutX="250.0" layoutY="-123.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" layoutX="365.0" layoutY="-91.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
       <ProgressBar fx:id="boss_health" layoutX="654.0" layoutY="135.0" prefHeight="18.0" prefWidth="130.0" progress="0.0" />
-      <Label fx:id="coins" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="106.0" prefHeight="17.0" prefWidth="42.0" text="Label" textAlignment="CENTER" />
+      <Label fx:id="coins" contentDisplay="CENTER" layoutX="55.0" layoutY="106.0" prefHeight="17.0" prefWidth="100.0" text="Label" textAlignment="CENTER" />
       <Pane fx:id="coins_image" layoutX="27.0" layoutY="102.0" prefHeight="25.0" prefWidth="26.0" />
    </children>
 </AnchorPane>

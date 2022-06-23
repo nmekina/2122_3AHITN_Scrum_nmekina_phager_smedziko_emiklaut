@@ -1,6 +1,7 @@
 package com.example.Controller;
 
 import Model.ChangeScene;
+import Model.getHighcorefromPlayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

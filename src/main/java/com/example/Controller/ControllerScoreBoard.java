@@ -21,9 +21,8 @@ import java.util.*;
 
 /**
  * @author nmekina
- *
+ * Controller für scoreboard.fxml
  */
-
 public class ControllerScoreBoard {
 
     @FXML
@@ -42,34 +41,52 @@ public class ControllerScoreBoard {
 
     /**
      * @author nmekina
-     *
+     * sortiert per Name und gibt es in der ListView aus
      */
     public void initialize() throws IOException {
-        startMusic startMusic = new startMusic();
-        startMusic.start();
         sortName();
     }
 
+    /**
+     * @author nmekina
+     * sortiert per Anzahl der Spiele und gibt es in der ListView aus
+     */
     @FXML
     void sortbygames(ActionEvent event) throws IOException {
         sortGames();
     }
 
+    /**
+     * @author nmekina
+     * sortiert per highscore und gibt es in der ListView aus
+     */
     @FXML
     void sortbyhighscore(ActionEvent event) throws IOException {
         sortHighscore();
     }
 
+    /**
+     * @author nmekina
+     * sortiert per Name und gibt es in der ListView aus
+     */
     @FXML
     void sortbyname(ActionEvent event) throws IOException {
         sortName();
     }
 
+    /**
+     * @author nmekina
+     * sortiert per gesammelten Coins und gibt es in der ListView aus
+     */
     @FXML
     void sortbycoins(ActionEvent event) throws IOException {
         sortCoins();
     }
 
+    /**
+     * @author nmekina
+     * sortiert per Anzahl der Spiele und gibt es in der ListView aus
+     */
     public void sortGames() throws IOException {
         addSpieler();
         while (allplayers.size() > 0) {
@@ -87,6 +104,10 @@ public class ControllerScoreBoard {
         print(scoreboard);
     }
 
+    /**
+     * @author nmekina
+     * sortiert per highscore und gibt es in der ListView aus
+     */
     public void sortHighscore() throws IOException {
         addSpieler();
         while (allplayers.size() > 0) {
@@ -105,6 +126,10 @@ public class ControllerScoreBoard {
         print(scoreboard);
     }
 
+    /**
+     * @author nmekina
+     * sortiert per Name und gibt es in der ListView aus
+     */
     public void sortName() throws IOException {
         addSpieler();
         while (allplayers.size() > 0) {
@@ -122,7 +147,10 @@ public class ControllerScoreBoard {
         print(scoreboard);
     }
 
-
+    /**
+     * @author nmekina
+     * sortiert per gesammelten Coins und gibt es in der ListView aus
+     */
     public void sortCoins() throws IOException {
         addSpieler();
         while (allplayers.size() > 0) {
@@ -141,6 +169,10 @@ public class ControllerScoreBoard {
         print(scoreboard);
     }
 
+    /**
+     * @author nmekina
+     * gibt in ListView ein Label aus mit Name, Highscore, Games und Coins aller Spieler
+     */
     public void print(ArrayList<String[]> scoreboard) {
         list_score.getItems().clear();
         for (String[] strings : scoreboard) {
@@ -155,6 +187,10 @@ public class ControllerScoreBoard {
         scoreboard.clear();
     }
 
+    /**
+     * @author nmekina
+     * fügt alle Spieler in eine ArrayList hinzu, die jemals gespielt haben
+     */
     public void addSpieler() throws IOException {
         File file = new File("src/main/java/Model/scores.json");
         String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
@@ -171,6 +207,10 @@ public class ControllerScoreBoard {
         }
     }
 
+    /**
+     * @author nmekina
+     * Wechselt Scene zu Startmenü
+     */
     @FXML
     void back(ActionEvent event) throws IOException {
         ChangeScene.change_scene("startmenue", back_btn);

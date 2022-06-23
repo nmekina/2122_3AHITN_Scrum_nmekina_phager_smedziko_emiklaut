@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 /**
  * @author nmekina
- *
+ * Controller für das Settingsmenü
  */
 public class ControllerSettingsMenue {
 
@@ -48,7 +48,7 @@ public class ControllerSettingsMenue {
 
     /**
      * @author nmekina
-     *
+     * setzt Werte zum auswählen für die Schwierigkeit und die Musik
      */
     public void initialize() {
         choice_difficulty.setValue(Settings.getDifficulty());
@@ -73,7 +73,8 @@ public class ControllerSettingsMenue {
 
     /**
      * @author nmekina
-     *
+     * speichert alle geänderten Werte in die Settingsklasse
+     * wechelt in Credits Scene
      */
     @FXML
     void btn_credits_press(ActionEvent event) throws IOException {
@@ -97,7 +98,7 @@ public class ControllerSettingsMenue {
 
     /**
      * @author nmekina
-     *
+     * setzt andere choicebox auf false
      */
     @FXML
     void choice_highscore_press_off(ActionEvent event) {
@@ -106,7 +107,7 @@ public class ControllerSettingsMenue {
 
     /**
      * @author nmekina
-     *
+     * setzt andere choicebox auf false
      */
     @FXML
     void choice_highscore_press_on(ActionEvent event) {
@@ -115,7 +116,7 @@ public class ControllerSettingsMenue {
 
     /**
      * @author nmekina
-     *
+     * setzt andere choicebox auf false
      */
     @FXML
     void choice_music_press_off(ActionEvent event) {
@@ -124,7 +125,7 @@ public class ControllerSettingsMenue {
 
     /**
      * @author nmekina
-     *
+     * setzt andere choicebox auf false
      */
     @FXML
     void choice_music_press_on(ActionEvent event) {
@@ -133,7 +134,8 @@ public class ControllerSettingsMenue {
 
     /**
      * @author nmekina
-     *
+     * speichert alle geänderten Werte in die Settingsklasse
+     * wechelt in Startmenü Scene
      */
     @FXML
     void btn_save_press(ActionEvent event) throws IOException {

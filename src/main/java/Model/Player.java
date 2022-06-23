@@ -15,6 +15,7 @@ public class Player {
     static String name;
     static float jumpskill = 97;
     static boolean invincibility = false;
+    static boolean doublepoints = false;
     ImageView iv = new ImageView();
 
     public static boolean getPressed() {
@@ -51,6 +52,14 @@ public class Player {
 
     public static void setInvincibility(boolean b) {
         invincibility = b;
+    }
+
+    public static void setDoublepoints(boolean b) {
+        doublepoints = b;
+    }
+
+    public static boolean getDoublepoints() {
+        return doublepoints;
     }
 
     public void setPlayer(Pane p){

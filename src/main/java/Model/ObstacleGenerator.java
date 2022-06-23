@@ -19,8 +19,6 @@ import javafx.scene.shape.Shape;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
@@ -45,13 +43,13 @@ public class ObstacleGenerator implements Runnable {
     AnimationTimer playerJump;
     static ArrayList<Pane> hearts = new ArrayList<>();
     Score s = new Score();
-    Invincibility i = new Invincibility();
+    CoolDown i = new CoolDown();
+    CoolDown double_p = new CoolDown();
     Coin c;
     static Difficulty d = new Difficulty();
     static boolean petmode;
     ProgressBar progress;
     static Integer coins = 0;
-    boolean done = false;
 
     AnimationTimer enemies = new AnimationTimer() {
         @Override
@@ -76,7 +74,7 @@ public class ObstacleGenerator implements Runnable {
                     if (Player.getPlayer().getLayoutY() < 168 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getRunning().getLayoutBounds().getHeight() == 28) {
                     } else {
                         if (!isHeart) {
-                            if(!Invincibility.activated) {
+                            if(!CoolDown.inviactivated) {
                                 checkDamage();
                             }
                             happend = true;
@@ -117,6 +115,7 @@ public class ObstacleGenerator implements Runnable {
                 playerJump.stop();
                 s.stop();
                 i.stop();
+                double_p.stop();
                 stopGame();
             }
 
@@ -165,6 +164,11 @@ public class ObstacleGenerator implements Runnable {
         }
     }
 
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
     public void generateObstacle() {
         once = true;
         Shape obstacle = new Ellipse();
@@ -211,7 +215,7 @@ public class ObstacleGenerator implements Runnable {
             }
 
             pets.setPrefWidth(36);
-            ImageView iv = new ImageView(loadImage());
+            ImageView iv = new ImageView(ImagesLoader.getRandomImage());
             iv.fitWidthProperty().bind(pets.widthProperty());
             iv.fitHeightProperty().bind(pets.heightProperty());
             pets.getChildren().add(iv);
@@ -336,27 +340,6 @@ public class ObstacleGenerator implements Runnable {
         petmode = mode;
     }
 
-    public Image loadImage(){
-        int r = getRandomNumber(0,2);
-        String url;
-        int x = (int) (Math.random() * (100) + 0);
-        int y = (int) (Math.random() * (100) + 0);
-
-        if(r == 0){
-            url = "http://placekitten.com/" + x + "/"+y;
-        }else {
-            url = "https://randomfox.ca/images/" + x + ".jpg";
-        }
-
-        Image i = new Image(url,200,200,false,false);
-        if (i.isError()) {
-            i = new Image(String.valueOf(Skin.class.getResource("loading_error.jpg")), 200, 200, false, false);
-            System.out.println("Error loading image");
-        }
-
-        return i;
-    }
-
     public void startGame() {
         playerJump.start();
         if(activeObstacle != null) {
@@ -412,11 +395,6 @@ public class ObstacleGenerator implements Runnable {
             }
         }
 
-    }
-
-
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
     }
 
     public static void main(String[] args) {

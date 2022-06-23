@@ -128,7 +128,12 @@ public class Score implements Runnable {
             });
 
             try {
-                sleep(100);
+                if(CoolDown.double_active) {
+                    System.out.println("Doublepoints");
+                    sleep(50);
+                }else {
+                    sleep(100);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

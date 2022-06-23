@@ -23,16 +23,31 @@ public class HelloController {
     //TODO
 
     @FXML
-    private ProgressBar boss_health;
+    private Button back;
 
     @FXML
-    private Button back;
+    private ProgressBar boss_health;
 
     @FXML
     private Label coins;
 
     @FXML
-    private Pane coins_image;
+    private ImageView coins_img;
+
+    @FXML
+    private Pane coins_pane;
+
+    @FXML
+    private ImageView dou_img;
+
+    @FXML
+    private Label double_cooldown;
+
+    @FXML
+    private Label double_state;
+
+    @FXML
+    private Label double_timer;
 
     @FXML
     private Label gameOver;
@@ -53,7 +68,13 @@ public class HelloController {
     private Label highscore;
 
     @FXML
+    private ImageView inv_image;
+
+    @FXML
     private Pane invi_pic;
+
+    @FXML
+    private Label invincible_cooldown;
 
     @FXML
     private Label invincible_state;
@@ -73,14 +94,16 @@ public class HelloController {
     @FXML
     private AnchorPane scene;
 
-    @FXML
-    private Label invincible_cooldown;
+
 
 
     Pane[] hearts;
     static boolean restarted = false;
     Player player = new Player();
-    Invincibility i;
+    CoolDown i;
+    CoolDown d;
+    static final int DOUBLE = 2;
+    static final int INVINCIBLE = 1;
 
     //Player Jump Power einstellen können (Skill Updates)
     //TODO Lehrer fragen wie man API Images nicht zum lagen bringt
@@ -94,6 +117,13 @@ public class HelloController {
                 Thread t = new Thread(i);
                 t.start();
                 Player.setInvincibility(false);
+                Player.setMovement("");
+            }
+
+            if(Objects.equals(Player.getMovement(),"D") && Player.getDoublepoints()){
+                Thread t = new Thread(d);
+                t.start();
+                Player.setDoublepoints(false);
                 Player.setMovement("");
             }
 
@@ -149,18 +179,16 @@ public class HelloController {
         startMusic.start();
 
 
-        ImageView iv = new ImageView();
-        iv.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.jpg"))));
-        iv.fitWidthProperty().bind(coins_image.widthProperty());
-        iv.fitHeightProperty().bind(coins_image.heightProperty());
-        coins_image.getChildren().add(iv);
+        coins_img.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.png"))));
+        coins_img.fitWidthProperty().bind(coins_pane.widthProperty());
+        coins_img.fitHeightProperty().bind(coins_pane.heightProperty());
 
-        iv.setImage(new Image(String.valueOf(HelloController.class.getResource("invincible.png"))));
-        iv.fitHeightProperty().bind(invi_pic.widthProperty());
-        iv.fitHeightProperty().bind(invi_pic.heightProperty());
-        invi_pic.getChildren().add(iv);
+        inv_image.setImage(new Image(String.valueOf(HelloController.class.getResource("invincible.png"))));
+        inv_image.fitHeightProperty().bind(invi_pic.widthProperty());
+        inv_image.fitHeightProperty().bind(invi_pic.heightProperty());
 
-        i = new Invincibility(50,200,invincible_timer,invincible_cooldown);
+        i = new CoolDown(50,200,invincible_timer,invincible_cooldown,INVINCIBLE);
+        d = new CoolDown(50, 200, double_timer,double_cooldown,DOUBLE);
         highscore.setText("No Highscore yet");
         invincible_state.setText(Player.getInvincibility()+"");
 

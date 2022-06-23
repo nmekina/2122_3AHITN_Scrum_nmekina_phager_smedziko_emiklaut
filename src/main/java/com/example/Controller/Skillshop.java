@@ -16,6 +16,15 @@ public class Skillshop {
 
 
     @FXML
+    private ImageView double_1;
+
+    @FXML
+    private ImageView double_img;
+
+    @FXML
+    private Label double_label;
+
+    @FXML
     private Button go_to_start;
 
     @FXML
@@ -35,7 +44,6 @@ public class Skillshop {
 
     @FXML
     private ImageView invi_1;
-
 
     @FXML
     private Label invincible_label;
@@ -59,6 +67,9 @@ public class Skillshop {
     private ImageView jump_power_picture;
 
     @FXML
+    private Button select_double;
+
+    @FXML
     private Button select_heart;
 
     @FXML
@@ -71,6 +82,7 @@ public class Skillshop {
     Skill jump;
     Skill heart;
     Skill invincible;
+    Skill double_points;
 
     static final int MINJUMP = 97;
     static final int LOWJUMP = 70;
@@ -89,18 +101,22 @@ public class Skillshop {
         jump_power_lb.setText("Jump");
         heart_label.setText("Heart");
         invincible_label.setText("invincible");
+        double_label.setText("Double Points");
 
         select_heart.setText("Select");
         select_jumppower.setText("Select");
         select_invincible.setText("Select");
+        select_double.setText("Select");
 
         jump = new Skill(jump_1, jump_2, jump_3, jump_power_picture, MINJUMP, LOWJUMP, MIDJUMP, MAXJUMP, "jump-power.png");
         heart = new Skill(heart_1,heart_2,heart_3,heart_show, MINHEARTS, LOWHEARTS, MIDHEARTS, MAXHEARTS, "heart_skill.jpg");
         invincible = new Skill(invi_1,invincible_show,"invincible.png");
+        double_points = new Skill(double_1,double_img,"double_points.png");
 
         jump.setImage(jump_power_picture);
         heart.setImage(heart_show);
         invincible.setImage(invincible_show);
+        double_points.setImage(double_img);
 
 
 
@@ -112,7 +128,8 @@ public class Skillshop {
             heart.updateImage(i);
         }
 
-        invincible.changeActivate();
+        double_points.changeActivate("double");
+        invincible.changeActivate("invincible");
 
 
 
@@ -134,8 +151,13 @@ public class Skillshop {
         }
 
         if(event.getSource() == select_invincible){
-            invincible.changeState();
-            invincible.changeActivate();
+            invincible.changeState("invincible");
+            invincible.changeActivate("invincible");
+        }
+
+        if(event.getSource() == select_double){
+            double_points.changeState("double");
+            double_points.changeActivate("double");
         }
 
     }

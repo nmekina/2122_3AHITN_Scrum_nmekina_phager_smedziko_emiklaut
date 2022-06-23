@@ -37,6 +37,7 @@ public class ControllerChooseGameMode {
                 lb_normal.setText("Normal");
                 lb_pet.setText("Pet");
                 present_normal.setImage(new Image(String.valueOf(ControllerChooseGameMode.class.getResource("preview_normal.jpg")),816,395,false,false));
+                present_pet.setImage(new Image(String.valueOf(ControllerChooseGameMode.class.getResource("preview_pet.png")),816,395,false,false));
         }
 
         @FXML

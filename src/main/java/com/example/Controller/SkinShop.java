@@ -102,7 +102,7 @@ public class SkinShop {
         skin_name.setText("Name: " + skins.get(0).getName());
         coins_required.setText("Coins: " + skins.get(0).getCoins());
         show_skin.setImage(skins.get(0).getPicture().get(0));
-        coins_img.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.jpg"))));
+        coins_img.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.png"))));
         coins_img.fitWidthProperty().bind(coins_pane.widthProperty());
         coins_img.fitHeightProperty().bind(coins_pane.heightProperty());
         select.setText("Select");

@@ -15,6 +15,7 @@ public class Invincibility implements Runnable {
     String secs;
     Label show;
     int sec;
+    boolean stopped = false;
     static boolean activated = false;
 
     public Invincibility(int time, int cooldown, Label showTimer, Label showCooldown) {
@@ -37,8 +38,8 @@ public class Invincibility implements Runnable {
     }
 
     public void stop(){
+        sec = 0;
         stop = true;
-        show = showCooldown;
     }
 
     @Override
@@ -73,8 +74,7 @@ public class Invincibility implements Runnable {
 
             if(sec == 0){
                 stop = true;
-                System.out.println(show);
-                if(show.idProperty().equals(showTimer.idProperty())){
+                if(show.idProperty().equals(showTimer.idProperty()) || !stopped){
                     sec = cooldown;
                     show = showCooldown;
                     Thread t = new Thread(this);

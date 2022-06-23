@@ -20,7 +20,8 @@ public class Skill {
 
     ImageView[] skills = new ImageView[3];
     ImageView skill_img;
-    static boolean savedstate = false;
+    static boolean savedstate_invi = false;
+    static boolean savedstate_double = false;
     String image;
     Integer[] intensity = new Integer[4];
     static Integer[] savedIntensity = {3, 3};
@@ -95,17 +96,30 @@ public class Skill {
         }
     }
 
-    public void changeActivate(){
-        if(savedstate){
-            setImage(skills[0]);
-            Player.invincibility = true;
-        }else {
-            skills[0].imageProperty().set(null);
+    public void changeActivate(String name){
+        if(Objects.equals(name, "invincible")) {
+            if (savedstate_invi) {
+                setImage(skills[0]);
+                Player.invincibility = true;
+            } else {
+                skills[0].imageProperty().set(null);
+            }
+        }else if(Objects.equals(name, "double")){
+            if (savedstate_double) {
+                setImage(skills[0]);
+                Player.doublepoints = true;
+            } else {
+                skills[0].imageProperty().set(null);
+            }
         }
     }
 
-    public void changeState(){
-        savedstate = !savedstate;
+    public void changeState(String name){
+        if(Objects.equals(name, "invincible")) {
+            savedstate_invi = !savedstate_invi;
+        }else if (Objects.equals(name, "double")){
+            savedstate_double= !savedstate_double;
+        }
     }
 
     public void updateSkill(int skillevel, String skillname) {

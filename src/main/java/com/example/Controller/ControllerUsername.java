@@ -1,6 +1,7 @@
 package com.example.Controller;
 
 import Model.ChangeScene;
+import Model.ImagesLoader;
 import Model.Player;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -45,6 +46,10 @@ public class ControllerUsername {
         for (String oneplayer : allplayers) {
             choicebox_username.getItems().add(oneplayer);
         }
+
+        ImagesLoader il = new ImagesLoader();
+        Thread t = new Thread(il);
+        t.start();
 
         choicebox_username.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
             @Override

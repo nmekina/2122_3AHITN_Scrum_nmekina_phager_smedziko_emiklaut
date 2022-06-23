@@ -1,7 +1,6 @@
 package com.example.Controller;
 
 import Model.ChangeScene;
-import Model.Difficulty;
 import Model.Settings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

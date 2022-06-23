@@ -1,8 +1,6 @@
 package com.example.Controller;
 
 import Model.ChangeScene;
-import Model.getHighcorefromPlayer;
-import Model.startMusic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

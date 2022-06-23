@@ -1,10 +1,7 @@
 package com.example.Controller;
 
 import Model.Player;
-import Model.PlayerScore;
 import Model.Skin;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -22,10 +19,7 @@ import javafx.stage.Stage;
 import org.json.*;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -69,6 +63,7 @@ public class SkinShop {
     ArrayList<Image> images_hager = new ArrayList<>();
 
     Skin skinselect;
+    int position = 0;
 
     public void initialize() {
         images_semir.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")), 200, 100, false, false));
@@ -140,6 +135,7 @@ public class SkinShop {
                         coins_required.setText("Coins: " + selected.getCoins());
 
                         skinselect = selected;
+                        position = 0;
                     }
                 }
             }
@@ -210,21 +206,19 @@ public class SkinShop {
         return data;
     }
 
-    int i = 0;
-
     @FXML
     void skin_change_left(ActionEvent event) {
-        if (i > 0) {
-            i--;
-            show_skin.setImage(skinselect.getPicture().get(i));
+        if (position > 0) {
+            position--;
+            show_skin.setImage(skinselect.getPicture().get(position));
         }
     }
 
     @FXML
     void skin_change_right(ActionEvent event) {
-        if (i < 2) {
-            i++;
-            show_skin.setImage(skinselect.getPicture().get(i));
+        if (position < 2) {
+            position++;
+            show_skin.setImage(skinselect.getPicture().get(position));
         }
     }
 

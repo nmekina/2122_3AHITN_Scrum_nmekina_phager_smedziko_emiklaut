@@ -36,6 +36,8 @@ public class ControllerScoreBoard {
     private int indexfromplayer = 0;
 
     public void initialize() throws IOException {
+        startMusic startMusic = new startMusic();
+        startMusic.start();
         sortName();
     }
 

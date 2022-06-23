@@ -5,6 +5,7 @@ module com.example._2122_3ahitn_scrum_mekina_hager_miklautsch_medzikovic {
     requires com.google.gson;
     requires java.desktop;
     requires soundPlay;
+    requires javafx.web;
 
 
     exports com.example.Controller;

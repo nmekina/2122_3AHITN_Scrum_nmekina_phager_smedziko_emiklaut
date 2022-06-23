@@ -35,7 +35,7 @@ public class ControllerScoreBoard {
     private int indexfromplayer = 0;
 
     public void initialize() throws IOException {
-        sortHighscore();
+        sortName();
     }
 
     @FXML
@@ -133,7 +133,6 @@ public class ControllerScoreBoard {
         list_score.getItems().clear();
         for (String[] strings : scoreboard) {
             Label label = new Label("name: " + strings[0] + " | highscore: " + strings[1] + " | games: " + strings[2] + " | coins: " + strings[3]);
-            System.out.println(label.getText());
 
             HBox h = new HBox();
             h.getChildren().add(label);

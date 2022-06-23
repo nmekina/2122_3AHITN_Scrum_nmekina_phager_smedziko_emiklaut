@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.web.WebView?>
 
 <AnchorPane prefHeight="697.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerCredits">
    <children>
@@ -21,9 +23,55 @@
       </Label>
       <TextArea editable="false" layoutX="14.0" layoutY="70.0" prefHeight="100.0" prefWidth="910.0" text="Geben Sie ihren Benutzernamen ein und drücken Sie &quot;OK&quot;. Danach, in diesem Startmenü, können Sie das Spiel starten, in ein Settingsmenü kommen, in einen &#10;Skinshop kommen, zum Auswählen eines Skins oder in eine Scoreboard Ansicht kommen. Wenn Sie &quot;Spiel starten&quot; drücken, startet das Spiel mit einen Standartskin,&#10;wenn Sie dies nicht wollen, drücken Sie auf den Skinshop und wählen Sie einen Skin ihrer Wahl, vorrausgesehen Sie haben diesen schon freigeschaltet, aus. &#10;Wählen Sie &quot;bestätigen&quot; um den Skin zu speichern und zurück zum Hauptmenü zu kommen. Wenn Sie nun &quot;Spiel starten&quot; drücken, können Sie mit dem&#10;ausgwähltem Skin spielen. Sie können im Startmenü außerdem noch eine Highscoreliste und die Settings aufrufen." />
       <Button fx:id="btn_exit" layoutX="885.0" layoutY="657.0" mnemonicParsing="false" onAction="#press_btn_exit" text="Exit" />
-      <WebView fx:id="webviewMiklautsch" layoutX="50.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
-      <WebView fx:id="webviewMekina" layoutX="268.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
-      <WebView fx:id="webviewMedzikovic" layoutX="493.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
-      <WebView fx:id="webviewHager" layoutX="713.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
+      <Hyperlink layoutX="112.0" layoutY="372.0" onAction="#openLink1" text="Philipp Hager">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="713.0" layoutY="372.0" onAction="#openLink2" text="Nico Mekina">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="702.0" layoutY="633.0" onAction="#openLink3" text="Semir Medzikovic">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="105.0" layoutY="633.0" onAction="#openLink4" text="Elias Miklautsch">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <ImageView fx:id="HagerImageview" fitHeight="178.0" fitWidth="165.0" layoutX="87.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Model/Hager/PhilippHagerInstagram.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="MekinaImageview" fitHeight="193.0" fitWidth="149.0" layoutX="689.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Model/Mekina/NicoMekinaInstagram.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="MiklautschImageview" fitHeight="183.0" fitWidth="181.0" layoutX="75.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Model/Miklautsch/EliasMiklautschInstagram.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="MedzikovicImageview" fitHeight="178.0" fitWidth="172.0" layoutX="676.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Model/Medzikovic/SemirMedzikovicInstagram.jpeg" />
+         </image>
+      </ImageView>
+      <Hyperlink layoutX="430.0" layoutY="508.0" onAction="#openLink5" text="HTL Steyr">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Hyperlink>
+      <ImageView fitHeight="227.0" fitWidth="298.0" layoutX="319.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Model/HTLSteyr/HTLSteyrInstagram.jpeg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

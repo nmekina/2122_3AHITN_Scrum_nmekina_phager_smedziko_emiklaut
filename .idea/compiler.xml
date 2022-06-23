@@ -14,7 +14,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic" options="" />
-      <module name="_2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic" options="--add-exports javafx.web/com.sun.webkit.network=com.example._2122_3ahitn_scrum_mekina_hager_miklautsch_medzikovic" />
+      <module name="_2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic" options="" />
     </option>
   </component>
 </project>

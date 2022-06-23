@@ -1,5 +1,14 @@
 package Model;
 
+/**
+ * @author nmekina
+ * speichert die Einstellungen, die im Settingsmenü geändert werden können
+ * private static boolean highscoreonoff = true;: speichert ob der Highscore ein oder ausgeschaltet sein soll
+ * private static boolean musiconoff = true;: speichert ob die Musik ein oder ausgschaltet sein soll
+ * private static String difficulty = "medium";: speichert die Schwierigkeit des Spiels
+ * private static String image = "Hintergrund.jpeg";: speichert das Hintergrundbild des Spiels
+ * private static String musicplaying = "music";: speichert welche Musik abgespielt werden soll
+ */
 public class Settings {
     private static boolean highscoreonoff = true;
     private static boolean musiconoff = true;
@@ -7,6 +16,10 @@ public class Settings {
     private static String image = "Hintergrund.jpeg";
     private static String musicplaying = "music";
 
+    /**
+     * @author nmekina
+     * getter und setter für die oben angegebenen Attribute
+     */
     public static boolean getHighscoreonoff() {
         return highscoreonoff;
     }

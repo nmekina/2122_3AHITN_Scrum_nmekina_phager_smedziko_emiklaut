@@ -10,6 +10,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * @author nmekina
+ * startet die Musik
+ */
 public class MusicPlayer {
     private AdvancedPlayer player;
 
@@ -17,6 +21,10 @@ public class MusicPlayer {
         player = null;
     }
 
+    /**
+     * @author nmekina
+     * spielt die musik ab, wird aufgefangen, wenn es Probleme gibt
+     */
     public void playFile(String filename) {
         try {
             preparePlayer(filename);
@@ -26,6 +34,10 @@ public class MusicPlayer {
         }
     }
 
+    /**
+     * @author nmekina
+     * setzt den player, der dann das spiel starten soll, fängt auf bei fehler
+     */
     private void preparePlayer(String filename) {
         try {
             InputStream is = getInputStream(filename);
@@ -35,12 +47,20 @@ public class MusicPlayer {
         }
     }
 
+    /**
+     * @author nmekina
+     * setzt den InputStream
+     */
     private InputStream getInputStream(String filename)
             throws IOException {
         return new BufferedInputStream(
                 new FileInputStream(filename));
     }
 
+    /**
+     * @author nmekina
+     * erstellt ein Audio Device
+     */
     private AudioDevice createAudioDevice()
             throws JavaLayerException {
         return FactoryRegistry.systemRegistry().createAudioDevice();

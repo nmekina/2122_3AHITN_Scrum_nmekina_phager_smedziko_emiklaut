@@ -11,7 +11,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-
+/**
+ * @author nmekina
+ *
+ */
 public class ControllerSettingsMenue {
 
     @FXML
@@ -43,6 +46,10 @@ public class ControllerSettingsMenue {
 
     Settings settings = new Settings();
 
+    /**
+     * @author nmekina
+     *
+     */
     public void initialize() {
         choice_difficulty.setValue(Settings.getDifficulty());
         choice_difficulty.getItems().add("beginner");
@@ -64,6 +71,10 @@ public class ControllerSettingsMenue {
         choice_highscore_off.setSelected(!settings.getHighscoreonoff());
     }
 
+    /**
+     * @author nmekina
+     *
+     */
     @FXML
     void btn_credits_press(ActionEvent event) throws IOException {
         //alles speichern
@@ -84,26 +95,46 @@ public class ControllerSettingsMenue {
         ChangeScene.change_scene("credits", btn_save);
     }
 
+    /**
+     * @author nmekina
+     *
+     */
     @FXML
     void choice_highscore_press_off(ActionEvent event) {
         choice_highscore_on.setSelected(false);
     }
 
+    /**
+     * @author nmekina
+     *
+     */
     @FXML
     void choice_highscore_press_on(ActionEvent event) {
         choice_highscore_off.setSelected(false);
     }
 
+    /**
+     * @author nmekina
+     *
+     */
     @FXML
     void choice_music_press_off(ActionEvent event) {
         choice_music_on.setSelected(false);
     }
 
+    /**
+     * @author nmekina
+     *
+     */
     @FXML
     void choice_music_press_on(ActionEvent event) {
         choice_music_off.setSelected(false);
     }
 
+    /**
+     * @author nmekina
+     *
+     */
     @FXML
     void btn_save_press(ActionEvent event) throws IOException {
         //alles speichernll

@@ -19,6 +19,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * @author nmekina
+ *
+ */
+
 public class ControllerScoreBoard {
 
     @FXML
@@ -35,6 +40,10 @@ public class ControllerScoreBoard {
     private int coins = 0;
     private int indexfromplayer = 0;
 
+    /**
+     * @author nmekina
+     *
+     */
     public void initialize() throws IOException {
         startMusic startMusic = new startMusic();
         startMusic.start();

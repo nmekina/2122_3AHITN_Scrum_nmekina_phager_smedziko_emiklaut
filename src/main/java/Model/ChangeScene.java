@@ -10,8 +10,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
+/**
+ * @author nmekina
+ * soll in eine andere Scene wechseln
+ */
 public class ChangeScene {
 
+    /**
+     * @author nmekina
+     * wechselt in eine andere Scene
+     * String game: gibt an in welche Scene man wechseln soll
+     * Button button: zur hilfestellung, um zu wissen welches die aktuelle Scene ist und um sie zu schließen
+     */
     public static void change_scene(String game, Button button) throws IOException {
         Stage stage = new Stage();
 

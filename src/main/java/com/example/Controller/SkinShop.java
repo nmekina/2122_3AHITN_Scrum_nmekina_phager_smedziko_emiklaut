@@ -60,27 +60,52 @@ public class SkinShop {
 
 
     ArrayList<Skin> skins = new ArrayList<Skin>();
-
-
-    Skin semir = new Skin("Semir", 0,0, new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")),200,100,false,false));
-    Skin elias = new Skin("Elias", 25,100, new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautsch.jpeg")),200,100,false,false));
-    Skin nico = new Skin("Nico", 50,200, new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekina.jpeg")),200,100,false,false));
-    Skin rester = new Skin("Rester", 75,300, new Image(String.valueOf(Skin.class.getResource("Rester/ManuelRester.jpeg")),200,100,false,false));
-    Skin hager = new Skin("Hager", 100,400, new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+    Skin skin;
+    ArrayList<Image> images = new ArrayList<>();
 
     Skin skinselect;
 
     public void initialize() {
-        skins.add(semir);
-        skins.add(elias);
-        skins.add(nico);
-        skins.add(rester);
-        skins.add(hager);
+        images.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovicDuck.png")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovicJump.png")),200,100,false,false));
+        skin = new Skin("Semir", 0,0, images);
+        skins.add(skin);
+        images.clear();
+
+        images.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautsch.jpeg")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautschDuck.png")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautschJump.png")),200,100,false,false));
+        skin = new Skin("Elias", 25,100, images);
+        skins.add(skin);
+        images.clear();
+
+        images.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekina.jpeg")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekinaDuck.png")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekinaJump.png")),200,100,false,false));
+        skin = new Skin("Nico", 50,200, images);
+        skins.add(skin);
+        images.clear();
+
+        images.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelRester.jpeg")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelResterDuck.png")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelResterJump.png")),200,100,false,false));
+        skin = new Skin("Rester", 75,300, images);
+        skins.add(skin);
+        images.clear();
+
+        images.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHagerDuck.png")),200,100,false,false));
+        images.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHagerJump.png")),200,100,false,false));
+        skin = new Skin("Hager", 100,400,images);
+        skins.add(skin);
+        images.clear();
+
 
         level_skin.setText("Level: " + skins.get(0).getLevel());
         skin_name.setText("Name: " + skins.get(0).getName());
         coins_required.setText("Coins: "+ skins.get(0).getCoins());
-        show_skin.setImage(skins.get(0).getPicture());
+        show_skin.setImage(skins.get(0).getPicture().get(0));
         coins_img.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.jpg"))));
         coins_img.fitWidthProperty().bind(coins_pane.widthProperty());
         coins_img.fitHeightProperty().bind(coins_pane.heightProperty());
@@ -88,7 +113,7 @@ public class SkinShop {
 
 
         for (int i = 0; i < skins.size(); i++) {
-            ImageView skin = new ImageView(skins.get(i).getPicture());
+            ImageView skin = new ImageView(skins.get(i).getPicture().get(0));
             skin.fitHeightProperty();
             skin.fitWidthProperty();
 
@@ -108,7 +133,7 @@ public class SkinShop {
                 Iterator<Skin> i = Skin.getSkins().iterator();
                 while(i.hasNext()){
                     Skin selected = i.next();
-                    if(selected.getPicture() == s.getImage()){
+                    if(selected.getPicture().get(0) == s.getImage()){
                         level_skin.setText("Level: " +selected.getLevel());
                         skin_name.setText("Name: " + selected.getName());
                         coins_required.setText("Coins: " + selected.getCoins());

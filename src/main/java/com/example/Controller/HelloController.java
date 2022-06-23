@@ -61,6 +61,7 @@ public class HelloController {
 
     Pane[] hearts;
     static boolean restarted = false;
+    Player player = new Player();
 
 
     //Player Jump Power einstellen können (Skill Updates)
@@ -73,16 +74,18 @@ public class HelloController {
             if (Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setPrefHeight(28);
                 paneplayer.setLayoutY(280);
+                player.change(1);
                 Player.setPressed(false);
             } else if (paneplayer.getPrefHeight() == (28) && !Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setPrefHeight(72);
                 paneplayer.setLayoutY(237);
+                player.change(2);
             }
 
             //Bis er ganz oben ist
             if (Player.getPressed() && paneplayer.getLayoutY() > Player.getJumpSkill() && !Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setLayoutY(paneplayer.getLayoutY() - 8);
-
+                player.change(1);
             } else {
                 Player.setPressed(false);
             }
@@ -90,11 +93,13 @@ public class HelloController {
             //kommt wieder runter
             if (!Player.getPressed() && paneplayer.getLayoutY() < 237) {
                 paneplayer.setLayoutY(paneplayer.getLayoutY() + 8);
+                player.change(1);
             }
 
             //Löscht movement key nach erfolgreicher bewegung
             if (paneplayer.getLayoutY() == 237 && paneplayer.getPrefHeight() == 72) {
                 Player.setMovement("");
+                player.change(0);
             }
         }
 

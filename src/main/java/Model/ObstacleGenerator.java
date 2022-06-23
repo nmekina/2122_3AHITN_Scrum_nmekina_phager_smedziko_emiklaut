@@ -12,13 +12,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
@@ -41,13 +41,14 @@ public class ObstacleGenerator implements Runnable {
     static Integer time = 2500;
     static Integer generatenew = 160;
     AnimationTimer playerJump;
-    static Pane[] hearts = new Pane[3];
+    static ArrayList<Pane> hearts = new ArrayList<>();
     Score s = new Score();
     Coin c;
     static Difficulty d = new Difficulty();
     static boolean petmode;
     ProgressBar progress;
     static Integer coins = 0;
+    boolean done = false;
 
     AnimationTimer enemies = new AnimationTimer() {
         @Override
@@ -65,16 +66,11 @@ public class ObstacleGenerator implements Runnable {
             }
 
             //TODO Verbessern mit Höhe die gesprungen werden soll = Boden - Höhe des Gegners
+            //TODO Copy
             if (activeObstacle.getRunning().getLayoutX() > -36) {
 
-                if (activeObstacle.getRunning().getLayoutX() < 120 && activeObstacle.getRunning().getLayoutX() > 30 && !beaten && !happend) {
-                    if (Player.getPlayer().getLayoutY() < 205 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getRunning().getLayoutBounds().getHeight() == 28) {
-                        synchronized (coins) {
-                            System.out.println("Aktuelle Coins: " + coins);
-                            coins = coins + 5;
-                            c.setCoins(coins);
-                            happend = true;
-                        }
+                if (activeObstacle.getRunning().getLayoutX() < 116 && activeObstacle.getRunning().getLayoutX() > 20 && !beaten && !happend) {
+                    if (Player.getPlayer().getLayoutY() < 168 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getRunning().getLayoutBounds().getHeight() == 28) {
                     } else {
                         if (!isHeart) {
                             checkDamage();
@@ -83,8 +79,19 @@ public class ObstacleGenerator implements Runnable {
                             heal();
                             happend = true;
                         }
+
                     }
                 }
+
+                if(!happend && activeObstacle.getRunning().getLayoutX() < 20){
+                    synchronized (coins) {
+                        System.out.println("Aktuelle Coins: " + coins);
+                        coins = coins + 5;
+                        c.setCoins(coins);
+                        happend = true;
+                    }
+                }
+
             }
 
             if (beaten) {
@@ -131,23 +138,23 @@ public class ObstacleGenerator implements Runnable {
     }
 
     public void checkDamage() {
-
-        for (int i = 0; i < hearts.length; i++) {
-            if (isRedHeart(hearts[i].getChildren())) {
-                hearts[i] = setHeart(hearts[i],"empty_heart.jpg");
-                i = hearts.length;
+        for (int j = 0; j < hearts.size(); j++) {
+            if (isRedHeart(hearts.get(j).getChildren())) {
+                setHeart(hearts.get(j), "empty_heart.jpg");
+                j = hearts.size();
             }
-        }
-        if (!isRedHeart(hearts[2].getChildren())) {
-            beaten = true;
+            if(!isRedHeart(hearts.get(hearts.size()-1).getChildren())){
+                beaten = true;
+            }
         }
     }
 
     public void heal() {
-        for (int i = hearts.length - 1; i >= 0; i--) {
-            if (!isRedHeart(hearts[i].getChildren())) {
-                hearts[i] = setHeart(hearts[i],"heart.jpg");
-                i = 0;
+
+        for (int i = 0; i < hearts.size(); i++) {
+            if (!isRedHeart(hearts.get(i).getChildren())) {
+                setHeart(hearts.get(i), "hearts.jpg");
+                i = hearts.size();
             }
         }
     }
@@ -172,21 +179,21 @@ public class ObstacleGenerator implements Runnable {
                 ap.getChildren().add(heart);
             }
         }
-            if (!petmode && !isHeart) {
+        if (!petmode && !isHeart) {
 
-                    if (random == 0) {
-                        obstacle = new Rectangle(36, heightbig);
-                    }
+            if (random == 0) {
+                obstacle = new Rectangle(36, heightbig);
+            }
 
-                    if (random == 1) {
-                        obstacle = new Rectangle(36, heightsmall);
-                    }
+            if (random == 1) {
+                obstacle = new Rectangle(36, heightsmall);
+            }
 
-                obstacle.setFill(color);
-                obstacle.setLayoutY(y);
-                obstacle.setLayoutX(x);
-                activeObstacle = new Obstacle(obstacle, petmode);
-                ap.getChildren().add(obstacle);
+            obstacle.setFill(color);
+            obstacle.setLayoutY(y);
+            obstacle.setLayoutX(x);
+            activeObstacle = new Obstacle(obstacle, petmode);
+            ap.getChildren().add(obstacle);
 
         } else if(!isHeart){
             Pane pets = new Pane();
@@ -257,15 +264,18 @@ public class ObstacleGenerator implements Runnable {
     }
 
     public static void setHearts(Pane[] heartcollection) {
-        hearts = heartcollection;
 
-        for (int i = 0; i<hearts.length;i++){
+        for(int j = 0; j < heartcollection.length; j++){
+            hearts.add(j, heartcollection[j]);
+        }
+
+        for (int i = 0; i<hearts.size();i++){
             Image j = new Image(String.valueOf(Skin.class.getResource("heart.jpg")), 200, 200, false, false);
             ImageView iv = new ImageView(j);
-            iv.fitHeightProperty().bind(hearts[i].heightProperty());
-            iv.fitWidthProperty().bind(hearts[i].widthProperty());
-            hearts[i].getChildren().clear();
-            hearts[i].getChildren().add(iv);
+            iv.fitHeightProperty().bind(hearts.get(i).heightProperty());
+            iv.fitWidthProperty().bind(hearts.get(i).widthProperty());
+            hearts.get(i).getChildren().clear();
+            hearts.get(i).getChildren().add(iv);
         }
 
     }
@@ -367,14 +377,14 @@ public class ObstacleGenerator implements Runnable {
 
                 //TODO Nicht stoppen wenn nicht gestartet wurde
                 if (!beaten && activeObstacle != null) {
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    stopObstacle();
-                                }
-                            });
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            stopObstacle();
                         }
+                    });
                 }
+            }
 
             if (stop) {
                 synchronized (this) {
@@ -393,5 +403,10 @@ public class ObstacleGenerator implements Runnable {
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
-}
 
+    public static void main(String[] args) {
+        //    String url =  "https://randomfox.ca/images/" + x + ".jpg";
+
+        //    Image i = new Image(url,200,200,false,false);
+    }
+}

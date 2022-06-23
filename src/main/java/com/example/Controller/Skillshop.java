@@ -77,6 +77,7 @@ public class Skillshop {
         select_heart.setText("Select");
         select_jumppower.setText("Select");
 
+
         jump = new Skill(jump_1, jump_2, jump_3, jump_power_picture, MINJUMP, LOWJUMP, MIDJUMP, MAXJUMP, "jump-power.png");
         heart = new Skill(heart_1,heart_2,heart_3,heart_show, MINHEARTS, LOWHEARTS, MIDHEARTS, MAXHEARTS, "heart_skill.jpg");
 
@@ -94,11 +95,19 @@ public class Skillshop {
     }
 
     @FXML
-    void jumppower_select(ActionEvent event) {
-        int skillevel = jump.checkSkillLevel();
-        System.out.println(skillevel);
-        jump.updateImage(skillevel);
-        jump.updateSkill(skillevel);
+    void select(ActionEvent event) {
+        int skillevel;
+        if(event.getSource() == select_jumppower) {
+            skillevel = jump.checkSkillLevel();
+            jump.updateImage(skillevel);
+            jump.updateSkill(skillevel, "jump");
+        }
+
+        if(event.getSource() == select_heart){
+            skillevel = heart.checkSkillLevel();
+            heart.updateImage(skillevel);
+            heart.updateSkill(skillevel, "heart");
+        }
 
     }
 
@@ -107,11 +116,5 @@ public class Skillshop {
         ChangeScene.change_scene("startmenue", select_jumppower);
     }
 
-    @FXML
-    void heart_selected(ActionEvent event) {
-
-    }
-
 
 }
-

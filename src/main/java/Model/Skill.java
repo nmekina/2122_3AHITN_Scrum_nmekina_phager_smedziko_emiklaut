@@ -3,11 +3,22 @@ package Model;
 import com.example.Controller.HelloController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+import java.util.Objects;
+
+import static Model.ObstacleGenerator.hearts;
+import static Model.ObstacleGenerator.heightbig;
 
 public class Skill {
-    static final int MINLEVEL = 0;
+
     static final int MAXLEVEL = 3;
     static final int NOTSAVE = -1;
+
+    static int heightbig = 72;
+    static final int x = 776;
+    static final int y = 237;
+
     ImageView[] skills = new ImageView[3];
     ImageView skill_img;
     String image;
@@ -63,7 +74,25 @@ public class Skill {
         }
     }
 
-    public void updateSkill(int skillevel) {
-        Player.setJumpPower(intensity[skillevel]);
+    public void updateSkill(int skillevel, String skillname) {
+        if(Objects.equals(skillname, "jump")) {
+            Player.setJumpPower(intensity[skillevel]);
+        }
+
+        if(Objects.equals(skillname,"heart")){
+            Pane heart = new Pane();
+            heart.setPrefHeight(heightbig);
+            heart.setPrefWidth(60);
+            heart.setLayoutY(y);
+            heart.setLayoutX(x);
+
+            Image j = new Image(String.valueOf(Skin.class.getResource("heart.jpg")), 200, 200, false, false);
+            ImageView iv = new ImageView(j);
+            iv.fitHeightProperty().bind(heart.heightProperty());
+            iv.fitWidthProperty().bind(heart.widthProperty());
+
+
+            hearts.add(heart);
+        }
     }
 }

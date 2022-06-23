@@ -5,6 +5,8 @@ public class startMusic {
     Thread thread2 = new Thread(thread);
 
     public void start() {
-        thread2.start();
+        if (Settings.getMusiconoff()) {
+            thread2.start();
+        }
     }
 }

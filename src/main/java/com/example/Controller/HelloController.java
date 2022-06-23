@@ -114,6 +114,9 @@ public class HelloController {
     Player p;
 
     public void initialize() throws InterruptedException, IOException {
+        startMusic startMusic = new startMusic();
+        startMusic.start();
+
 
         ImageView iv = new ImageView();
         iv.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.jpg"))));

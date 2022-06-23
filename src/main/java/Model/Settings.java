@@ -15,7 +15,7 @@ public class Settings {
         Settings.highscoreonoff = highscoreonoff;
     }
 
-    public boolean getMusiconoff() {
+    public static boolean getMusiconoff() {
         return musiconoff;
     }
 

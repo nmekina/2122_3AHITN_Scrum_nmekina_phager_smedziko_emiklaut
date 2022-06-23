@@ -10,7 +10,7 @@ public class Player {
     static Skin skin;
     static Pane p;
     static String name;
-    static boolean stop = false;
+    static float jumpskill = 97;
 
     public static boolean getPressed() {
         return keypressed;
@@ -32,10 +32,18 @@ public class Player {
         skin = s;
     }
 
+    public static double getJumpSkill() {
+        return jumpskill;
+    }
+
+    public static void setJumpPower(Integer jump) {
+        jumpskill = jump;
+    }
+
     public void setPlayer(Pane p){
 
         if(skin == null){
-            skin = new Skin("Semir",0,new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")),200,100,false,false));
+            skin = new Skin("Semir",0,0,new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")),200,100,false,false));
         }
 
         Player.p = p;

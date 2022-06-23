@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerStartMenue">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerStartMenue">
    <children>
       <Button fx:id="btn_startgame" layoutX="64.0" layoutY="93.0" mnemonicParsing="false" onAction="#press_startgame" prefHeight="45.0" prefWidth="136.0" text="Start Game">
          <font>
@@ -22,12 +22,17 @@
             <Font size="21.0" />
          </font>
       </Button>
-      <Button fx:id="btn_skinshop" layoutX="64.0" layoutY="200.0" mnemonicParsing="false" onAction="#press_skinshop" prefHeight="45.0" prefWidth="136.0" text="Skin Shop">
+      <Button fx:id="btn_skinshop" layoutX="64.0" layoutY="256.0" mnemonicParsing="false" onAction="#press_skinshop" prefHeight="45.0" prefWidth="136.0" text="Skin Shop">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Button fx:id="btn_scoreboard" layoutX="64.0" layoutY="255.0" mnemonicParsing="false" onAction="#press_scoreboard" prefHeight="45.0" prefWidth="136.0" text="Scoreboard">
+      <Button fx:id="btn_scoreboard" layoutX="64.0" layoutY="310.0" mnemonicParsing="false" onAction="#press_scoreboard" prefHeight="45.0" prefWidth="136.0" text="Scoreboard">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_skillbutton" layoutX="64.0" layoutY="202.0" mnemonicParsing="false" onAction="#press_skillshop" prefHeight="45.0" prefWidth="136.0" text="Skill Shop">
          <font>
             <Font size="21.0" />
          </font>

@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="385.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerCredits">
+<AnchorPane prefHeight="697.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerCredits">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Credits:">
          <font>
             <Font name="System Bold Italic" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="306.0" layoutY="70.0" text="Nico Mekina:">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="450.0" layoutY="70.0" text="Philipp Hager:">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="306.0" layoutY="213.0" text="Elias Miklautsch:">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="450.0" layoutY="213.0" text="Semir Medzikovic:">
-         <font>
-            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <Label layoutX="14.0" layoutY="50.0" text="Erklärung des Spiels:">
@@ -39,8 +19,11 @@
             <Font name="System Italic" size="14.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="14.0" layoutY="70.0" prefHeight="301.0" prefWidth="276.0" text="Geben Sie ihren Benutzernamen ein und drücken&#10;Sie &quot;OK&quot;. Danach, in diesem Startmenü, können&#10;Sie das Spiel starten, in ein Settingsmenü &#10;kommen, in einen Skinshop kommen, zum&#10;Auswählen eines Skins oder in eine Scoreboard &#10;Ansicht kommen. Wenn Sie &quot;Spiel starten&quot; &#10;drücken, startet das Spiel mit einen Standartskin,&#10;wenn Sie dies nicht wollen, drücken Sie auf den&#10;Skinshop und wählen Sie einen Skin ihrer Wahl, &#10;vorrausgesehen Sie haben diesen schon&#10;freigeschaltet, aus. Wählen Sie &quot;bestätigen&quot; um&#10;den Skin zu speichern und zurück zum&#10;Hauptmenü zu kommen. Wenn Sie nun&#10;&quot;Spiel starten&quot; drücken, können Sie mit dem&#10;ausgwähltem Skin spielen. Sie können im&#10;Startmenü außerdem noch eine Highscoreliste&#10;und die Settings aufrufen." />
-      <Button fx:id="btn_exit" layoutX="551.0" layoutY="346.0" mnemonicParsing="false" onAction="#press_btn_exit" text="Exit" />
-      <Hyperlink fx:id="hyperlinkTest" layoutX="306.0" layoutY="281.0" text="https://www.htl-steyr.ac.at/" />
+      <TextArea editable="false" layoutX="14.0" layoutY="70.0" prefHeight="100.0" prefWidth="910.0" text="Geben Sie ihren Benutzernamen ein und drücken Sie &quot;OK&quot;. Danach, in diesem Startmenü, können Sie das Spiel starten, in ein Settingsmenü kommen, in einen &#10;Skinshop kommen, zum Auswählen eines Skins oder in eine Scoreboard Ansicht kommen. Wenn Sie &quot;Spiel starten&quot; drücken, startet das Spiel mit einen Standartskin,&#10;wenn Sie dies nicht wollen, drücken Sie auf den Skinshop und wählen Sie einen Skin ihrer Wahl, vorrausgesehen Sie haben diesen schon freigeschaltet, aus. &#10;Wählen Sie &quot;bestätigen&quot; um den Skin zu speichern und zurück zum Hauptmenü zu kommen. Wenn Sie nun &quot;Spiel starten&quot; drücken, können Sie mit dem&#10;ausgwähltem Skin spielen. Sie können im Startmenü außerdem noch eine Highscoreliste und die Settings aufrufen." />
+      <Button fx:id="btn_exit" layoutX="885.0" layoutY="657.0" mnemonicParsing="false" onAction="#press_btn_exit" text="Exit" />
+      <WebView fx:id="webviewMiklautsch" layoutX="50.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
+      <WebView fx:id="webviewMekina" layoutX="268.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
+      <WebView fx:id="webviewMedzikovic" layoutX="493.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
+      <WebView fx:id="webviewHager" layoutX="713.0" layoutY="209.0" prefHeight="442.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

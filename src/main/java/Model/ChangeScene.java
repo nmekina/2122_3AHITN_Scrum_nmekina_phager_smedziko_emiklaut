@@ -36,12 +36,14 @@ public class ChangeScene {
 
         if(game.equals("JumpAndRun")) {
             scene.setOnKeyPressed(e -> {
-                System.out.println(e.getCode().toString());
-
-                if (!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
-                    Player.setMovement(e.getCode().toString());
-                    Player.setPressed(true);
-                } else {
+                if (Objects.equals(Player.getMovement(), "") || Objects.equals(Player.getMovement(), "S")) {
+                    if (Objects.equals(e.getCode().toString(), "W") || Objects.equals(e.getCode().toString(),"S")|| Player.invincibility && Objects.equals(e.getCode().toString(), "I")) {
+                        Player.setMovement(e.getCode().toString());
+                        Player.setPressed(true);
+                    } else {
+                        System.out.println("Wrong Key");
+                    }
+                }else {
                     System.out.println("Already jumping");
                 }
             });

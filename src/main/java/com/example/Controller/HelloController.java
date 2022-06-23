@@ -21,8 +21,12 @@ import java.util.Objects;
 public class HelloController {
 
     //TODO
+
     @FXML
     private ProgressBar boss_health;
+
+    @FXML
+    private Button back;
 
     @FXML
     private Label coins;
@@ -31,16 +35,7 @@ public class HelloController {
     private Pane coins_image;
 
     @FXML
-    private AnchorPane scene;
-
-    @FXML
     private Label gameOver;
-
-    @FXML
-    private Button back;
-
-    @FXML
-    private Button restart;
 
     @FXML
     private Pane heart0;
@@ -52,22 +47,40 @@ public class HelloController {
     private Pane heart2;
 
     @FXML
-    private Label sc;
+    private HBox heart_box;
 
     @FXML
     private Label highscore;
 
     @FXML
+    private Pane invi_pic;
+
+    @FXML
+    private Label invincible_state;
+
+    @FXML
+    private Label invincible_timer;
+
+    @FXML
     private Pane paneplayer;
 
     @FXML
-    private HBox heart_box;
+    private Button restart;
+
+    @FXML
+    private Label sc;
+
+    @FXML
+    private AnchorPane scene;
+
+    @FXML
+    private Label invincible_cooldown;
 
 
     Pane[] hearts;
     static boolean restarted = false;
     Player player = new Player();
-
+    Invincibility i;
 
     //Player Jump Power einstellen können (Skill Updates)
     //TODO Lehrer fragen wie man API Images nicht zum lagen bringt
@@ -75,6 +88,14 @@ public class HelloController {
     AnimationTimer up = new AnimationTimer() {
         @Override
         public void handle(long now) {
+
+
+            if(Objects.equals(Player.getMovement(),"I") && Player.getInvincibility()){
+                Thread t = new Thread(i);
+                t.start();
+                Player.setInvincibility(false);
+                Player.setMovement("");
+            }
 
             if (Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setPrefHeight(28);
@@ -88,7 +109,7 @@ public class HelloController {
             }
 
             //Bis er ganz oben ist
-            if (Player.getPressed() && paneplayer.getLayoutY() > Player.getJumpSkill() && !Objects.equals(Player.getMovement(), "S")) {
+            if (Player.getPressed() && Objects.equals(Player.getMovement(), "W") && paneplayer.getLayoutY() > Player.getJumpSkill() && !Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setLayoutY(paneplayer.getLayoutY() - 8);
                 player.change(1);
             } else {
@@ -96,7 +117,7 @@ public class HelloController {
             }
 
             //kommt wieder runter
-            if (!Player.getPressed() && paneplayer.getLayoutY() < 237) {
+            if (!Player.getPressed() && Objects.equals(Player.getMovement(), "W") && paneplayer.getLayoutY() < 237) {
                 paneplayer.setLayoutY(paneplayer.getLayoutY() + 8);
                 player.change(1);
             }
@@ -134,7 +155,15 @@ public class HelloController {
         iv.fitHeightProperty().bind(coins_image.heightProperty());
         coins_image.getChildren().add(iv);
 
+        iv.setImage(new Image(String.valueOf(HelloController.class.getResource("invincible.png"))));
+        iv.fitHeightProperty().bind(invi_pic.widthProperty());
+        iv.fitHeightProperty().bind(invi_pic.heightProperty());
+        invi_pic.getChildren().add(iv);
+
+        i = new Invincibility(50,200,invincible_timer,invincible_cooldown);
         highscore.setText("No Highscore yet");
+        invincible_state.setText(Player.getInvincibility()+"");
+
 
         Coin c = new Coin(coins,restarted);
 

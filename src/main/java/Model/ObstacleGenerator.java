@@ -45,6 +45,7 @@ public class ObstacleGenerator implements Runnable {
     AnimationTimer playerJump;
     static ArrayList<Pane> hearts = new ArrayList<>();
     Score s = new Score();
+    Invincibility i = new Invincibility();
     Coin c;
     static Difficulty d = new Difficulty();
     static boolean petmode;
@@ -75,7 +76,9 @@ public class ObstacleGenerator implements Runnable {
                     if (Player.getPlayer().getLayoutY() < 168 || Player.getPlayer().getPrefHeight() == 28 && activeObstacle.getRunning().getLayoutBounds().getHeight() == 28) {
                     } else {
                         if (!isHeart) {
-                            checkDamage();
+                            if(!Invincibility.activated) {
+                                checkDamage();
+                            }
                             happend = true;
                         } else {
                             heal();
@@ -113,6 +116,7 @@ public class ObstacleGenerator implements Runnable {
                 enemies.stop();
                 playerJump.stop();
                 s.stop();
+                i.stop();
                 stopGame();
             }
 
@@ -156,7 +160,7 @@ public class ObstacleGenerator implements Runnable {
         for (int i = hearts.size()-1; i >=0; i--) {
             if (!isRedHeart(hearts.get(i).getChildren())) {
                 setHeart(hearts.get(i), "heart.jpg");
-                i = hearts.size();
+                i = 0;
             }
         }
     }

@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Player {
     static String chosenMovement = "";
@@ -13,6 +14,7 @@ public class Player {
     static Pane p;
     static String name;
     static float jumpskill = 97;
+    static boolean invincibility = false;
     ImageView iv = new ImageView();
 
     public static boolean getPressed() {
@@ -21,6 +23,10 @@ public class Player {
 
     public static void setPressed(boolean pressed) {
         keypressed = pressed;
+    }
+
+    public static boolean getInvincibility(){
+        return invincibility;
     }
 
     public static String getMovement() {
@@ -41,6 +47,10 @@ public class Player {
 
     public static void setJumpPower(Integer jump) {
         jumpskill = jump;
+    }
+
+    public static void setInvincibility(boolean b) {
+        invincibility = b;
     }
 
     public void setPlayer(Pane p){

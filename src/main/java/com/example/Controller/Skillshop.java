@@ -16,24 +16,6 @@ public class Skillshop {
 
 
     @FXML
-    private Label jump_power_lb;
-
-    @FXML
-    private ImageView jump_power_picture;
-
-    @FXML
-    private Button select_jumppower;
-
-    @FXML
-    private ImageView jump_1;
-
-    @FXML
-    private ImageView jump_2;
-
-    @FXML
-    private ImageView jump_3;
-
-    @FXML
     private Button go_to_start;
 
     @FXML
@@ -52,10 +34,43 @@ public class Skillshop {
     private ImageView heart_show;
 
     @FXML
+    private ImageView invi_1;
+
+
+    @FXML
+    private Label invincible_label;
+
+    @FXML
+    private ImageView invincible_show;
+
+    @FXML
+    private ImageView jump_1;
+
+    @FXML
+    private ImageView jump_2;
+
+    @FXML
+    private ImageView jump_3;
+
+    @FXML
+    private Label jump_power_lb;
+
+    @FXML
+    private ImageView jump_power_picture;
+
+    @FXML
     private Button select_heart;
+
+    @FXML
+    private Button select_invincible;
+
+    @FXML
+    private Button select_jumppower;
+
 
     Skill jump;
     Skill heart;
+    Skill invincible;
 
     static final int MINJUMP = 97;
     static final int LOWJUMP = 70;
@@ -73,15 +88,19 @@ public class Skillshop {
         go_to_start.setText("Menue");
         jump_power_lb.setText("Jump");
         heart_label.setText("Heart");
+        invincible_label.setText("invincible");
 
         select_heart.setText("Select");
         select_jumppower.setText("Select");
+        select_invincible.setText("Select");
 
         jump = new Skill(jump_1, jump_2, jump_3, jump_power_picture, MINJUMP, LOWJUMP, MIDJUMP, MAXJUMP, "jump-power.png");
         heart = new Skill(heart_1,heart_2,heart_3,heart_show, MINHEARTS, LOWHEARTS, MIDHEARTS, MAXHEARTS, "heart_skill.jpg");
+        invincible = new Skill(invi_1,invincible_show,"invincible.png");
 
         jump.setImage(jump_power_picture);
         heart.setImage(heart_show);
+        invincible.setImage(invincible_show);
 
 
 
@@ -92,6 +111,10 @@ public class Skillshop {
         for (int i = 0; i <= Skill.getSaved("heart");i++){
             heart.updateImage(i);
         }
+
+        invincible.changeActivate();
+
+
 
     }
 
@@ -108,6 +131,11 @@ public class Skillshop {
             skillevel = heart.checkSkillLevel("heart");
             heart.updateImage(skillevel);
             heart.updateSkill(skillevel, "heart");
+        }
+
+        if(event.getSource() == select_invincible){
+            invincible.changeState();
+            invincible.changeActivate();
         }
 
     }

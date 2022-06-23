@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,8 +30,16 @@ public class ControllerStartMenue {
     private Button btn_scoreboard;
 
     @FXML
+    private Button btn_skillbutton;
+
+    @FXML
     void press_scoreboard(ActionEvent event) throws IOException {
         ChangeScene.change_scene("scoreboard", btn_startgame);
+    }
+
+    @FXML
+    void press_skillshop(ActionEvent event) throws IOException {
+        ChangeScene.change_scene("skillshop",btn_skillbutton);
     }
 
     @FXML

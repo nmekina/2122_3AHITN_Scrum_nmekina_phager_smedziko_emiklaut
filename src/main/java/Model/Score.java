@@ -75,7 +75,7 @@ public class Score implements Runnable {
         while (i.hasNext()) {
             count++;
             PlayerScore p = i.next();
-            if (Objects.equals(pl.name, p.name)) {
+            if (Objects.equals(Player.name, p.name)) {
                 check = false;
                 p.games++;
                 p.coins = coins + p.coins;
@@ -94,11 +94,10 @@ public class Score implements Runnable {
             }else {
                 playerScore.highscore = 0;
             }
-            playerScore.name = pl.name;
+            playerScore.name = Player.name;
             playerScore.games++;
             playerScore.coins = coins;
             player.add(playerScore);
-            System.out.println(player);
         }
         FileWriter fw = new FileWriter(f);
         g.toJson(player, fw);

@@ -80,7 +80,7 @@ public class HelloController {
             }
 
             //Bis er ganz oben ist
-            if (Player.getPressed() && paneplayer.getLayoutY() > 97 && !Objects.equals(Player.getMovement(), "S")) {
+            if (Player.getPressed() && paneplayer.getLayoutY() > Player.getJumpSkill() && !Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setLayoutY(paneplayer.getLayoutY() - 8);
 
             } else {

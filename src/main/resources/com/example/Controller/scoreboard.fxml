@@ -8,7 +8,6 @@
 
 <AnchorPane prefHeight="384.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ControllerScoreBoard">
    <children>
-      <ListView fx:id="list_score" layoutX="14.0" layoutY="84.0" prefHeight="286.0" prefWidth="279.0" />
       <Label layoutX="14.0" layoutY="14.0" text="Scoreboard:">
          <font>
             <Font name="System Bold Italic" size="21.0" />
@@ -22,5 +21,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
+      <ListView fx:id="list_score" layoutX="14.0" layoutY="84.0" prefHeight="287.0" prefWidth="289.0" />
+      <Button layoutX="259.0" layoutY="51.0" mnemonicParsing="false" onAction="#sortbycoins" text="coins" />
    </children>
 </AnchorPane>

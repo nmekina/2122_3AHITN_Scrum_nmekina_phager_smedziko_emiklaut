@@ -20,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import org.json.*;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -61,50 +62,50 @@ public class SkinShop {
 
     ArrayList<Skin> skins = new ArrayList<Skin>();
     Skin skin;
-    ArrayList<Image> images = new ArrayList<>();
+    ArrayList<Image> images_semir = new ArrayList<>();
+    ArrayList<Image> images_elias = new ArrayList<>();
+    ArrayList<Image> images_nico = new ArrayList<>();
+    ArrayList<Image> images_rester = new ArrayList<>();
+    ArrayList<Image> images_hager = new ArrayList<>();
 
     Skin skinselect;
 
     public void initialize() {
-        images.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovicDuck.png")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovicJump.png")),200,100,false,false));
-        skin = new Skin("Semir", 0,0, images);
+        images_semir.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")), 200, 100, false, false));
+        images_semir.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovicDuck.png")), 200, 100, false, false));
+        images_semir.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovicJump.png")), 200, 100, false, false));
+        skin = new Skin("Semir", 0, 0, images_semir);
         skins.add(skin);
-        images.clear();
+        skinselect = skin;
 
-        images.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautsch.jpeg")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautschDuck.png")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautschJump.png")),200,100,false,false));
-        skin = new Skin("Elias", 25,100, images);
+        images_elias.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautsch.jpeg")), 200, 100, false, false));
+        images_elias.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautschDuck.png")), 200, 100, false, false));
+        images_elias.add(new Image(String.valueOf(Skin.class.getResource("Miklautsch/EliasMiklautschJump.png")), 200, 100, false, false));
+        skin = new Skin("Elias", 25, 100, images_elias);
         skins.add(skin);
-        images.clear();
 
-        images.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekina.jpeg")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekinaDuck.png")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekinaJump.png")),200,100,false,false));
-        skin = new Skin("Nico", 50,200, images);
+        images_nico.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekina.jpeg")), 200, 100, false, false));
+        images_nico.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekinaDuck.png")), 200, 100, false, false));
+        images_nico.add(new Image(String.valueOf(Skin.class.getResource("Mekina/NicoMekinaJump.png")), 200, 100, false, false));
+        skin = new Skin("Nico", 50, 200, images_nico);
         skins.add(skin);
-        images.clear();
 
-        images.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelRester.jpeg")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelResterDuck.png")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelResterJump.png")),200,100,false,false));
-        skin = new Skin("Rester", 75,300, images);
+        images_rester.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelRester.jpeg")), 200, 100, false, false));
+        images_rester.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelResterDuck.png")), 200, 100, false, false));
+        images_rester.add(new Image(String.valueOf(Skin.class.getResource("Rester/ManuelResterJump.png")), 200, 100, false, false));
+        skin = new Skin("Rester", 75, 300, images_rester);
         skins.add(skin);
-        images.clear();
 
-        images.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHagerDuck.png")),200,100,false,false));
-        images.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHagerJump.png")),200,100,false,false));
-        skin = new Skin("Hager", 100,400,images);
+        images_hager.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHager.jpeg")), 200, 100, false, false));
+        images_hager.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHagerDuck.png")), 200, 100, false, false));
+        images_hager.add(new Image(String.valueOf(Skin.class.getResource("Hager/PhilippHagerJump.png")), 200, 100, false, false));
+        skin = new Skin("Hager", 100, 400, images_hager);
         skins.add(skin);
-        images.clear();
 
 
         level_skin.setText("Level: " + skins.get(0).getLevel());
         skin_name.setText("Name: " + skins.get(0).getName());
-        coins_required.setText("Coins: "+ skins.get(0).getCoins());
+        coins_required.setText("Coins: " + skins.get(0).getCoins());
         show_skin.setImage(skins.get(0).getPicture().get(0));
         coins_img.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.jpg"))));
         coins_img.fitWidthProperty().bind(coins_pane.widthProperty());
@@ -131,10 +132,10 @@ public class SkinShop {
                 show_skin.setImage(s.getImage());
 
                 Iterator<Skin> i = Skin.getSkins().iterator();
-                while(i.hasNext()){
+                while (i.hasNext()) {
                     Skin selected = i.next();
-                    if(selected.getPicture().get(0) == s.getImage()){
-                        level_skin.setText("Level: " +selected.getLevel());
+                    if (selected.getPicture().get(0) == s.getImage()) {
+                        level_skin.setText("Level: " + selected.getLevel());
                         skin_name.setText("Name: " + selected.getName());
                         coins_required.setText("Coins: " + selected.getCoins());
 
@@ -164,13 +165,13 @@ public class SkinShop {
             fxmlLoader.setLocation(u);
             Scene scene = new Scene(fxmlLoader.load());
 
-            scene.setOnKeyPressed(e-> {
+            scene.setOnKeyPressed(e -> {
                 System.out.println(e.getCode().toString());
 
-                if(!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
+                if (!Player.getPressed() || Objects.equals(Player.getMovement(), "S")) {
                     Player.setMovement(e.getCode().toString());
                     Player.setPressed(true);
-                }else {
+                } else {
                     System.out.println("Already jumping");
                 }
             });
@@ -209,33 +210,23 @@ public class SkinShop {
         return data;
     }
 
-    //TODO Coins in dem File bei Kauf aktualisieren, verfügbar lassen
-  /*  private void setCoinsfromPlayer() throws IOException {
-        File file = new File("src/main/java/Model/scores.json");
-        Gson g = new Gson();
-        FileReader fr = new FileReader(file);
-        FileWriter fw = new FileWriter(file);
+    int i = 0;
 
-        Type listType = new TypeToken<ArrayList<PlayerScore>>() {
-        }.getType();
-        ArrayList<PlayerScore> player = g.fromJson(fr, listType);
-
-        Iterator<PlayerScore> i = player.iterator();
-
-        int count = 0;
-        while(i.hasNext()) {
-            PlayerScore p = i.next();
-            String name = p.getName();
-            if (name.equals(Player.getName())) {
-                int newcoins = p.getCoins() - skinselect.getCoins();
-                player.get(count).setCoins(newcoins);
-                g.toJson(player, fw);
-                fw.close();
-            }
-            count++;
+    @FXML
+    void skin_change_left(ActionEvent event) {
+        if (i > 0) {
+            i--;
+            show_skin.setImage(skinselect.getPicture().get(i));
         }
     }
 
-   */
+    @FXML
+    void skin_change_right(ActionEvent event) {
+        if (i < 2) {
+            i++;
+            show_skin.setImage(skinselect.getPicture().get(i));
+        }
     }
+
+}
 

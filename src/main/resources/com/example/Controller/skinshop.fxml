@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.SkinShop">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.SkinShop">
    <children>
       <ListView fx:id="list_skins" layoutX="277.0" prefHeight="403.0" prefWidth="362.0" />
       <ImageView fx:id="show_skin" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
@@ -33,5 +33,15 @@
             <ImageView fx:id="coins_img" fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
+      <Button fx:id="btn_skin_change_left" layoutX="9.0" layoutY="97.0" mnemonicParsing="false" onAction="#skin_change_left" prefHeight="12.0" prefWidth="27.0" text="&lt;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_skin_change_right" layoutX="238.0" layoutY="97.0" mnemonicParsing="false" onAction="#skin_change_right" prefHeight="12.0" prefWidth="27.0" text="&gt;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -1,8 +1,10 @@
 package com.example.Controller;
 
+import Model.ChangeScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
@@ -20,11 +22,14 @@ public class ControllerScoreBoard {
     @FXML
     private ListView<HBox> list_score = new ListView<>();
 
+    @FXML
+    private Button back_btn;
+
     private ArrayList<String[]> allplayers = new ArrayList<>();
     private ArrayList<String[]> scoreboard = new ArrayList<>();
     private int highscore = 0;
     private int mostgames = 0;
-    private String highestname = "";
+    private String highestname;
     private int coins = 0;
     private int indexfromplayer = 0;
 
@@ -90,6 +95,7 @@ public class ControllerScoreBoard {
     public void sortName() throws IOException {
         addSpieler();
         while (allplayers.size() > 0) {
+            highestname = allplayers.get(0)[0];
             for (int i = 0; i < allplayers.size(); i++) {
                 if (highestname.compareTo(allplayers.get(i)[0]) > 0) {
                     highestname = allplayers.get(i)[0];
@@ -98,7 +104,6 @@ public class ControllerScoreBoard {
             }
             scoreboard.add(allplayers.get(indexfromplayer));
             allplayers.removeAll(scoreboard);
-            highestname = "";
             indexfromplayer = 0;
         }
         print(scoreboard);
@@ -152,5 +157,10 @@ public class ControllerScoreBoard {
             player[3] = String.valueOf(getplayer.getInt("coins"));
             allplayers.add(player);
         }
+    }
+
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        ChangeScene.change_scene("startmenue", back_btn);
     }
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
@@ -18,6 +19,7 @@ import javafx.scene.shape.Shape;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -151,9 +153,9 @@ public class ObstacleGenerator implements Runnable {
 
     public void heal() {
 
-        for (int i = 0; i < hearts.size(); i++) {
+        for (int i = hearts.size()-1; i >=0; i--) {
             if (!isRedHeart(hearts.get(i).getChildren())) {
-                setHeart(hearts.get(i), "hearts.jpg");
+                setHeart(hearts.get(i), "heart.jpg");
                 i = hearts.size();
             }
         }
@@ -263,10 +265,13 @@ public class ObstacleGenerator implements Runnable {
 
     }
 
-    public static void setHearts(Pane[] heartcollection) {
+    public static void setHearts(Pane[] heartcollection, HBox heart_box) {
 
-        for(int j = 0; j < heartcollection.length; j++){
-            hearts.add(j, heartcollection[j]);
+
+        if(hearts.size() < 3) {
+            for (int j = 0; j < heartcollection.length; j++) {
+                hearts.add(j, heartcollection[j]);
+            }
         }
 
         for (int i = 0; i<hearts.size();i++){
@@ -276,6 +281,12 @@ public class ObstacleGenerator implements Runnable {
             iv.fitWidthProperty().bind(hearts.get(i).widthProperty());
             hearts.get(i).getChildren().clear();
             hearts.get(i).getChildren().add(iv);
+        }
+
+        heart_box.getChildren().removeAll();
+        heart_box.getChildren().clear();
+        for(int i = hearts.size()-1; i>=0 ;i--){
+            heart_box.getChildren().add(hearts.get(i));
         }
 
     }

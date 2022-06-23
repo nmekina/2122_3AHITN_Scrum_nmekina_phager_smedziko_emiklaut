@@ -10,10 +10,12 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class HelloController {
@@ -57,6 +59,9 @@ public class HelloController {
 
     @FXML
     private Pane paneplayer;
+
+    @FXML
+    private HBox heart_box;
 
 
     Pane[] hearts;
@@ -149,7 +154,8 @@ public class HelloController {
         hearts[2] = heart2;
 
 
-        ObstacleGenerator.setHearts(hearts);
+        ObstacleGenerator.setHearts(hearts,heart_box);
+
 
         gameOver.setText("Game Over");
         back.setText("Back to Menue");
@@ -197,7 +203,8 @@ public class HelloController {
         ObstacleGenerator.resetDifficulty();
 
         s.start();
-        ObstacleGenerator.setHearts(hearts);
+
+        ObstacleGenerator.setHearts(hearts,heart_box);
 
         highscore.setText(s.getHighscore());
 

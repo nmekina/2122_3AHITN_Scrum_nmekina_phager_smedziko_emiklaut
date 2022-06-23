@@ -53,9 +53,9 @@ public class Coin {
         } else if (coins < 100) {
             coinsText = "000" + coins;
         } else if (coins < 1000) {
-            coinsText = "Score: 00" + coins;
+            coinsText = "00" + coins;
         } else if (coins < 10000) {
-            coinsText = "Score: 0" + coins;
+            coinsText = "0" + coins;
         } else {
             coinsText = String.valueOf(coins);
         }

@@ -8,11 +8,10 @@ import javafx.scene.layout.Pane;
 import java.util.Objects;
 
 import static Model.ObstacleGenerator.hearts;
-import static Model.ObstacleGenerator.heightbig;
 
 public class Skill {
 
-    static final int MAXLEVEL = 3;
+    static final int MINLEVEL = 3;
     static final int NOTSAVE = -1;
 
     static int heightbig = 72;
@@ -23,7 +22,7 @@ public class Skill {
     ImageView skill_img;
     String image;
     Integer[] intensity = new Integer[4];
-    static int savedIntensity = NOTSAVE;
+    static Integer[] savedIntensity = {3, 3};
 
     public Skill(ImageView skill_1, ImageView skill_2, ImageView skill_3, ImageView skill_img, int min, int low, int mid, int max, String image) {
         skills[0] = skill_1;
@@ -37,37 +36,52 @@ public class Skill {
         intensity[3] = min;
     }
 
-    public static int getSaved(){
-        return savedIntensity;
+    public static int getSaved(String name) {
+        int saved = 0;
+        if (Objects.equals(name, "jump")) {
+            saved = savedIntensity[0];
+        } else if (Objects.equals(name, "heart")) {
+            saved = savedIntensity[1];
+        }
+        return saved;
     }
 
-    public void setImage(ImageView i){
+    public void setImage(ImageView i) {
         i.setImage(new Image(String.valueOf(HelloController.class.getResource(image))));
         i.fitHeightProperty();
         i.fitWidthProperty();
     }
 
-    public int checkSkillLevel(){
+    public int checkSkillLevel(String name) {
         int skillnumber = 0;
-        for(int i = 0; i < skills.length; i++){
-            if(skills[i].getImage() == null){
+        for (int i = 0; i < skills.length; i++) {
+            if (skills[i].getImage() == null) {
                 skillnumber = i;
                 i = skills.length;
-            }else if(i == skills.length-1){
-                skillnumber = MAXLEVEL;
+            } else if (i == skills.length - 1) {
+                skillnumber = MINLEVEL;
             }
         }
 
-        savedIntensity = skillnumber;
+        setSaved(name, skillnumber);
         return skillnumber;
     }
 
+    private void setSaved(String name, int skillnumber) {
+        if (Objects.equals(name, "jump")) {
+            savedIntensity[0] = skillnumber;
+        } else if (Objects.equals(name, "heart")) {
+            savedIntensity[1] = skillnumber;
+        }
+
+    }
+
     public void updateImage(int skillevel) {
-        if(skillevel != MAXLEVEL){
+        if (skillevel != MINLEVEL) {
             setImage(skills[skillevel]);
-        }else {
-            for (int i = 0;i < skills.length;i++){
-                if(skills[i].getImage()!=null){
+        } else {
+            for (int i = 0; i < skills.length; i++) {
+                if (skills[i].getImage() != null) {
                     skills[i].imageProperty().set(null);
                 }
             }
@@ -75,24 +89,32 @@ public class Skill {
     }
 
     public void updateSkill(int skillevel, String skillname) {
-        if(Objects.equals(skillname, "jump")) {
+        if (Objects.equals(skillname, "jump")) {
             Player.setJumpPower(intensity[skillevel]);
         }
 
-        if(Objects.equals(skillname,"heart")){
-            Pane heart = new Pane();
-            heart.setPrefHeight(heightbig);
-            heart.setPrefWidth(60);
-            heart.setLayoutY(y);
-            heart.setLayoutX(x);
+        if (Objects.equals(skillname, "heart")) {
 
-            Image j = new Image(String.valueOf(Skin.class.getResource("heart.jpg")), 200, 200, false, false);
-            ImageView iv = new ImageView(j);
-            iv.fitHeightProperty().bind(heart.heightProperty());
-            iv.fitWidthProperty().bind(heart.widthProperty());
+            hearts.clear();
 
+            if(skillevel != MINLEVEL){
+                skillevel +=4;
+            }
 
-            hearts.add(heart);
+            while (hearts.size() < skillevel) {
+                Pane heart = new Pane();
+                heart.setPrefHeight(28);
+                heart.setPrefWidth(26);
+                heart.setLayoutY(y);
+                heart.setLayoutX(x);
+
+                Image j = new Image(String.valueOf(Skin.class.getResource("heart.jpg")), 200, 200, false, false);
+                ImageView iv = new ImageView(j);
+                iv.fitHeightProperty().bind(heart.heightProperty());
+                iv.fitWidthProperty().bind(heart.widthProperty());
+
+                hearts.add(heart);
+            }
         }
     }
 }

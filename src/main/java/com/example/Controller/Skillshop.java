@@ -77,19 +77,20 @@ public class Skillshop {
         select_heart.setText("Select");
         select_jumppower.setText("Select");
 
-
         jump = new Skill(jump_1, jump_2, jump_3, jump_power_picture, MINJUMP, LOWJUMP, MIDJUMP, MAXJUMP, "jump-power.png");
         heart = new Skill(heart_1,heart_2,heart_3,heart_show, MINHEARTS, LOWHEARTS, MIDHEARTS, MAXHEARTS, "heart_skill.jpg");
 
         jump.setImage(jump_power_picture);
         heart.setImage(heart_show);
-        heart.setImage(heart_1);
-        heart.setImage(heart_2);
-        heart.setImage(heart_3);
 
 
-        for (int i = 0; i <= Skill.getSaved();i++){
+
+        for (int i = 0; i <= Skill.getSaved("jump");i++){
             jump.updateImage(i);
+        }
+
+        for (int i = 0; i <= Skill.getSaved("heart");i++){
+            heart.updateImage(i);
         }
 
     }
@@ -98,13 +99,13 @@ public class Skillshop {
     void select(ActionEvent event) {
         int skillevel;
         if(event.getSource() == select_jumppower) {
-            skillevel = jump.checkSkillLevel();
+            skillevel = jump.checkSkillLevel("jump");
             jump.updateImage(skillevel);
             jump.updateSkill(skillevel, "jump");
         }
 
         if(event.getSource() == select_heart){
-            skillevel = heart.checkSkillLevel();
+            skillevel = heart.checkSkillLevel("heart");
             heart.updateImage(skillevel);
             heart.updateSkill(skillevel, "heart");
         }

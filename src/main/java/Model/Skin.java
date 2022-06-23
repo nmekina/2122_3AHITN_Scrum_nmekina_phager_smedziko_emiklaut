@@ -20,17 +20,19 @@ public class Skin {
     String name;
     int level;
     Image picture;
+    int coins;
     static ArrayList<Skin> arr = new ArrayList<>();
     Image[] array = new Image[2];
     Vector<Image> imgArray = new Vector<>();
 
-    public Skin(String name, int level, Image picture) {
+    public Skin(String name, int level, int coins, Image picture) {
         this.name = name;
         this.level = level;
         this.picture = picture;
         arr.add(this);
         imgArray.add(picture);
         array[0] = picture;
+        this.coins = coins;
     }
 
     public static ArrayList<Skin> getSkins() {
@@ -47,6 +49,10 @@ public class Skin {
 
     public Image getPicture() {
         return picture;
+    }
+
+    public int getCoins(){
+        return coins;
     }
 
 }

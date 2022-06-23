@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic" />
         <module name="_2122_3AHITN_Scrum_Mekina_Hager_Miklautsch_Medzikovic" />
+        <module name="2122_3AHITN_Scrum_nmekina_phager_smedziko_emiklaut" />
       </profile>
     </annotationProcessing>
   </component>

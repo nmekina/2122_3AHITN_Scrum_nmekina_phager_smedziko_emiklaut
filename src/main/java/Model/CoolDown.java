@@ -101,7 +101,13 @@ public class CoolDown implements Runnable{
                     }else {
                         show = showTimer;
                         sec = DURATION;
-                        Player.setBreak_skill(true);
+                        if(type == BREAK_SKILL) {
+                            Player.setBreak_skill(true);
+                        }else if(type == INVINCIBLE){
+                            Player.setInvincibility(true);
+                        }else if(type == DOUBLE){
+                            Player.setDoublepoints(true);
+                        }
                     }
                 }
                 sec--;

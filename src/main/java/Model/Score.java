@@ -46,8 +46,8 @@ public class Score implements Runnable {
 
     }
 
-    public String getHighscore(){
-        return "Highscore: " + highscore;
+    public int getHighscore(){
+        return highscore;
     }
 
     public void stop(){

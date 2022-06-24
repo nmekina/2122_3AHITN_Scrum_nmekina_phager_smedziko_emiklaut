@@ -154,7 +154,7 @@ public class HelloController {
             if (Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setPrefHeight(28);
                 paneplayer.setLayoutY(280);
-                player.change(1);
+                    player.change(1);
                 Player.setPressed(false);
             } else if (paneplayer.getPrefHeight() == (28) && !Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setPrefHeight(72);

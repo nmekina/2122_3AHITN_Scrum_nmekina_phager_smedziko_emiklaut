@@ -56,13 +56,6 @@ public class ControllerCredits {
      * default Browser geöffnet wird.
      */
 
-    public void initialize(){
-        HagerImageview.setImage(new Image(String.valueOf(HelloController.class.getResource("Hager/PhilippHagerInstagram.jpeg"))));
-        MekinaImageview.setImage(new Image(String.valueOf(HelloController.class.getResource("Mekina/NicoMekinaInstagram.jpeg"))));
-        MedzikovicImageview.setImage(new Image(String.valueOf(HelloController.class.getResource("Medzikovic/SemirMedzikovicInstagram.jpeg"))));
-        MiklautschImageview.setImage(new Image(String.valueOf(HelloController.class.getResource("Miklautsch/EliasMiklautschInstagram.jpeg"))));
-    }
-
     @FXML
     void openLink1(ActionEvent event) throws URISyntaxException, IOException {
         System.out.println("Link clicked!");

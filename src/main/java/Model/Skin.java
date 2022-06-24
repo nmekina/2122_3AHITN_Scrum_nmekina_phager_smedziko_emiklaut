@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * @author elias
+ * @author elias 
  * ist eine Klasse, mit der man alle dazugehörigen Eigenschaften
  * eines Skins bekommt.
  */

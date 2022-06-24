@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * @author elias
+ * @author elias 
  * Mit dieser Klasse wird der Player definiert, Bilder pro
  * Bewegung geändert, Skills angelegt und sein Movement
  * überprüft.

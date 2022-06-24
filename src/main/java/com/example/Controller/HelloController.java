@@ -165,7 +165,7 @@ public class HelloController {
             //Bis er ganz oben ist
             if (Player.getPressed() && Objects.equals(Player.getMovement(), "W") && paneplayer.getLayoutY() > Player.getJumpSkill() && !Objects.equals(Player.getMovement(), "S")) {
                 paneplayer.setLayoutY(paneplayer.getLayoutY() - 8);
-                player.change(1);
+                player.change(2);
             } else {
                 Player.setPressed(false);
             }
@@ -173,7 +173,7 @@ public class HelloController {
             //kommt wieder runter
             if (!Player.getPressed() && Objects.equals(Player.getMovement(), "W") && paneplayer.getLayoutY() < 237) {
                 paneplayer.setLayoutY(paneplayer.getLayoutY() + 8);
-                player.change(1);
+                player.change(2);
             }
 
             //Löscht movement key nach erfolgreicher bewegung

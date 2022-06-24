@@ -13,7 +13,7 @@ import java.nio.file.Paths;
  * soll den Highscore des aktuellem Spielers setzen und zurückgeben können
  */
 public class getHighcorefromPlayer {
-    private int highscore;
+    private int highscore = 0;
 
     /**
      * @author nmekina
@@ -30,8 +30,6 @@ public class getHighcorefromPlayer {
             String name = getplayer.getString("name");
             if (name.equals(Player.getName())) {
                 highscore = getplayer.getInt("highscore");
-            } else {
-                highscore = 0;
             }
         }
     }

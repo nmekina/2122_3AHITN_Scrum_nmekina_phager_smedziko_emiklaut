@@ -5,6 +5,11 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * @author elias
+ * ist eine Klasse, mit der man alle dazugehörigen Eigenschaften
+ * eines Skins bekommt.
+ */
 public class Skin {
 
     public static final int NORMAL = 0;

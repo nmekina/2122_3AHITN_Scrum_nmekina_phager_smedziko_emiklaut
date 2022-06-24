@@ -7,6 +7,12 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * @author elias
+ * Mit dieser Klasse wird der Player definiert, Bilder pro
+ * Bewegung geändert, Skills angelegt und sein Movement
+ * überprüft.
+ */
 public class Player {
     static String chosenMovement = "";
     static boolean keypressed;
@@ -71,6 +77,12 @@ public class Player {
         return break_skill;
     }
 
+    /**
+     * @author elias
+     * Mit dieser Methode wird der Anfangsskin
+     * und seine dazugehörigen Bilder(Jump, Duck) festgelegt.
+     *
+     */
     public void setPlayer(Pane p){
 
         if(skin == null){
@@ -104,6 +116,12 @@ public class Player {
         return name;
     }
 
+    /**
+     * @author elias
+     * Mit dieser Methode wird das Bild
+     * beim Springen und Ducken gewechselt.
+     *
+     */
     public void change(int number) {
         iv.setImage(skin.getPicture().get(number));
         iv.fitWidthProperty().bind(Player.p.widthProperty());

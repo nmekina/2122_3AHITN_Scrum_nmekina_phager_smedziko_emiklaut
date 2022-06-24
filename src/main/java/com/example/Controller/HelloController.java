@@ -202,6 +202,7 @@ public class HelloController {
         startMusic startMusic = new startMusic();
         startMusic.start();
 
+        getHighcorefromPlayer getHighcorefromPlayer = new getHighcorefromPlayer();
 
         coins_img.setImage(new Image(String.valueOf(HelloController.class.getResource("coin.png"))));
         coins_img.fitWidthProperty().bind(coins_pane.widthProperty());
@@ -218,7 +219,7 @@ public class HelloController {
         i = new CoolDown(200,invincible_timer,invincible_cooldown,INVINCIBLE);
         d = new CoolDown(200, double_timer,double_cooldown,DOUBLE);
         b = new CoolDown(200,break_timer,break_cooldown,BREAK);
-        highscore.setText("No Highscore yet");
+        highscore.setText("Highscore: " + getHighcorefromPlayer.getHighcore());
         invincible_state.setText(Player.getInvincibility()+"");
         break_state.setText(Player.getBreak_skill()+"");
         double_state.setText(Player.getDoublepoints()+"");
@@ -294,7 +295,7 @@ public class HelloController {
 
         ObstacleGenerator.setHearts(hearts,heart_box);
 
-        highscore.setText(s.getHighscore());
+        highscore.setText("Highscore: " + s.getHighscore());
 
         og.startGame();
         og2.startGame();

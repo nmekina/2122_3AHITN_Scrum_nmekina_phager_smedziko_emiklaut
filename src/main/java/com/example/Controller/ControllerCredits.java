@@ -23,7 +23,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * @author: smedziko
+ * ControllerCredits:
+ * sind dafür verantwortlich, dass die Credits der Entwickler und deren "Firma"
+ * im Unterpunkt "Settings" -> "Credits" angezeigt werden
+ * Mit einem Klick auf den jeweiligen Namen des Entwicklers bzw. der Firma wird
+ * das Instagram - Profil geöffnet.
+ */
 public class ControllerCredits {
 
     @FXML
@@ -42,7 +49,12 @@ public class ControllerCredits {
     private ImageView MiklautschImageview;
 
 
-
+    /**
+     * @author: smedziko
+     * in den folgenden Methoden werden Instagram - Links auf Hyperlinks in der JavaFX-Applikation gesetzt,
+     * wo bei einem Klick auf einen Namen der Entwickler bzw. deren Firma die Instagram - Seiten im
+     * default Browser geöffnet wird.
+     */
     @FXML
     void openLink1(ActionEvent event) throws URISyntaxException, IOException {
         System.out.println("Link clicked!");

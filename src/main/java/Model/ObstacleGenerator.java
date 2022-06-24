@@ -50,6 +50,7 @@ public class ObstacleGenerator implements Runnable {
     static boolean petmode;
     ProgressBar progress;
     static Integer coins = 0;
+    boolean done = false;
 
     AnimationTimer enemies = new AnimationTimer() {
         @Override
@@ -116,7 +117,9 @@ public class ObstacleGenerator implements Runnable {
                 s.stop();
                 i.stop();
                 double_p.stop();
-                stopGame();
+                if(!Player.break_skill) {
+                    stopGame();
+                }
             }
 
             //Width + Layout + Höhe = Position

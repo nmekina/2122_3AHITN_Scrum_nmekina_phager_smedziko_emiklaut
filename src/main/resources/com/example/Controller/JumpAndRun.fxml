@@ -54,5 +54,13 @@
       <Label fx:id="double_timer" layoutX="397.0" layoutY="39.0" text="Label" />
       <ImageView fx:id="dou_img" fitHeight="42.0" fitWidth="42.0" layoutX="355.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="double_cooldown" layoutX="397.0" layoutY="23.0" text="Label" />
+      <Label fx:id="break_state" layoutX="509.0" layoutY="54.0" text="Label" />
+      <Label fx:id="break_timer" layoutX="509.0" layoutY="39.0" text="Label" />
+      <Label fx:id="break_cooldown" layoutX="509.0" layoutY="23.0" text="Label" />
+      <Pane fx:id="break_pane" layoutX="460.0" layoutY="28.0" prefHeight="42.0" prefWidth="42.0">
+         <children>
+            <ImageView fx:id="break_img" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

@@ -9,24 +9,23 @@ public class CoolDown implements Runnable{
 
     static final int DOUBLE = 2;
     static final int INVINCIBLE = 1;
+    static final int BREAK_SKILL = 3;
+    static final int DURATION = 100;
 
-        int time;
         int cooldown;
         Label showTimer;
         Label showCooldown;
         boolean stop = false;
         String secs;
         Label show;
-        int sec;
-        boolean stopped = false;
+        int sec = DURATION;
         static boolean inviactivated = false;
         static boolean double_active = false;
+        static boolean break_active = false;
 
         int type = 0;
 
-        public CoolDown(int time, int cooldown, Label showTimer, Label showCooldown, int type) {
-            this.time = time;
-            sec = time;
+        public CoolDown(int cooldown, Label showTimer, Label showCooldown, int type) {
             this.cooldown = cooldown;
             stop = false;
             this.showTimer = showTimer;
@@ -58,6 +57,8 @@ public class CoolDown implements Runnable{
                 }else if( type == DOUBLE){
                     System.out.println(double_active);
                     double_active = show.idProperty().equals(showTimer.idProperty());
+                }else if(type == BREAK_SKILL){
+                    break_active = show.idProperty().equals(showTimer.idProperty());
                 }
 
                 if (sec < 10) {
@@ -86,7 +87,8 @@ public class CoolDown implements Runnable{
 
                 if(sec == 0){
                     stop = true;
-                    if(show.idProperty().equals(showTimer.idProperty()) || !stopped){
+                    if(show.idProperty().equals(showTimer.idProperty())){
+
                         sec = cooldown;
                         show = showCooldown;
                         Thread t = new Thread(this);
@@ -98,8 +100,8 @@ public class CoolDown implements Runnable{
                         t.start();
                     }else {
                         show = showTimer;
-                        sec = time;
-                        Player.setInvincibility(true);
+                        sec = DURATION;
+                        Player.setBreak_skill(true);
                     }
                 }
                 sec--;

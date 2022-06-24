@@ -6,14 +6,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 
 public class Skillshop {
 
+    @FXML
+    private ImageView break_1;
+
+    @FXML
+    private Label break_label;
+
+    @FXML
+    private ImageView break_picture;
 
     @FXML
     private ImageView double_1;
@@ -60,11 +66,15 @@ public class Skillshop {
     @FXML
     private ImageView jump_3;
 
+
     @FXML
     private Label jump_power_lb;
 
     @FXML
     private ImageView jump_power_picture;
+
+    @FXML
+    private Button select_break;
 
     @FXML
     private Button select_double;
@@ -79,10 +89,12 @@ public class Skillshop {
     private Button select_jumppower;
 
 
+
     Skill jump;
     Skill heart;
     Skill invincible;
     Skill double_points;
+    Skill break_skill;
 
     static final int MINJUMP = 97;
     static final int LOWJUMP = 70;
@@ -102,21 +114,25 @@ public class Skillshop {
         heart_label.setText("Heart");
         invincible_label.setText("invincible");
         double_label.setText("Double Points");
+        break_label.setText("Break");
 
         select_heart.setText("Select");
         select_jumppower.setText("Select");
         select_invincible.setText("Select");
         select_double.setText("Select");
+        select_break.setText("Select");
 
         jump = new Skill(jump_1, jump_2, jump_3, jump_power_picture, MINJUMP, LOWJUMP, MIDJUMP, MAXJUMP, "jump-power.png");
         heart = new Skill(heart_1,heart_2,heart_3,heart_show, MINHEARTS, LOWHEARTS, MIDHEARTS, MAXHEARTS, "heart_skill.jpg");
         invincible = new Skill(invi_1,invincible_show,"invincible.png");
         double_points = new Skill(double_1,double_img,"double_points.png");
+        break_skill = new Skill(break_1,break_picture,"break.jpg");
 
         jump.setImage(jump_power_picture);
         heart.setImage(heart_show);
         invincible.setImage(invincible_show);
         double_points.setImage(double_img);
+        break_skill.setImage(break_picture);
 
 
 
@@ -130,6 +146,7 @@ public class Skillshop {
 
         double_points.changeActivate("double");
         invincible.changeActivate("invincible");
+        break_skill.changeActivate("break");
 
 
 
@@ -158,6 +175,11 @@ public class Skillshop {
         if(event.getSource() == select_double){
             double_points.changeState("double");
             double_points.changeActivate("double");
+        }
+
+        if(event.getSource() == select_break){
+            break_skill.changeState("break");
+            break_skill.changeActivate("break");
         }
 
     }

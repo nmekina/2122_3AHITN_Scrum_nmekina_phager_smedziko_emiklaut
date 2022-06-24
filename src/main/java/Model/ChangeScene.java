@@ -37,7 +37,7 @@ public class ChangeScene {
         if(game.equals("JumpAndRun")) {
             scene.setOnKeyPressed(e -> {
                 if (Objects.equals(Player.getMovement(), "") || Objects.equals(Player.getMovement(), "S")) {
-                    if (Objects.equals(e.getCode().toString(), "W") || Objects.equals(e.getCode().toString(),"S")|| Player.invincibility && Objects.equals(e.getCode().toString(), "I") || Player.doublepoints && Objects.equals(e.getCode().toString(),"D")) {
+                    if (Objects.equals(e.getCode().toString(), "W") || Objects.equals(e.getCode().toString(),"S")|| Player.invincibility && Objects.equals(e.getCode().toString(), "I") || Player.doublepoints && Objects.equals(e.getCode().toString(),"D") || Player.break_skill && Objects.equals(e.getCode().toString(),"B")) {
                         Player.setMovement(e.getCode().toString());
                         Player.setPressed(true);
                     } else {

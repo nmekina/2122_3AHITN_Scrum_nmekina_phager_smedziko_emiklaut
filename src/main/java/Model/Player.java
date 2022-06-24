@@ -16,6 +16,7 @@ public class Player {
     static float jumpskill = 97;
     static boolean invincibility = false;
     static boolean doublepoints = false;
+    static boolean break_skill = false;
     ImageView iv = new ImageView();
 
     public static boolean getPressed() {
@@ -60,6 +61,14 @@ public class Player {
 
     public static boolean getDoublepoints() {
         return doublepoints;
+    }
+
+    public static void setBreak_skill(boolean b) {
+        break_skill = b;
+    }
+
+    public static boolean getBreak_skill() {
+        return break_skill;
     }
 
     public void setPlayer(Pane p){

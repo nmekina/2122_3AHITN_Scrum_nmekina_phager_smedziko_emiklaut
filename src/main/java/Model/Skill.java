@@ -22,6 +22,7 @@ public class Skill {
     ImageView skill_img;
     static boolean savedstate_invi = false;
     static boolean savedstate_double = false;
+    static boolean savedstate_break = false;
     String image;
     Integer[] intensity = new Integer[4];
     static Integer[] savedIntensity = {3, 3};
@@ -111,6 +112,13 @@ public class Skill {
             } else {
                 skills[0].imageProperty().set(null);
             }
+        }else if(Objects.equals(name,"break")){
+            if (savedstate_break) {
+                setImage(skills[0]);
+                Player.break_skill = true;
+            } else {
+                skills[0].imageProperty().set(null);
+            }
         }
     }
 
@@ -119,6 +127,8 @@ public class Skill {
             savedstate_invi = !savedstate_invi;
         }else if (Objects.equals(name, "double")){
             savedstate_double= !savedstate_double;
+        }else if(Objects.equals(name,"break")){
+            savedstate_break = !savedstate_break;
         }
     }
 

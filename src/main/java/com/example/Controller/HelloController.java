@@ -29,6 +29,18 @@ public class HelloController {
     private ProgressBar boss_health;
 
     @FXML
+    private Label break_cooldown;
+
+    @FXML
+    private ImageView break_img;
+
+    @FXML
+    private Label break_state;
+
+    @FXML
+    private Label break_timer;
+
+    @FXML
     private Label coins;
 
     @FXML
@@ -94,6 +106,9 @@ public class HelloController {
     @FXML
     private AnchorPane scene;
 
+    @FXML
+    private Pane break_pane;
+
 
 
 
@@ -102,8 +117,10 @@ public class HelloController {
     Player player = new Player();
     CoolDown i;
     CoolDown d;
+    CoolDown b;
     static final int DOUBLE = 2;
     static final int INVINCIBLE = 1;
+    static final int BREAK = 3;
 
     //Player Jump Power einstellen können (Skill Updates)
     //TODO Lehrer fragen wie man API Images nicht zum lagen bringt
@@ -124,6 +141,13 @@ public class HelloController {
                 Thread t = new Thread(d);
                 t.start();
                 Player.setDoublepoints(false);
+                Player.setMovement("");
+            }
+
+            if(Objects.equals(Player.getMovement(),"B") && Player.getBreak_skill()){
+                Thread t = new Thread(b);
+                t.start();
+                Player.setBreak_skill(false);
                 Player.setMovement("");
             }
 
@@ -187,10 +211,17 @@ public class HelloController {
         inv_image.fitHeightProperty().bind(invi_pic.widthProperty());
         inv_image.fitHeightProperty().bind(invi_pic.heightProperty());
 
-        i = new CoolDown(50,200,invincible_timer,invincible_cooldown,INVINCIBLE);
-        d = new CoolDown(50, 200, double_timer,double_cooldown,DOUBLE);
+        break_img.setImage(new Image(String.valueOf(HelloController.class.getResource("break.jpg"))));
+        break_img.fitHeightProperty().bind(break_pane.widthProperty());
+        break_img.fitHeightProperty().bind(break_pane.heightProperty());
+
+        i = new CoolDown(200,invincible_timer,invincible_cooldown,INVINCIBLE);
+        d = new CoolDown(200, double_timer,double_cooldown,DOUBLE);
+        b = new CoolDown(200,break_timer,break_cooldown,BREAK);
         highscore.setText("No Highscore yet");
         invincible_state.setText(Player.getInvincibility()+"");
+        break_state.setText(Player.getBreak_skill()+"");
+        double_state.setText(Player.getDoublepoints()+"");
 
 
         Coin c = new Coin(coins,restarted);

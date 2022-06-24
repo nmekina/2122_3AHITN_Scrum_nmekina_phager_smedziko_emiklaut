@@ -295,7 +295,7 @@ public class HelloController {
 
         ObstacleGenerator.setHearts(hearts,heart_box);
 
-        highscore.setText(s.getHighscore());
+        highscore.setText("Highscore: " + s.getHighscore());
 
         og.startGame();
         og2.startGame();

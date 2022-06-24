@@ -135,7 +135,7 @@ public class Score implements Runnable {
                 public void run() {
                     showScore.setText(scoreText);
                     if (highscore < score) {
-                        showHighscore.setText(String.valueOf(score));
+                        showHighscore.setText("Highscore: " + score);
                     }
                 }
 

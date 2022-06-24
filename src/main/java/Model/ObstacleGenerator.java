@@ -43,7 +43,7 @@ public class ObstacleGenerator implements Runnable {
     AnimationTimer playerJump;
     static ArrayList<Pane> hearts = new ArrayList<>();
     Score s = new Score();
-    CoolDown i = new CoolDown();
+    static CoolDown i = new CoolDown();
     CoolDown double_p = new CoolDown();
     Coin c;
     static Difficulty d = new Difficulty();
@@ -117,9 +117,7 @@ public class ObstacleGenerator implements Runnable {
                 s.stop();
                 i.stop();
                 double_p.stop();
-                if(!Player.break_skill) {
-                    stopGame();
-                }
+                stopGame();
             }
 
             //Width + Layout + Höhe = Position
@@ -359,17 +357,22 @@ public class ObstacleGenerator implements Runnable {
     public void run() {
         while (!stop) {
             if (!beaten) {
-                synchronized (obstacleActive) {
-                    if (!obstacleActive.get()) {
-                        obstacleActive.set(true);
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                generateObstacle();
-                            }
-                        });
+                System.out.println(CoolDown.isRunning);
+                if (!CoolDown.isRunning) {
+                    synchronized (obstacleActive) {
+                        if (!obstacleActive.get()) {
+                            obstacleActive.set(true);
+
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    generateObstacle();
+                                }
+                            });
+                        }
                     }
                 }
+
                 try {
                     sleep(time);
                 } catch (InterruptedException e) {
@@ -377,7 +380,7 @@ public class ObstacleGenerator implements Runnable {
                 }
 
                 //TODO Nicht stoppen wenn nicht gestartet wurde
-                if (!beaten && activeObstacle != null) {
+                if (!beaten && activeObstacle != null && !CoolDown.isRunning) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -399,6 +402,7 @@ public class ObstacleGenerator implements Runnable {
         }
 
     }
+
 
     public static void main(String[] args) {
         //    String url =  "https://randomfox.ca/images/" + x + ".jpg";

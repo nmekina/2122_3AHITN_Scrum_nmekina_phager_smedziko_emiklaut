@@ -162,8 +162,10 @@ public class Score implements Runnable {
                     e.printStackTrace();
                 }
             }
-            score++;
-
+            if(!CoolDown.isRunning) {
+                score++;
+            }
+            Score unten;
         }
     }
 }

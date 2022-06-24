@@ -53,15 +53,16 @@ public class CoolDown implements Runnable{
     public void run() {
         while (!stop) {
 
-            if(!show.idProperty().equals(showCooldown.idProperty())) {
-                isRunning = true;
-            }
+
             if(type == INVINCIBLE) {
                 inviactivated = show.idProperty().equals(showTimer.idProperty());
             }else if( type == DOUBLE){
                 System.out.println(double_active);
                 double_active = show.idProperty().equals(showTimer.idProperty());
             }else if(type == BREAK_SKILL){
+                if (!show.idProperty().equals(showCooldown.idProperty())) {
+                    isRunning = true;
+                }
                 break_active = show.idProperty().equals(showTimer.idProperty());
             }
 

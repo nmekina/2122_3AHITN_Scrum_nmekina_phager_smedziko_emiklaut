@@ -72,7 +72,7 @@ public class SkinShop {
     int position = 0;
 
     /**
-     * @author: nmekina, smedziko
+     * @author: nmekina, smedziko, emiklaut
      * es werden verschiedene Bilder geladen, die dann bei einem Befehl ("springen", "ducken")
      * geändert werden und im Spiel so angezeigt werden
      */
@@ -154,6 +154,13 @@ public class SkinShop {
 
     }
 
+    /**
+     * @author: nmekina, smedziko
+     * in dieser Methode wird der Skin gewählt,
+     * gleichzeitig wird geprüft, ob man genug Coins für die Freischaltung des
+     * gewünschten Skins gesammelt hat. Falls dies der Fall ist, dann kann man einen
+     * anderen Skin statt dem Standard - Skin wählen
+     */
     @FXML
     void select_skin(ActionEvent event) throws IOException {
 
@@ -201,7 +208,10 @@ public class SkinShop {
     }
 
     /**
-     * @author:
+     * @author: nmekina
+     * die Daten vom Player werden aus dem JSON-File geladen
+     * und die Coins, der Score,... werden dann in der Spielumgebung
+     * angezeigt
      */
     private int getDatafromPlayer(String choose) throws IOException {
         File file = new File("src/main/java/Model/scores.json");

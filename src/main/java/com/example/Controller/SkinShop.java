@@ -27,6 +27,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
+/**
+ * Skinshop - Klasse:
+ * ist im Startmenü eine Funktion, wenn man einen anderen Charakter zum Spielen wählen möchte
+ * es gibt verschiedene "Skins", die man wählen kann, wenn man genug Coins gesammelt hat.
+ * Der Skin hat keine Abhängigkeit von der Spielschwierigkeit, der Standardskin ist seit Beginn dabei.
+ */
 public class SkinShop {
 
     @FXML
@@ -65,6 +71,11 @@ public class SkinShop {
     Skin skinselect;
     int position = 0;
 
+    /**
+     * @author: nmekina, smedziko
+     * es werden verschiedene Bilder geladen, die dann bei einem Befehl ("springen", "ducken")
+     * geändert werden und im Spiel so angezeigt werden
+     */
     public void initialize() {
         images_semir.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovic.jpeg")), 200, 100, false, false));
         images_semir.add(new Image(String.valueOf(Skin.class.getResource("Medzikovic/SemirMedzikovicDuck.png")), 200, 100, false, false));
@@ -189,6 +200,9 @@ public class SkinShop {
 
     }
 
+    /**
+     * @author:
+     */
     private int getDatafromPlayer(String choose) throws IOException {
         File file = new File("src/main/java/Model/scores.json");
         String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
@@ -206,6 +220,12 @@ public class SkinShop {
         return data;
     }
 
+    /**
+     * @author: smedziko
+     * prüft die Position des aktuellen Bildes, wenn der linke Pfeil gedrückt wird,
+     * dann wird das Bild -1 gerechnet und es wird ein Bild nach hinten bewegt
+     * und dann angezeigt, ausgenommen man befindet sich am ersten Bild.
+     */
     @FXML
     void skin_change_left(ActionEvent event) {
         if (position > 0) {
@@ -214,6 +234,12 @@ public class SkinShop {
         }
     }
 
+    /**
+     * @author: smedziko
+     * prüft die Position des aktuellen Bildes, wenn der rechte Pfeil gedrückt wird,
+     * dann wird das Bild +1 gerechnet und es wird ein Bild nach vorne bewegt
+     * und dann angezeigt, ausgenommen man befindet sich am letzten Bild.
+     */
     @FXML
     void skin_change_right(ActionEvent event) {
         if (position < 2) {

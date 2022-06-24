@@ -24,11 +24,22 @@ public class Score implements Runnable {
     static boolean stop = false;
     Player pl;
     boolean check = true;
+    getHighcorefromPlayer getHighcorefromPlayer;
+
+    {
+        try {
+            getHighcorefromPlayer = new getHighcorefromPlayer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Score(Label showScore, Label showHighscore, Player p){
         this.showScore = showScore;
         this.showHighscore = showHighscore;
         pl = p;
+
+        highscore = getHighcorefromPlayer.getHighcore();
     }
 
     public Score(){
@@ -123,6 +134,9 @@ public class Score implements Runnable {
                 @Override
                 public void run() {
                     showScore.setText(scoreText);
+                    if (highscore < score) {
+                        showHighscore.setText(String.valueOf(score));
+                    }
                 }
 
             });
